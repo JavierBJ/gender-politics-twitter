@@ -1,0 +1,299 @@
+id;gender;nombre;nombre;Apellido1;Apellido2;handle;desc;Partido
+1;0;Victor Píriz Maya;Victor;Píriz;Maya;vicpiriz1975;Padre, economista, maratoniano, madridista, Extremeño y ahora Diputado en Madrid. Defensor de la custodia compartida. #I+D+i #Europa #PP             ;PP
+2;0;Celso Delgado Arce;Celso;Delgado;Arce;CelsoDelgadoOU;Diputado Nacional del @PPopular en @Congreso_Es por Ourense en XII Legislatura. Abogado.             ;PP
+3;1;Rocio de Frutos;Rocio;de;Frutos;RociodeFrutos;Inspectora de Trabajo desde hace 25 años. Toda mi vida luchando por los derechos de los trabajadores. Diputada del PSdeG-PSOE por Ourense en el Congreso.             ;PSOE
+4;0;Miguel Lorenzo;Miguel;Lorenzo;;MLorenzo2017;Diputado del PP en el Congreso de los Diputados por A Coruña. Represento a mis vecinos en el Ayuntamiento, y ahora también llevaré su voz a Madrid. Abogado.             ;PP
+5;1;Marta Rivera;Marta;Rivera;;CiudadanaMartaR;Diputada en Cortes por Ciudadanos. Portavoz de Cultura en la Ejecutiva Nacional. Presidenta de la Comisión de Cultura en el Congreso. Mucho por hacer.             ;Cs
+6;0;M. Monereo;M.;Monereo;;ManoloMonereo;Andaluz nacido en Jaén. Comunista. Diputado de Unid@s Podemos por Córdoba. Haciendo posible lo imposible.             ;Ps
+7;1;Meritxell Batet;Meritxell;Batet;;AmbBatet;Perfil de Meritxell Batet, diputada del Grup Socialista al Congrés. Secretària d'Impuls Federal del PSC. Gestionat pel seu equip.             ;PSOE
+8;0;Jorge Fernández Díaz;Jorge;Fernández;Díaz;JorgeFdezDiaz;Partido Popular de Catalunya             ;PP
+9;1;Irene Garrido;Irene;Garrido;;garridoirene1;Secretaria de Estado de Economía y Apoyo a la Empresa. Ministerio de Economía, Industria y Competitividad. Cuenta oficial             ;PP
+10;0;Eduardo Fernández;Eduardo;Fernández;;Eduardo_Fdez_;Diputado Nacional y Presidente del PP de León @populares_Leon. Abogado, grado en Ciencias Políticas y en Geografía e Historia             ;PP
+11;1;TeresadeLara;TeresadeLara;;;TeresadeLara;Química.Diputada del Grupo Popular en el Congreso por Madrid. Portavoz de Medio Ambiente. Defendiendo la unidad de España             ;PP
+12;0;Eduardo Santos Itoiz;Eduardo;Santos;Itoiz;ESantosItoiz;Diputado de @ahorapodemos por Navarra-Nafarroa. Abogado y mediador. Kongresuan Barne eta Justizia Batzordeen kidea.             ;Ps
+13;1;carmen valido  ???;carmen;valido; ???;carmen_valido;Diputada del Congreso por Las Palmas.             ;Ps
+14;1;Carolina España;Carolina;España;;CarolinaEspanaR;Malagueña, madre y economista. Diputada del @PPopular en @congreso_es. Portavoz del Pacto de Toledo             ;PP
+15;1;Carmen G. Guinda;Carmen;González;Guinda;CarmenGGuinda;Diputada nacional por León . Química y profesora. Alcaldesa de Garrafe de Torío y madre de 4 hijos.             ;PP
+16;0;Miguel Ángel Viso;Miguel;Ángel;Viso;Miguel_Viso;Deputado @PPdeOU no Congreso. #CreoenOurense, sus potencialidades y, sobre todo, en una de sus riquezas: el vino             ;PP
+17;0;Juan Pedro Yllanes;Juan;Pedro;Yllanes;jpyllanes;Una passa endavant, no ens podem conformar. Jutge en serveis especials i diputat al @Congreso_Es per @PdmIllesBalears. Mallorquí i sevillista.             ;Ps
+18;0;M. Anxo Fernán Vello;M. Anxo;Fernán;Vello;FernanVello;Deputado no Congreso de @En_Marea Naceu en Cospeito (Terra Chá) Lugo. Escritor. Fundador de Edicións Espiral Maior. Comparte Twitter coa equipa de comunicación.             ;Ps
+19;1;Ana Botella Gómez;Ana;Botella;Gómez;AnaBotellaPSOE;Diputada por Valencia @SocialistesVal en el Congreso.             ;PSOE
+20;0;Rafael Catalá Polo;Rafael;Catalá;Polo;RafaCatalaPolo;Ministro de Justicia. Diputado del @PPopular por #Cuenca. Trabajando en equipo. Firmo RC             ;PP
+21;1;MªCarmen Hdez. Bento;MªCarmen;Hdez.;Bento;HernandezBento;Física( universidad complutense)Profesora.Diputada del @ppopular por la Provincia de Las Palmas en el @Congreso_Es             ;PP
+22;0;Pedro Arrojo;Pedro;Arrojo;;PericoArrojo;Profesor, ecologista, ciudadano del mundo y abuelo. Ahora, diputado electo al Congreso por Zaragoza con Podemos. Con la política en la calle, siempre.             ;Ps
+23;0;M Ángel Bustamante;M;Ángel;Bustamante;ma_bustamante84;Diputado por Sevilla en el Congreso de Unidos Podemos. Defendiendo los intereses de la clase trabajadora. Militante de @elpce e @iunida             ;Ps
+24;0;Tomás Burgos Gallego;Tomás;Burgos;Gallego;TomasBurgosVa;Tengo el honor de encabezar la Candidatura del Partido Popular al Congreso de los Diputados por Valladolid, mi provincia.             ;PP
+25;0;Mikel Legarda;Mikel;Legarda;;MikelLegarda;             ;EAJ-PNV
+26;1;MatildeAsianGonzalez;MatildeAsianGonzalez;;;MatildeAsian;Secretaria de Estado de Turismo             ;PP
+27;1;Amparo Botejara;Amparo;Botejara;;AmparoBotejara;Médico de familia. Diputada de @ahorapodemos en el Congreso por #Badajoz.             ;Ps
+28;1;CarmenNavarroLacoba;CarmenNavarroLacoba;;;CnLacoba;Diputada nacional del Partido Popular por la provincia de Albacete. Letrada autonómica. Madre de dos hijos.             ;PP
+29;0;José Ramón Gª-Hdez;José;Ramón;Gª-Hdez;JoseRa_Ghdez;Diputado Nacional por Ávila en el @Congreso_Es y Secretario ejecutivo de Relaciones Internacionales del Partido Popular.             ;PP
+30;0;Leopoldo Barreda;Leopoldo;Barreda;;lbarredaPP;Abogado, padre de cuatro hijos y Diputado del PP por Vizcaya.#EspañaEnSerio             ;PP
+31;1;María Eugenia Romero;María Eugenia;Romero;;Mariueugene;Licenciada Derecho. Master Asesoría Jurídica. Diputada Nacional por Sevilla X y XI Legislatura             ;PP
+32;0;SalvadorDeLaEncina;SalvadorDeLaEncina;;;encinasalvador1;             ;PSOE
+33;0;Artemi Rallo;Artemi;Rallo;;RalloArtemi;             ;PSOE
+34;0;Fernando Navarro;Fernando;Navarro;;CsFernavarro;Diputado en Cortes por C's. Islas Baleares             ;Cs
+35;1;María Aurora Flórez;María;Aurora;Flórez;M_Aurora_Florez;"Diputada nacional por León. Portavoz Comisión mixta para el estudio de las drogas. Miembro de la Ponencia ""Menores sin alcohol"".             ";PSOE
+36;1;Sandra Julia;Sandra;Julia;;MSandraJulia;Diputada de @CiudadanosCs en @Congreso_es. Subdelegada Territorial en Castellón. Concejal Ayuntamiento de Moncofa. Imposible es solo una opinion (C's)             ;Cs
+37;0;Sergio del Campo;Sergio;del;Campo;sdelcampocs;Diputado de @CiudadanosCs en el @Congreso_Es por Tarragona. Portavoz Comisión de Empleo y Seguridad Social. Subinspector Laboral de Empleo y SS (ITSS)             ;Cs
+38;1;Ascension Carreño;Ascension;Carreño;;Carre1Ascension;Diputada en el Congreso por el PP.Ingeniera de Obras Públicas y Civil. Arquitecto técnico y estudios de piano. Luchando por mejorar las cosas, la mejor melodía.             ;PP
+39;1;Sofía Castañón;Sofía;Castañón;;SofCastanon;Con los ojos atentos y las palabras a mano. Secretaria de Feminismos Interseccional y LGTBI en @ahorapodemos. Diputada por Asturies en el Congreso.             ;Ps
+40;1;Marta González;Marta;González;;MartaGlezVzqz;Medievalista de formación y vocación, Diputada por A Coruña en el Congreso. Portavoz Adjunta del GPPopular. De Santiago de Compostela #ahoramasquenunca             ;PP
+41;0;Jaume Moya i Matas;Jaume;Moya;i Matas;JaumeMoyaM;Procurador d'esquerres, sobiranista, ecologista, incontinent, ruralista, neosegarreta, estepari i aixafaterrossos. Ara, a més, diputat  @EnComu_Podem per Lleida             ;Ps
+42;0;saul ramirez freire;saul;ramirez;freire;saulCiudadanos;             ;Cs
+43;0;Alberto Rodríguez;Alberto;Rodríguez;;Alber_Canarias;Diputado en el Congreso por la provincia de Santa Cruz de Tenerife. @AhoraPodemos. Currela, canario y orgulloso de serlo.             ;Ps
+44;0;Pepe Cano Fuster;Pepe;Cano;Fuster;pepecanonucia;Diputado en Cortes por Cs. cuando los españoles hemos caminado juntos, hemos sido imparables. Imposible, es solo una opinión.             ;Cs
+45;0;Domingo Lorenzo;Domingo;Lorenzo;;Dlorenzo54;nuevo proyecto ilusionante             ;Cs
+46;1;Patricia Reyes;Patricia;Reyes;;PatriciaReyesCs;Madre - Abogada - Diputada de Ciudadanos y Secretaria cuarta de la Mesa del Congreso - Canaria nacida en Madrid - Adoro a Capra y a Marx (Groucho)             ;Cs
+47;1;Loreto Cascales Mart;Loreto;Cascales;Mart;LoraCascales;En este vida no se consigue nada sin esfuerzo y trabajo. Diputada nacional del Partido Popular por la provincia de Alicante.             ;PP
+48;1;Rita Bosaho;Rita;Bosaho;;RitaBosaho;Licenciada en Historia. Diputada de @ahorapodemos en el Congreso  por Alicante             ;Ps
+49;1;Melisa Rodríguez;Melisa;Rodríguez;;mrhciudadanos;Diputada y Portavoz Adjunta en El Congreso de Los Diputados por S/C de Tenerife. Portavoz de C's en Canarias. Facebook http://on.fb.me/1EqYzOX  @cscanarias             ;Cs
+50;1;Teófila Martínez;Teófila;Martínez;;teofila_es;Diputada por Cádiz y Coordinadora del equipo en el Ayuntamiento por el Partido Popular . Bienvenidos a mi cuenta oficial de Twitter.             ;PP
+51;0;Isidro M. Oblanca;Isidro;M.;Oblanca;imoblanca;             ;Foro Asturias
+52;1;Tamara Raya Rguez;Tamara;Raya;Rguez;tamarayar;Madre. Diputada socialista al Congreso por la provincia de S/C de Tenerife renovando el compromiso del PSOE con una sociedad más justa, igualitaria y solidaria             ;PSOE
+53;1;Teresa Arévalo;Teresa;Arévalo;;Arevalo80MT;Diputada de Unidos Podemos por la provincia de Albacete. Miembro del Consejo Ciudadano Estatal de Podemos. Si la política no la haces tú, otros la harán por ti.             ;Ps
+54;1;Marisol Perez;Marisol;Perez;;marisolazuaga;             ;PSOE
+55;0;Santiago Perez Lopez;Santiago;Perez;Lopez;santia2015;             ;PP
+56;0;Francisco Molinero;Francisco;Molinero;;Francis41334448;             ;PP
+57;0;Ricardo Tarno;Ricardo;Tarno;;RicardoTarno;Trabajando desde Mairena del Aljarafe. Diputado en el Congreso por Sevilla. Portavoz de Defensa GPP. Presidente Delegacion Española Asamblea Parlamentaria OTAN             ;PP
+58;1;Carmen Quintanilla;Carmen;Quintanilla;;QuintanillaCarm;Presidenta de la Comisión para el Estudio del Problema de Drogas del Congreso de los Diputados. Diputada del PP por Ciudad Real. Presidenta Nacional AFAMMER             ;PP
+59;0;Vicente Ten;Vicente;Ten;;VicenteTen;Papá, también Economista, Técnico de Hda.del E°, Diputado XI y XII Legislatura de @CsCongreso por Valencia. Los Grandes Sueños son para los Grandes Equipos!             ;Cs
+60;1;Mar García Puig;Mar;García;Puig;margpuig;Feminista, editora i diputada d'En Comú Podem   «¿Com podem concebre una lluita revolucionària que no impliqui una revolució en el discurs?», Julia Kristeva.             ;Ps
+61;0;Gabriel Rufián;Gabriel;Rufián;;gabrielrufian;Padre. Graduado Social. Diputado de @Esquerra_ERC en el Congreso. Para todos todo, para nosotros nada. Instagram: https://goo.gl/Ns6F60              ;ERC
+62;1;Virginia M.Salmeron;Virginia;M.Salmeron;;VirginiaSalmeCs;Sevilla, 1983. Abogada. Diputada de @CiudadanosCs en el Congreso por Sevilla. Portavoz de infancia y adolescencia. Trabajando para reformar y modernizar España.             ;Cs
+63;1;Isabel Cabezas;Isabel;Cabezas;;IsabelCabezasRe;Portavoz del PP de Fuente Obejuna ,Diputada Nacional por Córdoba . Portavoz Adjunta comisión de Salud .             ;PP
+64;1;María Jesús Bonilla;María;Jesús;Bonilla;Mbonilladomingu;Abogada de profesión y política por vocación.Diputada Nacional por Cuenca. Portavoz del PP en el Ayuntamiento de Tarancón.             ;PP
+65;0;Alberto Herrero Bono;Alberto;Herrero;Bono;herrerobono;Calandino. Ingeniero Mecánico. Diputado del @PPopular en el Congreso por la Provincia de Teruel. ¡Bienvenid@!             ;PP
+66;0;Nacho Tremiño;Nacho;Tremiño;;NTremino;             ;PP
+67;1;Zaida Cantera;Zaida;Cantera;;ZaidaCantera;FIAT IUSTITIA ET PEREAT MUNDUS Comandante retirada del ET. Diputada Nacional PSOE. Integridad, moralidad, igualdad, dedicación, esfuerzo y ante todo RESPETO             ;PSOE
+68;1;Nagua Alba;Nagua;Alba;;NaguaAlba;Secretaria General de @PodemosEuskadi_ . Donostiarra. Psikologoa. Diputada en el Congreso por Gipuzkoa de @ahorapodemos-eko diputatua Kongresuan             ;Ps
+69;0;Iñigo Méndez de Vigo;Iñigo;Méndez;de Vigo;IMendezdeVigo;Ministro de Educación, Cultura y Deporte y Diputado por Palencia. No digo todo lo que pienso, pero creo en todo lo que digo             ;PP
+70;1;Carolina Bescansa;Carolina;Bescansa;;CBescansa;Doctora en Sociología y Ciencia Política. Cofundadora, responsable de Análisis Electoral y diputada de Unidos Podemos. Evaluar, rectificar, reimpulsar.             ;Ps
+71;0;Rodrigo Gómez García;Rodrigo;Gómez;García;RodrigoGomGar;Diputado de @CsCongreso por Zaragoza. Licenciado en Derecho y Economía. Abogado.             ;Cs
+72;1;Eva García Sempere;Eva;García;Sempere;EvaGSempere;Si salimos, llegamos. Si llegamos, entramos. Si entramos, vencemos. Coord. del Área Federal de Medio Ambiente de @iunida. Aprendiz de Diputada ecocomunista             ;IU
+73;0;Toni Postius;Toni;Postius;;antonipostius;Lleidatà (1984). Regidor a l'Ajuntament de Lleida. Diputat al Congrés del  Partit Demòcrata Europeu Català per Lleida, lAlt Pirineu i lAran.             ;PDECAT
+74;1;mjesus moro almaraz;mjesus;moro;almaraz;MoroMjesus;Profesora USAL y Diputada del @ppopular por Salamanca en @Congreso_Es. Portavoz de justicia @GPPopular Congreso             ;PP
+75;0;Alfonso Candón;Alfonso;Candón;;AlfonsoCandon;Cuenta oficial de Alfonso Candón y su equipo. Diputado Nacional y presidente del PP de El Puerto             ;PP
+76;0;Miguel Gutiérrez;Miguel;Gutiérrez;;MGutierrezCs;Diputado de Cs en el Congreso y Secretario General de su Grupo Parlamentario. Delegado de Cs en Madrid.             ;Cs
+77;1;Ana Marcello;Ana;Marcello;;anamarcelloana;Diputada por Unid@s Podemos de León. Trabajadora Social. Sonríe porque el cambio ya está en marcha! https://www.facebook.com/AnaMarcelloSantos              ;Ps
+78;0;Juan Carlos Girauta;Juan;Carlos;Girauta;GirautaOficial;Portavoz de Cs en el Congreso de los Diputados             ;Cs
+79;1;Rosa Martínez;Rosa;Martínez;;rosa_mr_;Diputada por Bizkaia #UnidosPodemos Portavoz I+D y Energía Coportavoz @equo Trabajando por un modelo más justo y sostenible http://facebook.com/RosaMartinezEquo              ;Ps
+80;1;Elena Faba;Elena;Faba;;Elena_Faba;Empresaria. Presidenta del Círculo de Mujeres de Negocios. Diputada del Congreso por BCN. XI legislatura: Portavoz d Empleo e Industria. XII:Portavoz d Igualdad             ;Cs
+81;1;Irene Rivera;Irene;Rivera;;_Irene_Rivera;Piensa en NARANJA, piensa diferente. Piloto y Diputada de CIUDADANOS por Málaga https://m.facebook.com/profile.php?id=1622832151323858              ;Cs
+82;0;Jesus Maria;Jesus;Maria;;jesusmariafer;Diputado nacional por Navarra. Portavoz de sanidad PSOE. Médico. Me gusta la libertad.             ;PSOE
+83;0;Diego Cañamero Valle;Diego;Cañamero;Valle;DcaValle;Jornalero, diputado por Jaén de Unidos Podemos, militante de @NacionalCUT y del @SAT_nacional, considero que la Utopía es posible alcanzarla con la Lucha.             ;Ps
+84;1;Rosana Alonso;Rosana;Alonso;;Rosanalonso_10;Diputada de Podemos por Cantabria en el Congreso de los Diputados             ;Ps
+85;0;Jaime de Olano;Jaime;de;Olano;jaimedeolano;Diputado por Lugo en el Congreso @GPPopular Concejal Ayto de Viveiro @ppviveiro Abogado. Gallego, por lo tanto, Español jaime.deolanovela@facebook.com             ;PP
+86;0;Antonio Trevín;Antonio;Trevín;;antoniotrevin;Antonio Trevín , maestro asturiano en comisión de servicios en el Congreso por mandato de quienes votaron al PSOE en Asturias.             ;PSOE
+87;1;Elena Bastidas;Elena;Bastidas;;elenabastidasb;Presidenta Comisión de Cooperación Internacional para el Desarrollo en @congreso_Es . Diputada por Valencia @ppcv. Abogada. profesora-tutora             ;PP
+88;0;Segundo González;Segundo;González;;Segundogg;Economía y Comunicación. Activista y circunstancialmente diputado de Podemos por Asturies. Portavoz en Presupuestos y TCU. También en Hacienda y Economía             ;Ps
+89;1;Miriam Alconchel;Miriam;Alconchel;;AlconchelMiriam;             ;PSOE
+90;0;José Vicente Marí;José;Vicente;Marí;JVMariBoso;President @PPEivissa. Diputado por Ibiza @Congreso_Es en la XII Legislatura. @GPPopular             ;PP
+91;1;Meri Pita  ??;Meri;Pita; ??;meripita44;Trabajadora. Secretaria General de @PodemosCanarias. Diputada por la provincia de Las Palmas.             ;Ps
+92;0;Marcial Gómez;Marcial;Gómez;;MarcialGoBal;Padre, Procurador, deportista, ciudadano comprometido, diputado en el Congreso por Córdoba (C's) y con mucha biografía por escribir...             ;Cs
+93;0;Rafa Mayoral;Rafa;Mayoral;;MayoralRafa;Abogado. Diputado en el Congreso. Miembro del Consejo Ciudadano de @ahorapodemos             ;Ps
+94;0;Jose Jaime;Jose;Jaime;;jjalonso10;Docente y Diputado Nacional             ;PP
+95;0;Miguel Barrachina;Miguel;Barrachina;;BarrachinaM;Diputado nacional, liberal, economista, corredor, agricultor y de pueblo -Segorbe-. Secretario General PP Castellón.             ;PP
+96;0;Juan Vte. Perez Aras;Juan;Vte.;Perez Aras;juanviperezaras;Diputado Nacional por Valencia.Licenciado en Ciencias Políticas y de la Administración. @GPPopular @PPopular @ppcv @PP_Val @PP_Campdeturia             ;PP
+97;1;Lola Alba;Lola;Alba;;albamullor;Alcoyana. Diputada por Alicante en el Congreso de los Diputados en la XII Legislatura. @alicantepp @PopularesAlcoy.             ;PP
+98;0;Antonio G. Limones;Antonio;Gutierrez;Limones;LimonesAG;Me propongo vestir de limpio cada mañana y trabajar por mi ciudad, por vosotros, y para que la justicia y el bienestar alcancen a todas las personas.             ;PSOE
+99;1;Pilar Cancela;Pilar;Cancela;;PiliCancela;Deputada @PSOE por Coruña. Presidenta Comisión Igualdade no Congreso. Feminista. Galega. Nai. Na loita cotiá pola xustiza e igualdade dende o socialismo             ;PSOE
+100;1;pepa gonzalez bayo;pepa;gonzalez;bayo;pepa_bayo;Socialista. Diputada Congreso por Huelva L@S que niegan la libertad a Otr@s, No la merecen para Si             ;PSOE
+101;1;Pilar Rojo Noguera;Pilar;Rojo;Noguera;RojoNoguera;             ;PP
+102;1;Auxi Honorato;Auxi;Honorato;;auxihonorato;Funcionaria en excedencia. Secretaria de Administraciones Públicas en Podemos. Diputada de @ahorapodemos en el Congreso por Sevilla             ;Ps
+103;0;Javier Lasarte;Javier;Lasarte;;LasarteJavier;Diputado socialista en el Congreso, por Alava. Portavoz de la Comisión de Presupuestos. Economista. Miembro Comisión Ejecutiva del PSE-EE.             ;PSOE
+104;0;Joseba Agirretxea;Joseba;Agirretxea;;jagirretxea;Maite dut naizena, gorrota gabe ez naizena. Amo lo que soy sin odiar lo que no soy. Abertzale eta euskalduna. EAJ-PNV diputado.             ;EAJ-PNV
+105;0;Alberto Montero;Alberto;Montero;;amonterosoler;Diputado de @ahorapodemos por Málaga en el Congreso y SG de Málaga. Profesor de Economía Política en la Universidad de Málaga.             ;Ps
+106;0;Gonzalo Palacin;Gonzalo;Palacin;;gpalacinguarne;Diputado rural en el Congreso. Economista, creo en las personas. SG PSOE Monzón. Viviendo en el Alto Aragón.             ;PSOE
+107;0;Juan Bravo Baena;Juan;Bravo;Baena;juanBravoBaena;Diputado @Congreso_es del @ppopular por #Ceuta. Licenciado en Derecho e Inspector de Hacienda.             ;PP
+108;1;Tristana Moraleja;Tristana;Moraleja;;TristanaMg;Diputada del PP en el Congreso de los Diputados por la Coruña. Concejala del Partido Popular de Oleiros. Mi rincón para descansar, para vivir, Oleiros             ;PP
+109;1;Yolanda Díaz;Yolanda;Díaz;;Yolanda_Diaz_;"Avogada, Deputada no Congreso de En Marea, Coord de EU. Son tempos de excepción, no final dun réxime político; temos que conformar un novo suxeito político             ";Ps
+110;0;Gregorio Cámara;Gregorio;Cámara;;GregorioCmara;Constitucionalista. Socialista. Federalista. Diputado del Congreso por Granada...No separes el No del Sí. Y da a tu decir sentido: dale sombra (P. Celan)             ;PSOE
+111;0;Carlos Salvador;Carlos;Salvador;;ccsalvador_;Diputado navarro de @upn_navarra             ;UPN
+112;0;José Antonio Nieto;José;Antonio;Nieto;ja_nietob;Secretario de Estado de Seguridad. Presidente @pp_cordoba.             ;PP
+113;0;Pablo Bustinduy;Pablo;Bustinduy;;pbustinduy;Portavoz de Exteriores y diputado de @ahorapodemos por Madrid. Coordino la Secretaría Internacional (@PodemosInter). Las ideas se miden en sus efectos.             ;Ps
+114;1;Susana López Ares;Susana;López;Ares;susanalopezares;Diputada del @PPopular por Asturias en el Congreso. Portavoz adjunta @GPPopular. Doctora en Ciencias Económicas y profesora titular de la Universidad de Oviedo.             ;PP
+115;1;Marta Sorlí;Marta;Sorlí;;casanyeta;Treballadora Social. Diputada de @Compromis al @congreso_es pels pobles de Castelló. Idealista convençuda que es pot canviar el món per fer-lo més just.             ;Ps
+116;0;Óscar Clavell;Óscar;Clavell;;OscarClavell;Licenciado en Historia. Presidente del PP Vall de Uxó y Concejal en el Ayuntamiento. Diputado en el Congreso por Castellón.             ;PP
+117;1;María Jesús Serrano;María;Jesús;Serrano;Mjesusserranoj;Socialista, Abogada.Diputada Congreso por Córdoba.Hay una manera de contribuir a la protección de la humanidad, y es NO RESIGNARSE. mjesus.serrano@congreso.es             ;PSOE
+118;0;Pedro Saura;Pedro;Saura;;pedrosaurag;Diputado en el Congreso por Murcia. Portavoz de Economía del Grupo Socialista http://www.pedrosaura.blogspot.com.es/              ;PSOE
+119;0;Pablo Casado Blanco;Pablo;Casado;Blanco;pablocasado_;Vicesecretario de comunicación del @ppopular. Diputado por Ávila y Vicepresidente Comisión UE en @Congreso_es. Abogado y economista. Fellow en @JohnsHopkins             ;PP
+120;0;Antonio Pradas;Antonio;Pradas;;PradasTorres;De El Rubio (Sevilla) de donde fui alcalde socialista.Ahora Diputado en Cortes y Coordinador de la Interparlamentaria PSOE-A.             ;PSOE
+121;1;Susana Sumelzo;Susana;Sumelzo;;SSumelzo;Socialista. Diputada por Zaragoza en el Congreso. Trabajando para que las cosas cambien a mejor             ;PSOE
+122;1;Ana Zurita;Ana;Zurita;;AnaZurita7;Arquitecto, urbanista, preocupada por el territorio. Diputada por la provincia Santa Cruz de Tenerife. Portavoz de Vivienda del @GPPopular             ;PP
+123;1;AlíciaSánchezCamacho;AlíciaSánchezCamacho;;;AliciaSCamacho;Perfil oficial de la presidenta del PPC y secretaria primera de la Mesa del Congreso, Alícia Sánchez-Camacho, gestionado por su equipo.             ;PP
+124;0;Francisco Igea;Francisco;Igea;;FranciscoIgea;Medico, Ciclista fondón y creyente lleno de dudas. Diputado electo de C's por Valladolid. Portavoz de Sanidad en Congreso y comentarista ocasional en los medios             ;Cs
+125;0;Íñigo Errejón;Íñigo;Errejón;;ierrejon;Secretario de Análisis Estratégico y Cambio Político de @ahorapodemos y diputado por Madrid. Doctor en Ciencia Política en la UCM. #ConstruirPueblo             ;Ps
+126;1;Ana Oramas;Ana;Oramas;;anioramas;Diputada de Coalición Canaria. Economista y ex alcaldesa de La Laguna.             ;CC
+127;0;Josep Vendrell;Josep;Vendrell;;vendrellj;D'esquerres i ecologista, d'@iniciativa i diputat de @EnComu_Podem al Congrés dels Diputats.             ;Ps
+128;1;Isabel Salud;Isabel;Salud;;Saludisabel;Ezker Anitzako Koordinatzaile Orokorra-Coordinadora general de @IUEzker. Diputada de IU, grupo Unid@s Podemos-#ElkarrekinAhalDugu en el Congreso, por Gipuzkoa             ;Ps
+129;1;Guadalupe Martín;Guadalupe;Martín;;Guadalupem1960;Ahora Diputada en el Congreso. Antes ya era madre, médica y del PSOE             ;PSOE
+130;0;Carmelo Romero;Carmelo;Romero;;cromeroher;             ;PP
+131;0;Juan Jiménez Tortosa;Juan;Jiménez;Tortosa;juanjimenezt;Diputado G.P. Socialista. Profesor de Educación Secundaria. Psicólogo             ;PSOE
+132;0;Eduardo Maura;Eduardo;Maura;;edumaura;Diputado de @ahorapodemos por Bizkaia y portavoz de Cultura en el Congreso. Secretario Político de @PodemosEuskadi_             ;Ps
+133;0;Avelino Barrionuevo;Avelino;Barrionuevo;;AvelinoPP;Perfil Personal.Malagueño, 46 años, Casado con 3 hijos, Ldo en Derecho, Procurador de los Tribunales, ExSenador y Diputado del PP, por la Provincia de Malaga.             ;PP
+134;1;Lídia Guinart;Lídia;Guinart;;lidiaguinart;Escritora y periodista. Diputada en el Congreso por Barcelona. Socialista, feminista y atea. Lucho por la justicia social y la igualdad. Del Barça.             ;PSOE
+135;0;Alfonso Alonso;Alfonso;Alonso;;AlfonsoAlonsoPP;Bienvenidos al Twitter de Alfonso Alonso y su equipo. Presidente del @PPvasco y parlamentario vasco             ;PP
+136;0;Pedro Azpiazu;Pedro;Azpiazu;;PedroAzpiazu;Ogasuna eta Ekonomi sailburua. Consejero vasco de Hacienda y Economía.             ;PP
+137;1;Pilar Lucio;Pilar;Lucio;;lucio_pilar;Madre, socióloga, socialdemócrata, diputada nacional por Cáceres             ;PSOE
+138;0;Juan A Delgado Ramos;Juan;Delgado;Ramos;JA_DelgadoRamos;Diputado de @ahorapodemos en @congreso_ES por Cádiz. Guardia Civil. Ponte siempre en el lugar del otro. Mi blog http://juanantoniodelgado.es              ;Ps
+139;1;Agueda Reynés;Agueda;Reynés;;areynes2;Diputada Nacional del PP por Baleares. Portavoz del Grupo Municipal del PP en el Ayuntamiento de Mahón.             ;PP
+140;0;J.A. Martin Toledano;J.A.;Martin;Toledano;martintoledano;Diputado por Ciudad Real. Grupo Popular Congreso Portavoz de Interior GPP.             ;PP
+141;0;Rafael Simancas;Rafael;Simancas;;SimancasRafael;Diputado @PSOE @psoe_m por Madrid. Portavoz de Empleo. Profesor de Teoría Política @urjc. Subdirector http://www.fundacionsistema.com  Patrono de @fpabloiglesias             ;PSOE
+142;1;Carlota Merchán;Carlota;Merchán;;CarlotaMerchn;Diputada PSOE por Madrid. #DDHH #Feminismo #Cooperación #LuchaContraLaPobreza #JusticiaSocial #CiudadaníaGlobal             ;PSOE
+143;1;Mar Cotelo;Mar;Cotelo;;mar_cotelo;             ;PP
+144;1;Patricia_Blanquer;Patricia_Blanquer;;;Patri_Blanquer;Diputada Congreso por Alicante. Portavoz de industria. Mirant avant             ;PSOE
+145;1;Ana Vázquez Blanco;Ana;Vázquez;Blanco;anadebande;Ourensana de Bande...Funcionaria...Diputada...De centro e galeguista...Diputada de la VII,VIII,IX,X y XII #CreoenOurense             ;PP
+146;1;Silvia Heredia  ??;Silvia;Heredia; ??;SilviaHeredia;Portavoz del Partido Popular de Sevilla, Diputada Nacional en el Congreso y Concejala del Excmo. Ayuntamiento de Écija             ;PP
+147;1;Teresa Jordà;Teresa;Jordà;;TeresaJorda;Diputada al Congrés des del 2011 i acumulant amb 5 anys 3 legislatures #oletu. Alcaldessa de Ripoll d'@Esquerra_ERC durant 8 anys. Ganes de República Catalana             ;ERC
+148;1;Concha de Santa Ana;Concha;de;Santa Ana;de_santa_ana;Diputada Nacional por la Provincia de Granada             ;PP
+149;1;Sofía Hernanz Costa;Sofía;Hernanz;Costa;Hernanzsofia;Nada será igual, pero puede ser mejor. Diputada socialista. Eivissa             ;PSOE
+150;1;Àngela Ballester;Àngela;Ballester;;_ABallester;Historiadora. Diputada de @Podem_ al Congrés per València. #aLaValenciana             ;Ps
+151;1;Elvira Ramón;Elvira;Ramón;;ElviraRamon;Diputada en Cortes por Granada. Socialista. Molviceña             ;PSOE
+152;0;Enric Bataller;Enric;Bataller;;EBataller;Sóc advocat i activista polític. Diputat al Congrés per València. Membre fundador de @compromis. Un entre tants, en l'hora del canvi.             ;Ps
+153;1;Teresa Palmer Tous;Teresa;Palmer;Tous;TeresaPalTous;Diputada del Congreso por PP Balears. Portavoz de Economia del Grupo Parlamentario Popular             ;PP
+154;0;jillorens;jillorens;;;jillorenstorres;Diputado al Congreso del PP por Lleida. Presidente de la comisión de agriculura Partido Popular. Ingeniero Agronomo.             ;PP
+155;1;Lucia Martín;Lucia;Martín;;Lucia___M;Enginyera química i fins fa poc investigadora precària. Una de tantes activistes pel dret a l'habitatge. Ara diputada d'@Encomu_Podem             ;Ps
+156;0;joaquin Albaladejo;joaquin;Albaladejo;;joaquintorrevie;TORREVEJENSE. Diputado nacional en el Congreso de los Diputados XI y XII legislatura por la Provincia de Alicante. A TOPE !!!!!!             ;PP
+157;0;Edu Madina;Edu;Madina;;EduMadina;Northern sky             ;PSOE
+158;0;Rafael Hernando;Rafael;Hernando;;Rafa_Hernando;Bienvenido al Twitter del Portavoz del @GPPopular en el http://www.congreso.es  y su equipo. Diputado Nacional por Almería. http://www.gppopular.es/              ;PP
+159;1;Soraya Rodríguez;Soraya;Rodríguez;;sorayapsoe;Diputada por Valladolid             ;PSOE
+160;0;Miguel Vila;Miguel;Vila;;Mikele_V;Diputado de Unidos Podemos-En Comú Podem-En Marea en el Congreso por la provincia de Burgos, y miembro del CCE de @ahorapodemos             ;Ps
+161;0;"Joan Baldoví ;)";Joan;Baldoví;";)";joanbaldovi;Diputat de @compromisCGR         Valencià de soca-rel #aLaValenciana             ;Ps
+162;1;María Torres;María;Torres;;MariaTorresTej;             ;PP
+163;1;Ana Madrazo Diaz;Ana;Madrazo;Diaz;anamadrazo61;Diputada Nacional y actual portavoz de Hacienda del Congreso de los Diputados.             ;PP
+164;1;Marian;Marian;;;marianbeitia;Kazetaria, Legazpin jaioa, Hernanin bizi naiz aspaldi. Independentiston ahotsa Madrilen.             ;EH-Bildu
+165;1;Irene Montero;Irene;Montero;;Irene_Montero_;Portavoz de Unidas Podemos - EcP - EM en el Congreso. En la ejecutiva de @ahorapodemos. Psicóloga, por la vivienda digna. Defender la alegría como un derecho             ;Ps
+166;0;Antón Gómez-Reino;Antón;Gómez-Reino;;tone_corunha;Portavoz de @En_Marea Congreso. Navego na @MareAtlantica e @Podemos_Galicia. Desde abaixo, pola esquerda. Pai e caminhante.             ;Ps
+167;0;Luis C. Sahuquillo;Luis;Sahuquillo;;lcsahuquillo;             ;PSOE
+168;0;Joan Tardà i Coma;Joan;Tardà;i Coma;JoanTarda;Nascut a Cornellà de Llobregat, professor de Llengua i Literatura Catalanes. Membre d'Esquerra Republicana i diputat al Congrés dels Diputats             ;ERC
+169;0;JoseAndresTorresMora;JoseAndresTorresMora;;;JATorresMora;Nací el 1 de enero de 1960. Profesor titular de Sociología en la Complutense. En la actualidad soy diputado socialista por Málaga en el Congreso.             ;PSOE
+170;0;Ricardo Sixto;Ricardo;Sixto;;Rsixtoiglesias;Car diràs la paraula justa, la diràs en el moment just... la diràs honestament. V.A.Estellés / Diputat d'EUPV al Congrès per València coalició #ALaValenciana             ;IU
+171;0;Ferran Bel i Accensi;Ferran;Bel;i Accensi;Ferran_Bel;Alcalde de Tortosa             ;PDECAT
+172;1;Ione Belarra;Ione;Belarra;;ionebelarra;Portavoz adj. de @ahorapodemos en el Congreso. Diputada por Navarra. Investigadora y activista en Migraciones.             ;Ps
+173;1;Miriam NogVeras T44;Miriam;NogVeras;;miriamnoguerasM;La raó d tot: els meus. Diputada de PDECAT #novullpagar #CCN #ConsellEscolar #TÈXTIL #Regidora #RRII #DEFENSA http://miriamnogueras.cat  Instagram i Facebook             ;PDECAT
+174;0;Mariano Rajoy Brey;Mariano;Rajoy;Brey;marianorajoy;Presidente del Gobierno y del @PPopular. Casado, padre de dos hijos. Trabajo por una #España con más empleo, oportunidades y bienestar.             ;PP
+175;1;Begoña Tundidor;Begoña;Tundidor;;emeterina;Diputada por Málaga .Portavoz de Consumo en Grupo Parlamentario Socialista .Enfermera.Con el corazón entre Soria mi ciudad natal y Málaga mi ciudad de acogida             ;PSOE
+176;0;Jose Miguel Camacho;Jose;Miguel;Camacho;JoseMiguelCama1;Diputado por Toledo, socialista y luchador contra las desigualdades             ;PSOE
+177;0;Chano Franquis;Chano;Franquis;;chanofranquis;Diputado del PSOE en el Congreso por Las Palmas. Secretario General de Las Palmas GC             ;PSOE
+178;1;Carmen Rocío Cuello;Carmen;Rocío;Cuello;CarmenRCuello;Diputada por Sevilla en el Congreso.Portavoz adjunta PSOE en la Comisión de Igualdad.             ;PSOE
+179;0;Joan Capdevila ?;Joan;Capdevila;?;capdevilajoan;Diputat a Corts per @Esquerra_ERC (independent). Esperant tornar aviat a fer de veterinari. Donec Perficiam.             ;ERC
+180;0;jordi salvador duch;jordi;salvador;duch;jsalvadorduch;Diputat al congreso per ERC. D'esquerres, per la República Catalana, internacionalista i sindicalista. Professor i Dr. en Antropologia Social i Cultural             ;ERC
+181;0;Francisco Bernabé;Francisco;Bernabé;;bernabepaco;Diputado en el Congreso. Vicesecretario General de Acción Política de @PPRMurcia. Abogado. #BasketLover. Feliz esposo y padre de cinco hijos.             ;PP
+182;0;miguel garaulet;miguel;garaulet;;MiguelGaraulet;Simplemente un tipo normal al que le gusta aprender todos los dias algo nuevo. Diputado de Cs a Cortes por la Región de Murcia             ;Cs
+183;0;Nacho Sánchez Amor;Nacho;Sánchez;Amor;NachoSAmor;Spanish PSOE MP/FA Com. Spox/OSCE PA's Chair Com. Democracy, HHRR & Humanitarian Quest/Constitutional Law/European & exsoviet area politics/Extremadura             ;PSOE
+184;1;Dolores Marcos;Dolores;Marcos;;LoliMarcos;Diputada Nacional del Partido Popular por Cáceres             ;PP
+185;1;Ana Pastor Julian;Ana;Pastor;Julian;anapastorjulian;Twitter oficial de la presidenta del Congreso de los Diputados en la XII Legislatura             ;PP
+186;1;Ángela Rodríguez;Ángela;Rodríguez;;Pam_Angela_;Dende o pequeno con @MareaPontevedra, facendo feminismo con @ahorapodemos, deputada no congreso, asaltando o ceo, @En_Marea.             ;Ps
+187;1;Isabel Franco;Isabel;Franco;;IsabelPodemos;Diputada de Unid@s Podemos y Secretaria de Sociedad Civil de @Podemos_AND. Master en Trabajo y Empleo y evaluadora de Politicas Públicas. #NOalTTIP             ;Ps
+188;1;Gloria Elizo;Gloria;Elizo;;GloriaElizo;`Nosotros pocos, nosotros pocos y felices, banda de hermanos` Diputada de @ahorapodemos por Toledo. Madre. No todo es politica. O sí.             ;Ps
+189;0;Javier Sánchez Serna;Javier;Sánchez;Serna;J_Sanchez_Serna;Diputado murciano de @ahorapodemos en el Congreso. Portavoz en la Comisión de Educación #LomceNo. No nacimos para resistir nacimos para vencer              ;Ps
+190;0;Marcelo Expósito;Marcelo;Expósito;;mrenau;Secretario Tercero del Congreso y diputado @encomu_podem por Barcelona. Miembro de la Dirección Ejecutiva de @bcnencomu.             ;Ps
+191;0;Javier Ruano;Javier;Ruano;;ruanojavier;Diputado del Partido Popular en el Congreso por Murcia. XII Legislatura. Consultor. Felizmente casado y con tres hijas.             ;PP
+192;1;Mar Rominguera;Mar;Rominguera;;rominguera;Socialista ,Abogada, ahora Diputada Nacional por Zamora, Portavoz de Vivienda  ,y ante todo Madre. Orgullosa de los mios             ;PSOE
+193;1;Marta Sibina Camps;Marta;Sibina;Camps;Marta_Sibina;Infermera. Lluitant pels drets de totes em vaig topar amb la corrupció sanitària. Ara diputada d' @EnComu_Podem Faré debat mirant-te als ulls, no pas a tuiter!             ;Ps
+194;0;Odón Elorza;Odón;Elorza;;odonelorza2011;Diputado socialista x Gipuzkoa / El sistema es injusto y debemos transformarlo.Defiendo un Estado protector, los derechos y la dignidad de las personas.             ;PSOE
+195;1;Dolors Montserrat;Dolors;Montserrat;;DolorsMM;Ministra de @sanidadgob. Abogada de profesión. Enamorada de mi tierra.             ;PP
+196;0;Arturo García-Tizón;Arturo;García-Tizón;;AGarciatizon;Diputado Nacional. Portavoz adjunto del Grupo PP. Parlamentario en el congreso de los Diputados. Abogado del Estado             ;PP
+197;1;Carmen Dueñas;Carmen;Dueñas;;mcduenas;Diputada XII Legislatura @Congreso_Es por Melilla. Portavoz @GPPopular de Igualdad,vocal en Comisión de Justicia,Cambio Climático y Discapacidad.Abogada y madre             ;PP
+198;0;Pedro Acedo Penco;Pedro;Acedo;Penco;pedroacedo;Presidente del @PPMerida Muy orgulloso de haber sido 16 años alcalde de #Mérida, Patrimonio de la Humanidad. Senador X Legislatura. Diputado en el @Congreso_es             ;PP
+199;1;Sara Carreño  ??;Sara;Carreño; ??;Saracarrenov;Diputada de @ahorapodemos. Licenciada en ADE y Derecho. Soñadora y luchadora. Astur-riojana             ;Ps
+200;0;Antonio Hernando;Antonio;Hernando;;AHernandoVera;Soy diputado socialista por Madrid. Y madrileño. Ahora, portavoz del @gpscongreso . Hablo y quiero escuchar. #Congreso antonio.hernando@congreso.es             ;PSOE
+201;0;Bienvenido de Arriba;Bienvenido;de;Arriba;BienveDeArriba;Diputado Nacional del @PPopular en @Congreso_Es por Salamanca en XII Legislatura. Vicesecretario PP de Salamanca.             ;PP
+202;0;Juan Luis Gordo;Juan;Luis;Gordo;juanluisgordo;Diputado del PSOE por Segovia en el Congreso de los Diputados en la X, XI y XII Legislatura. Secretario Gral de Segovia. Ingeniero Industrial y Funcionario             ;PSOE
+203;0;David Serrada;David;Serrada;;dvserrada;Sociólogo, padre de dos niñas, Vicesecretario General @PSOESalamanca y Diputado en @Congreso_Es #Salamanca, Portavoz Cooperación Desarrollo @gpscongreso             ;PSOE
+204;0;Nacho Prendes;Nacho;Prendes;;nachoprendes;Gijonés. Abogado y Diputado de Ciudadanos. Vicepresidente Primero del Congreso de los Diputados. Trabajando para hacer posible lo necesario.             ;Cs
+205;1;M Luz Martínez Seijo;M Luz;Martínez;Seijo;luzseijo;Diputada por Palencia. Secretaria de Acción Política y Ciudadanía-PSOECYL. Mi profesión y pasión son la educación.             ;PSOE
+206;0;Joaquín García Díez;Joaquín;García;Díez;Quin1954;Lo bueno si breve dos veces bueno, aunque los que nos enrollamos lo tenemos dificil.             ;PP
+207;1;Esther Peña Camarero;Esther;Peña;Camarero;estherpcamarero;Diputada por #Burgos en Congreso de los Diputados. Secretaria General del PSOE de Burgos. Socióloga y técnico de integración.             ;PSOE
+208;1;Sonia Ferrer Tesoro;Sonia;Ferrer;Tesoro;soniafetesoro;Socialista. Actualmente diputada en el congreso. Madre en mis ratos libres. Almeriense.             ;PSOE
+209;0;JoseDavid Carracedo;JoseDavid;Carracedo;;JDCarracedo;Sociólogo, padre de dos peques, activista. http://DiagonalPeriodico.net , http://MeCambio.net  Diputado en el Congreso  por Bizkaia con @ahorapodemos             ;Ps
+210;0;Fernández de Moya;Fernández;de;Moya;Jefernandezmoya;Secretario de Estado de Hacienda y padre de un hijo maravilloso.             ;PP
+211;1;Rosa Romero;Rosa;Romero;;rosaromerocr;Politóloga (UCM).Diputada.Vicepresidenta 3ª del Congreso de los Diputados.Orgullosa haber sido 8 años Alcaldesa de Ciudad Real. Enamorada de mi marido y 2 hijos             ;PP
+212;0;Jose Maria Chiquillo;Jose;Maria;Chiquillo;ChiquilloBarber;Diputado. Portavoz @GPPopular Cooperación Internacional al Desarrollo. Member PA @OSCE. Presidente Red Internacional Programa @UNESCO RUTA DE LA SEDA #SilkRoad.             ;PP
+213;1;Ángeles Isac García;Ángeles;Isac;García;Angeles_isac;Diputada del @pp_jaen Diputación Provincial. Presidenta y portavoz del @linarespp. Apasionada de mi gente y sus pueblos #Jaén.             ;PP
+214;0;Pedro Quevedo Iturbe;Pedro;Quevedo;Iturbe;PedroQuevedoIt;Diputado por Nueva Canarias en el Congreso y Concejal del Ayuntamiento de LPGC.             ;NCa
+215;1;Alexandra;Alexandra;;;aKollontai;Deputada de En Marea no Congreso. Traballando por construír ferramentas de cambio.             ;Ps
+216;0;Toni Cantó;Toni;Cantó;;Tonicanto1;Actor.Diputado de Ciudadanos por la provincia de Valencia en la 12ª legislatura.Presidente de la comisión de la lucha contra la corrupción y por la regeneración             ;Cs
+217;0;Felipe J. Sicilia;Felipe;J.;Sicilia;felipe_sicilia;Jiennense, policía de profesión y socialista de convicción. Diputado en el Congreso y portavoz de agricultura             ;PSOE
+218;1;Sònia Farré;Sònia;Farré;;Sonia_Farre;Diputada d' @EnComu_Podem que no oblida d'on ve: monitora, profe, filòloga catalana, #15M, @auditciudadana, @pconstituent i més! #Seguim             ;Ps
+219;0;Xavier Eritja;Xavier;Eritja;;xavieritja;Crec en la força de la mobilització de les classes populars per construir la nova #RepúblicaCatalana. Diputat per Lleida @Esquerra_ERC al Congreso             ;PP
+220;0;Francesc Homs;Francesc;Homs;;franceschoms;Advocat. Associat a @Pdemocratacat             ;PDECAT
+221;0;Pablo Bellido;Pablo;Bellido;;PabloBellido_Az;Diputado por Guadalajara. Secretario General PSOE de Guadalajara. Creo en la Igualdad y la Solidaridad. Azuqueca, Guadalajara, Castilla-La Mancha, España             ;PSOE
+222;0;Eloy Suárez Lamata;Eloy;Suárez;Lamata;eloysuarezl;Diputado del @PPopular en el @Congreso_Es por Zaragoza. Aragonés, liberal, infatigable. Un español.             ;PP
+223;0;Fernando Maura;Fernando;Maura;;FMauraB;Diputado al Congreso por Cs. Abogado, economista y escritor. Parlamentario vasco 1990-2007. Eurodiputado 2014-2015.             ;Cs
+224;1;Belén Hoyo Juliá;Belén;Hoyo;Juliá;BelenHoyo;Diputada Nacional del PP por Valencia @GPPopular. Coordinadora General del @PPopular de la Provincia de Valencia @PP_VAL. Vicesecretaria Nacional de @NNGG_Es.             ;PP
+225;0;Félix Álvarez;Félix;Álvarez;;Felisuco_;Diputado por Cantabria. XII Legislatura. Grupo parlamentario de Ciudadanos. Portavoz de Cultura.             ;Cs
+226;0;F. Martínez-Maillo;F.;Martínez-Maillo;;martinezmaillo;Zamorano, nacido en 1969, casado, dos niñas. Licenciado en Derecho. Vicesecretario de Organización del @PPopular y Presidente de @populareszamora             ;PP
+227;0;Fèlix Alonso;Fèlix;Alonso;;felixaltafulla;Alcalde d'Altafulla. Diputat d'@EnComu_Podem.             ;Ps
+228;1;Ester Capella Farré;Ester;Capella;Farré;estercapella;Advocada, d 'Esquerra Republicana, Diputada al Congrés , Senadora (2013-2015). Treballant per esdevenir la pàtria novella de rels velles             ;ERC
+229;1;Raquel Alonso;Raquel;Alonso;;raquelalonsoher;Arquitecta. Concejala de Alaejos. Diputada de la XII Legislatura por Valladolid por el @PPopular               ;PP
+230;0;Raimundo Viejo Viñas;Raimundo;Viejo;Viñas;_mundus;Autor, editor, teórico, ciudadano activo, profesor... y en estos momentos diputado de @ahorapodemos por @EnComu_Podem en el Congreso. Surfea, simbionte, surfea!             ;Ps
+231;1;Noelia Vera;Noelia;Vera;;VeraNoelia;Periodista. Portavoz de @ahorapodemos y diputada en el Congreso por Cádiz. Defensora del #DerechoALaInformación y los DDHH. La lucha es por una vida digna             ;Ps
+232;0;Toni Roldán Monés;Toni;Roldán;Monés;toniroldanm;Portavoz de Economía en Congreso / Secretario de Programas de Cs / Antes @ColumbiaSIPA @LSEEI @eurasiagroup @ecfin / Autor: Recuperar el Futuro con @lugaricano             ;Cs
+233;0;Teodoro García Egea;Teodoro;García;Egea;TeoGarciaEgea;Doctor Ingeniero, tecnólogo y político. Diputado PP por Murcia en el Congreso. Judoka,Mountain Biker, Maratoniano y amante de las travesias en la nieve.             ;PP
+234;1;Mª Dolores Cospedal;Mª;Dolores;Cospedal;mdcospedal;Ministra de @Defensagob, secretaria general del @PPopular y presidenta del @PP_CLM             ;PP
+235;1;Belén Bajo;Belén;Bajo;;belenbajo;Periodista. Diputada del @gppopular por Madrid en el @Congreso_Es. Portavoz de #CambioClimatico.Digo lo que pienso y pienso lo que digo. http://www.pp.es              ;PP
+236;1;Mercè Perea Conillas;Mercè;Perea;Conillas;MercePerea;Veïna de L'Hospitalet. Diputada Grup Socialista Congrès. Portaveu del Pacto de Toledo. He estat regidora de la meva Ciutat             ;PSOE
+237;0;Guillermo Díaz;Guillermo;Díaz;;GuillermoLugosi;Mea mihi conscientia pluris est quam omnium sermo             ;Cs
+238;0;Jose Luis Abalos Mec;Jose Luis;Abalos;Mec;abalosmeco;Diputado Nacional, Congreso de los Diputados de España. Secretario General Adjunto GPS. Secretario General PSPV-PSOE provincia Valencia             ;PSOE
+239;1;Adriana Lastra;Adriana;Lastra;;Adrilastra;Tercera de cinco hermanas y sobreviví. Riosellana y ovetense. Socialista asturiana en el Congreso de los Diputados.              ;PSOE
+240;0;Miguel Ángel Heredia;Miguel;Ángel;Heredia;maherediadiaz;Secretario General del PSOE de Málaga. Diputado. Secretario General del Grupo Socialista en Cortes Generales.             ;PSOE
+241;1;Micaela Navarro;Micaela;Navarro;;micaela_navarro;Twitter oficial de Micaela Navarro. PSOE             ;PSOE
+242;0;angel luis gonzalez;angel;luis;gonzalez;angeluisgonza;Presidente del @AntequeraCF             ;PP
+243;0;Guillermo Mariscal;Guillermo;Mariscal;;gmariscalanaya;Sí, lo reconozco, soy liberal.Diputado en el Congreso por Las Palmas.Portavoz de #Energía Secretario de la Comisión #AsuntosExteriores #GranCanaria @GPPopular             ;PP
+244;0;Francisco d la Torre;Francisco;de la Torre;;frdelatorre;Diputado de @ciudadanosCs . Miembro de la Ejecutiva nacional.  Presidente de la Comisión de Presupuestos. Inspector de Hacienda. Autor de ¿Hacienda somos todos?             ;Cs
+245;1;Beatriz Escudero;Beatriz;Escudero;;BeatrizEscu;Diputada @ppopular por Segovia, Portavoz Comis.Calidad Democrática y Lucha contra Corrupción.Vocal en Comisiones de Constitucional, de Interior, y de Reglamento             ;PP
+246;0;Xavier Domènech;Xavier;Domènech;;XavierDomenechs;Historiador, activista i a voltes moltes altres coses. Ara portaveu i diputat d'@EnComu_Podem al Congrés.             ;Ps
+247;1;ana surra;ana;surra;;anasurra;Uruguaiana de naixement i catalana d'adopció. Acollida com a refugiada fugint d'una dictadura, Treballo per fer de Catalunya un país lliure, divers i just.             ;PDECAT
+248;0;sergi miquel valenti;sergi;miquel;valenti;sergimiquel;Secretari general de la @jncatalunya - diputat al @congreso_es ---All that is necessary for the triumph of evil is that good men do nothing. E.Burke---             ;PDECAT
+249;0;Julián López Milla;Julián;López;Milla;JuLMilla;Doctor Ciencias Económicas. Profesor Titular de Universidad. Análisis Económico Aplicado en la @UA_Universidad. Diputado del PSOE en el Congreso por Alicante.             ;PSOE
+250;0;Marc Lamuà Estañol;Marc;Lamuà;Estañol;MarcLamua;Fent grans a la Ilia i en Lex amb la Carol. Doctor en Arqueologia. Diputat al Congrés del PSC Comarques Gironines. Federalista i d'esquerres.             ;PSOE
+251;0;Óscar Gamazo;Óscar;Gamazo;;oscargamazo;Valencià entre Madrid i La Safor. Diputat del @GPPopular al @Congreso_Es ~ @PP_VAL @ppcv ~ @PPopular             ;PP
+252;0;Juan Ignacio Zoido;Juan;Ignacio;Zoido;zoidoJI;Ministro del @interiorgob. Alcalde de Sevilla 2011-2015. Mis padres me enseñaron que con trabajo y esfuerzo todo es posible en la vida.             ;PP
+253;0;Emilio del Río;Emilio;del;Río;emilio_delrio;Doctor en Filología Clásica por la @Unicomplutense. Profesor Titular en @unirioja. He colaborado en @NEUDC_RNE #VerbaVolant. Diputado @LaRiojaPP en @Congreso_es             ;PP
+254;0;Antonio Glez. Terol;Antonio;Glez.;Terol;Aglezterol;Alcalde de Boadilla del Monte y diputado en el Congreso por Madrid. Vicesecretario pp madrid. Ingeniero Industrial. Padre de tres hijos maravillosos!!!             ;PP
+255;0;Joan RUIZ CARBONELL;Joan;RUIZ;CARBONELL;jruizcarbonell;Tarragoní nascut a València Mestre de Primària i Llicenciat en Geografia i Història. Membre de l'Executiva del PSC al Camp de Tarragona i Diputat al Congrés             ;PSOE
+256;0;César Luena;César;Luena;;cesarluena;Doctor por la Universidad de La Rioja. Secretario General del @PSOELaRioja. Diputado por La Rioja. Cuenta administrada por @cesarluena y su equipo.             ;PSOE
+257;0;Sergio Pascual;Sergio;Pascual;;pascualsergio;Diputado por Sevilla en la Comisión de Fomento y Pacto de Toledo. Consejero Ciudadano de Podemos Andalucía. Ingeniero de Telecomunicaciones y Antropólogo             ;Ps
+258;0;carlos rojas;carlos;rojas;;CarlosRojas_PPA;Abogado. Portavoz adjunto Grupo Popular En el Congreso de los diputados. Orgulloso de ser español,andaluz,granadino y motrileño. Siempre hacia delante             ;PP
+259;0;AITOR ESTEBAN;AITOR;ESTEBAN;;AITOR_ESTEBAN;@eajpnv-ren Taldeburua Madrilen. Portavoz Grupo Vasco en el Congreso (EAJ-PNV). Leader of the Basque Group in the Spanish Parliament (EAJ-PNV). PhD in Law.             ;EAJ-PNV
+260;0;Pablo Iglesias;Pablo;Iglesias;;Pablo_Iglesias_;Secretario Gral. de @ahorapodemos y diputado en el Congreso. Profesor honorífico de la UCM. Nadie duda de que este país ya ha cambiado. ¡Sí se puede!             ;Ps
+261;0;Ignacio Urquizu;Ignacio;Urquizu;;iurquizu;(Alcañiz, Teruel) Profesor de Sociología en la UCM (en excedencia), Diputado del PSOE por Teruel y portavoz de Universidades. Mis opiniones son sólo mías.             ;PSOE
+262;1;Lourdes Ciuro;Lourdes;Ciuro;;lciuro;"Advocada de professió, faig política per vocació. Diputada del Partit Demòcrata al Congrés.  ""Hi ha un lloc a l'infern per les dones que no ajuden altres dones""             ";PDECAT
+263;0;José Manuel Villegas;José;Manuel;Villegas;CiudadanoVille;Este es el Twiter de un ciudadano progresista y no nacionalista. Diputado de C's en el Congreso de los Diputados             ;Cs
+264;1;Isabel Rodríguez;Isabel;Rodríguez;;isabelrguez;Soy ciudadana de este mundo. Ahora Diputada socialista por Ciudad Real.             ;PSOE
+265;0;Javier Antón Cacho;Javier;Antón;Cacho;javieranton;Diputado en @Congreso_Es por #Soria. Secretario de Organización de @PSOESoria             ;PSOE
+266;0;Guillermo Meijón;Guillermo;Meijón;;guillermomeijon;Mestre. Pedagogo. Orientador escolar.  Deputado Socialista no Congreso.             ;PSOE
+267;1;Silvia Valmaña;Silvia;Valmaña;;svalmana;Profesora Titular de Derecho Penal UCLM, madre de cuatro hijos y Diputada del Partido Popular por Guadalajara XI y XII Legislaturas.             ;PP
+268;0;Albert Rivera;Albert;Rivera;;Albert_Rivera;Perfil oficial de Albert Rivera. Presidente de Ciudadanos. Imposible es sólo una opinión.             ;Cs
+269;1;Ana Terrón;Ana;Terrón;;AnaTerron_;Diputada de @ahorapodemos en el Congreso por Granada.Trabajadora social. Podéis cortar todas las flores, pero no detendréis la primavera              ;Ps
+270;0;Ignasi Candela;Ignasi;Candela;;IgnasiCandela;Economista. Diputat de @Compromis i Portaveu de @JovesIniciativa. Compte gestionat en equip.             ;Ps
+271;0;Diego Clemente C´s;Diego;Clemente;C´s;diego__clemente;Arquitecto y Diputado en el @Congreso_es de @CiudadanosCs por @almeria_cs. Portavoz Políticas Integrales para la Discapacidad y Servicios Sociales.             ;Cs
+272;0;Miguel A. Paniagua;Miguel;A.;Paniagua;mapaniagua;Diputado por Palencia. Ex-bancario y ex-Asesor Financiero. Liberal en materia económica y en lo demás también. El PP es patrimonio inmaterial de España             ;PP
+273;1;Sáenz de Santamaría;Sáenz;de;Santamaría;Sorayapp;Vicepresidenta, Ministra de la Presidencia y para las Administraciones Territoriales. Diputada del @PPopular por Madrid.             ;PP
+274;0;Ricardo Garcia Mira;Ricardo;Garcia;Mira;fargmira;Diputado no Congreso polo @PSdeG @PSOE Circunscripción da Coruña. Doutor en Psicoloxía e Profesor de Psicoloxía Social na Univ. da Coruña. Presidente de IAPS.             ;PSOE
+275;0;Juan López de Uralde;Juan;López;de Uralde;juralde;Diputado en el Congreso por Alava/Araba y Coportavoz Federal de EQUO             ;EQUO
+276;0;Pedro Sánchez;Pedro;Sánchez;;sanchezcastejon;Padre. Doctor en Economía. Militante del @PSOE.             ;PSOE
+277;0;Javier Maroto;Javier;Maroto;;JavierMaroto;Vicesecretario Nacional de Acción Sectorial del @PPopular y Diputado por #Álava en el @Congreso_Es #RutaSocial             ;PP
+278;0;Juan María Vázquez;Juan;María;Vázquez;JMVRUM;Aguileño, Murciano, apasionado de mi tierra y comprometido con ella. Investigar para Conocer, Conocer para Innovar, Innovar para Crecer.             ;PP
+279;1;Marta Martín Llaguno;Marta;Martín;Llaguno;martamartirio;Mamá de Pablo. Catedrática Comunicación Audiovisual y Publicidad. Diputada por Alicante de Cs. Portavoz Educación Cs Congreso. Responsable Cs Universidad             ;Cs
+280;0;Joan Mena Arca;Joan;Mena;Arca;joanmena;Les escletxes són el que ens permet poder veure la llum. Profe interí, ara fent de diputat al Congrés d'@encomu_podem. Amb @euia_cat @iunida - Sabadell.             ;Ps
+281;1;Angeles Alvarez;Angeles;Alvarez;;AAlvarezAlvarez;Feminista / Diputada por Madrid - En estos momentos Portavoz del @gps_psoe en la Comisión de Igualdad  del Congreso /             ;PSOE
+282;1;Aina Vidal #UErgonya;Aina;Vidal;#UErgonya;AinaVS;La llibertat és quan comença l'alba en un dia de vaga general. Diputada al Congrés per @encomu_podem Feminista, d'ICV. Let's Rock!             ;Ps
+283;0;Oskar Matute;Oskar;Matute;;oskarmatute;             ;EH-Bildu
+284;0;Íñigo Alli;Íñigo;Alli;;inigoalli;Casado con Isabel. Papá de Cris, Nacho, Inés y Ana. Mi familia. Por la innovación social. Ahora en política por Navarra. Y ésta es mi opinión personal.             ;UPN
+285;0;pere joan pons;pere;joan;pons;perejoanpons;Mediterrani i pare. He fet moltes voltes pel planeta. ara vull seguir canviant les coses des del @Congreso_ES A por cambios!             ;PSOE
+286;1;Tania Sánchez Melero;Tania;Sánchez;Melero;Ainhat;Diplomada en Educación Social. Licenciada en Antropología. Vecina de Rivas desde los 4 años. Las instituciones, al servicio de la gente             ;Ps
+287;0;antonio hurtado;antonio;hurtado;;AntonioHurtado;Economista. Diputado Socialista por Córdoba en el Congreso             ;PSOE
+288;0;Juanma del Olmo;Juanma;del;Olmo;juanmalpr;Diputado en el Congreso y Secretario de Comunicación de @ahorapodemos. Consultor TIC             ;Ps
+289;1;M González Veracruz;M;González;Veracruz;mariagv;Bioquímica.Murciana,mediterránea y madre feliz.Diputada del PSOE en el Congreso por la R. de Murcia.Pasión por cambiar las cosas.No todos somos iguales.Libre              ;PSOE
+290;0;Jorge Luis;Jorge;Luis;;JorgeLuisBail;Comprometido con la sostenibilidad y fiel a mis principios. Diputado de Unidos Podemos en Común por el Alto Aragón en el Congreso #NoTTIP #LeyMordaza #DDAA             ;Ps
+291;0;patxilopez;patxilopez;;;patxilopez;             ;PSOE
+292;0;Luis Salvador;Luis;Salvador;;LuisSalvador;Diputado de Cs en el @Congreso_es por Granada. Portavoz de Cs Granada. Ciudadano, analista político y autor de @JaqueAlReyLS. Impulsor #MOVciudadano.             ;Cs
+293;0;Jordi Roca;Jordi;Roca;;jordiroca;Diputado Nacional en el Congreso. #Tarragona. PP. Portavoz adjunto de #Exteriores. Vocal de #Economía e #Industria y #Cultura.             ;PP
+294;0;carles campuzano;carles;campuzano;;carlescampuzano;Portaveu del @Pdemocratacat al @Congreso_Es i President de la Comissió de #Discapacitat.Crec la capacitat de la política per fer de Catalunya un país millor.             ;PDECAT
+295;0;Jordi Xuclà;Jordi;Xuclà;;jordixucla;Olotí entre ciutats. Diputat al Congrés per Girona. Partit Demòcrata Català. President del grup liberal (ALDE) a l'Assemblea del Consell d'Europa.             ;PDECAT
+296;0;Alberto Garzón;Alberto;Garzón;;agarzon;Economista, Coordinador Federal de @iunida Activista y defensor de los derechos humanos. Autor de 'A pie de escaño' (Península, 2015)             ;IU
+297;0;Cesar Ramos;Cesar;Ramos;;CesarJRamos;Diputado del PSOE por #Cáceres, Portavoz de Fomento. Autor de #DemocraciaHacker y bloguero en el Huffington Post. Apasionado de la tecnología y la colaboración.             ;PSOE
+298;0;jlayllon;jlayllon;;;jlayllon;Secretario de Estado de Relaciones con las Cortes y Diputado del PP por Madrid             ;PP

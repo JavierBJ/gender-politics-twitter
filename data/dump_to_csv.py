@@ -3,13 +3,13 @@ import os
 import numpy as np
 import pandas as pd
 
-filename = 'dump03t'
-out_tweets = 'dump03t'
-out_users = 'dumpusers03t'
+filename = 'dump07mr'
+out_tweets = 'dump07mr'
+out_users = 'dumpusers07mr'
 
 def process_text(df1, df2):
-    df1 = df1.replace('\n|\r', ' <NEWLINE> ', regex=True)
-    df2 = df2.replace('\n|\r', ' <NEWLINE> ', regex=True)
+    df1 = df1.replace('\n|\r', '', regex=True)
+    df2 = df2.replace('\n|\r', '', regex=True)
     return df1, df2
 
 def to_csv(recoveries, status_variables, user_stranger_key, user_variables, replies_variables, are_replies):

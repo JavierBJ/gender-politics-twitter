@@ -1,0 +1,4 @@
+Test if any screen_name is repeated in the db:
+db.users.aggregate(
+  {'$group': {_id:'$screen_name', count:{$sum:1}}},
+  {'$match': {'_id': {'$ne': null }, 'count': {'$ne':1}}})

@@ -3,14 +3,16 @@ import pandas as pd
 import pickle
 import time
 from datetime import datetime
-from common import metadata
+from common import metadata, text
+
 
 # Set these variables to the desired values before execution
-num_file = 3
+num_file = 7
 to_dump_tweets = True
 to_dump_mentions = False
 to_dump_replies = False
-recover_tweets_since_id = 945969411869020161
+recover_tweets_since_id = 964169021837991938
+paths_to_accounts = {'../diputados_autonomicos.csv':'twitter account', '../diputados_congreso.csv':'handle'}
 
 # Constants related with maximum number of recoveries possible
 LIMIT_TWEET_RECOVERIES = 100
@@ -41,8 +43,7 @@ flog.write('Date: ' + str(datetime.now()) + '\n')
 
 # Load list of accounts and drop missing values
 t1 = time.time()
-dataset = pd.read_csv('../diputados_autonomicos.csv', sep=';', encoding='ISO-8859-1')
-accounts = dataset['twitter account'].dropna()
+accounts = text.retrieve_accounts(paths_to_accounts)
 print('Total accounts:', len(accounts))
 
 api = twitter.Api(access_token_key=metadata.access_token, access_token_secret=metadata.access_token_secret, consumer_key=metadata.consumer_key, consumer_secret=metadata.consumer_secret, sleep_on_rate_limit=True, tweet_mode='extended')
@@ -141,6 +142,7 @@ for j, account in enumerate(accounts):
         w = 'ERROR: ' + account
         print(w)
         flog.write(w + '\n')
+
 
 flog.write('Tweets: ' + str(len(tweets_by_id)) + ' ' + str(len(tweets_recovered)) + '\n')
 flog.write('Mentions: ' + str(len(mentions_by_id)) + ' ' + str(len(mentions_recovered)) + '\n')
