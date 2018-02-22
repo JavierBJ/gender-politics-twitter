@@ -1,3 +1,9 @@
 backup/
 common/metadata.py
 dump*.csv
+.RData
+.Rhistory
+.project
+.pydevproject
+__pycache__/
+_freeling.so
