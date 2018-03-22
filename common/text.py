@@ -2,7 +2,7 @@ from common import metadata
 import freeling
 import pandas as pd
 from random import shuffle as shf
-from data import db
+from data import mongo
 
 def retrieve_accounts(dict_files):
     accounts = pd.Series()
@@ -78,8 +78,6 @@ def preprocess(df):
     df['full_text'] = pd.Series(ls_tokens)
     return df
 
-def feature_extractor(df):
-    pass
 
 if __name__ == '__main__':
     df = db.import_tweets_mongodb(limit=1000)

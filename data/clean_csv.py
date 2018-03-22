@@ -1,9 +1,9 @@
 import pandas as pd
-from data import db
+from data import mongo
 from common import text
 
 # Path names
-path_in = '../dump07mr.csv'
+path_in = 'dump10mr.csv'
 path_out = path_in
 
 # Options

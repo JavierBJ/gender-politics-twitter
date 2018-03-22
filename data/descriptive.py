@@ -1,6 +1,6 @@
 import pandas as pd
 from common import text
-from data import db
+from data import mongo
 from collections import Counter
 import matplotlib.pyplot as plt
 

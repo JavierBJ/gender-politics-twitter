@@ -3,9 +3,9 @@ import os
 import numpy as np
 import pandas as pd
 
-filename = 'dump07mr'
-out_tweets = 'dump07mr'
-out_users = 'dumpusers07mr'
+filename = 'dump10t'
+out_tweets = 'dump10t'
+out_users = 'dumpusers10t'
 
 def process_text(df1, df2):
     df1 = df1.replace('\n|\r', '', regex=True)
