@@ -2,6 +2,7 @@ import pymongo
 import pandas as pd
 from common import text
 from time import time
+from gender import assign_gender
 
 class DB():
     
@@ -9,91 +10,48 @@ class DB():
         client = pymongo.MongoClient()  # Default parameters in local
         self.db = client[db_name]
 
-    def export_mongodb_slow(self, tweets, users):
-        # Insert all tweets (no updates needed, they are always new)
-        if tweets is not None:
-            result = self.db.tweets.insert_many(tweets.to_dict('records')) # Records makes a list of dictionaries (one for record)
-            print('Number of Tweets inserted is:', len(result.inserted_ids), 'out of', len(tweets))
-        
-        # Insert new users, update others with newest info if any
-        if users is not None:
-            users['gender'] = 0
-            insertions = 0
-            updates = 0
-            for _,row in users.iterrows():
-                item = row.to_dict()
-                
-                try:
-                    existence = self, self.db.users.find_one({'id':item['id']})
-                except KeyError:    # Needed for 1st case, where no field can be found (collection empty)
-                    existence = None
-                
-                if existence is not None:
-                    if not self._equal(existence, item):
-                        result_del = self.db.users.delete_one({'id':item['id']})
-                        result_add = self.db.users.insert_one(item)
-                        updates += result_del.deleted_count if result_add.acknowledged else 0 # Increment if both results ok
-                    # Else don't add anything
-                else:
-                    result = self.db.users.insert_one(item)
-                    insertions += 1
-            print('Number of Users inserted is:', insertions)
-            print('Number of Users updated is:', updates)
-    
     def export_mongodb(self, tweets, users):
-        # Insert all tweets (no updates needed, they are always new)
+        print('Exporting data to MongoDB...')
         if tweets is not None:
-            tweets = tweets.to_dict('records') # Records makes a list of dictionaries (one for record)
-            result = self.db.tweets.insert_many(tweets)
-            print('Number of Tweets inserted is:', len(result.inserted_ids), 'out of', len(tweets))
-            
-            replies_updated = 0
-            for tweet in tweets:
-                if tweet['msg']=='reply':
-                    original = self.db.tweets.find_one({'id_str':tweet['in_reply_to_status_id']})
-                    if original is not None:
-                        result = self.db.tweets.update_one({'id_str': tweet['id_str']},{'$set':{'in_reply_to_tweet':original['full_text']}})
-                        replies_updated += result.modified_count
-            print('Number of Replies updated with original text is:', replies_updated)
-        
-        # Insert new users, update others with newest info if any
+            tweets = tweets.to_dict('records')
+            tweet_to_text = {tweet['id_str']:tweet['full_text'] for tweet in tweets}
+            replies_text = [tweet_to_text.get(tweet['in_reply_to_status_id'], '') for tweet in tweets]
+            for tweet, rep in zip(tweets, replies_text):
+                tweet.update({'in_reply_to_text':rep})
+            print('\tAdded replies text to tweets.')
         if users is not None:
-            exist = self.db.users.find({})
-            if exist.count()>0: # No
-                insertions = 0
-                updates = 0
-                
-                existences = self.db.users.find({'id':{'$in':list(users['id'])}})
-                dict_exist = {elem['id']:elem for elem in existences}
-                for _, row in users.iterrows():
-                    item = row.to_dict()
-                    
-                    if item['id'] in dict_exist:    # User present in db
-                        if not self._equal(item, dict_exist[item['id']]):
-                            result_del = self.db.users.delete_one({'id':item['id']})
-                            result_add = self.db.users.insert_one(item)
-                            updates += result_del.deleted_count if result_add.acknowledged else 0 # Increment if both results ok
-                        # Else don't add anything
-                    else:
-                        result = self.db.users.insert_one(item)
-                        insertions += 1
-                print('Number of Users inserted is:', insertions)
-                print('Number of Users updated is:', updates)
-            else:
-                result = self.db.users.insert_many(users.to_dict('records'))
-                print('Number of Users inserted is:', len(result.inserted_ids))
-    
-    def import_tweets_mongodb(self, query={}, limit=0):
-        return self.import_mongodb('tweets', query, limit)
-    
+            users = users.drop_duplicates('id')
+            users = assign_gender.tag_gender_from_r(users, 'r-genders.csv', 0.4)
+            users = assign_gender.tag_gender_from_gender_api(users, 0.4)
+            users = users.to_dict('records')
+            print('\tAssigned gender to users.')
+
+        if tweets is not None and users is not None:
+            user_to_gender = {user['id']:user['gender'] for user in users}
+            author_gender = [user_to_gender.get(tweet['user_id'], 0) for tweet in tweets]
+            for tweet, gen in zip(tweets, author_gender):
+                tweet.update({'author_gender':gen})
+            print('\tAdded author gender to tweets.')
+
+            receiver_gender = [user_to_gender.get(tweet['in_reply_to_user_id'], 0) for tweet in tweets]
+            for tweet, gen in zip(tweets, receiver_gender):
+                tweet.update({'receiver_gender':gen})
+            print('\tAdded receiver gender to tweets.')
+        
+        if tweets is not None:
+            print('\tInserting tweets to DB...')
+            result = self.db.tweets.insert_many(tweets)
+            print('\tNumber of Tweets inserted is:', len(result.inserted_ids), 'out of', len(tweets))
+        if users is not None:
+            print('\tInserting users to DB...')
+            result = self.db.users.insert_many(users)
+            print('\tNumber of Users inserted is:', len(result.inserted_ids), 'out of', len(users))
+
     def import_users_mongodb(self, query={}, limit=0):
         return self.import_mongodb('users', query, limit)
     
     def import_mongodb(self, coll, query={}, limit=0):
-        client = pymongo.MongoClient()
-        db = client.sexism
-        
-        cursor = db[coll].find(query).limit(limit)
+        cursor = self.db[coll].find(query).limit(limit)
         df = pd.DataFrame(list(cursor))
         
         print('Imported', len(df), coll)

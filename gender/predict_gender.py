@@ -8,7 +8,7 @@ import sys
 
 class WordRelevancePredictor():
     
-    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_lemma())):
+    def __init__(self, phrases, labels, extractor):
         self.phrases = phrases
         self.labels = labels
         self.X = np.array(extractor.extract(phrases).encode(phrases))
@@ -74,9 +74,15 @@ class RelevanceByMutualInfo(WordRelevancePredictor):
             print(word, ':', value, file=to)
 
 class RelevanceByRegression(WordRelevancePredictor):
+    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_lemma()), predname='Ridge (L2) regression'):
+        self.predname = predname
+        super().__init__(phrases, labels, extractor)
+
     def compute(self):
         model = LogisticRegression().fit(self.X, self.labels)
-        print('Score:',model.score(self.X, self.labels))
+        self.females = sum([1 for l in self.labels if l==-1])
+        self.males = sum([1 for l in self.labels if l==1])
+        self.score = model.score(self.X, self.labels)
         self.results = model.coef_.flatten()
         return self.results
     
@@ -87,9 +93,14 @@ class RelevanceByRegression(WordRelevancePredictor):
         return males, females
     
     def show(self, top=20, to=sys.stdout):
+        print(self.predname)
+        print('Samples (total):', str(self.males + self.females))
+        print('\tmales:', str(self.males), str(self.males/(self.males+self.females)))
+        print('\tfemales:', str(self.females), str(self.females/(self.males+self.females)))
         males, females = self.retrieve(top)
         print('Male predictors:', file=to)
         print('word : coef : odds_ratio', file=to)
+        print('Score:', self.score)
         for (word, value) in males:
             print(word, ':', value, ':', np.exp(value), file=to)
         print('\nFemale predictors:', file=to)
@@ -98,9 +109,14 @@ class RelevanceByRegression(WordRelevancePredictor):
             print(word, ':', -value, ':', np.exp(-value), file=to)
 
 class RelevanceByLassoRegression(RelevanceByRegression):
+    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_lemma())):
+        super().__init__(phrases, labels, extractor, 'Lasso (L1) regression')
+
     def compute(self):
         model = LogisticRegression(penalty='l1').fit(self.X, self.labels)
-        print('Score:',model.score(self.X, self.labels))
+        self.females = sum([1 for l in self.labels if l==-1])
+        self.males = sum([1 for l in self.labels if l==1])
+        self.score = model.score(self.X, self.labels)
         self.results = model.coef_.flatten()
         return self.results
 
@@ -142,98 +158,3 @@ class BootstrapCandidates():
 
 def count_candidate_words(words):
     pass
-
-if __name__ == '__main__':
-    
-    if True:
-        # Author
-        tweets_df = db.import_tagged_by_author_gender_tweets_mongodb(limit=10000)
-        tweets = text.preprocess(tweets_df)
-        labels = tweets_df['author_gender']
-        
-        '''exts = [feature_extraction.CountsBOW(feature_extraction.access_features), feature_extraction.CountsPOS()]
-        rel = RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.FeatureExtractor(exts))
-        mis = rel.compute()
-        rel.show(top=100, to=open('author_lasso_combined.txt','w'))'''
-        
-        rel = RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_form(), keep_words_rank=500, remove_stopwords=True))
-        mis = rel.compute()
-        rel.show(top=100, to=open('author_lasso_form_rank500_sw.txt','w'))
-        
-        rel = RelevanceByRegression(tweets, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_form(), keep_words_rank=500, remove_stopwords=True))
-        mis = rel.compute()
-        rel.show(top=100, to=open('author_ridge_form_rank500_sw.txt','w'))
-        '''
-        rel = RelevanceByMutualInfo(tweets, labels, extractor=feature_extraction.BinaryBOW(feature_extraction.access_features))
-        mis = rel.compute()
-        rel.show(top=100, to=open('author_mi.txt','w'))
-        '''
-        '''
-        rel = RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.BinaryPOS())
-        mis = rel.compute()
-        rel.show(top=100, to=open('author_lasso_pos.txt','w'))
-        
-        rel = RelevanceByRegression(tweets, labels, extractor=feature_extraction.BinaryPOS())
-        mis = rel.compute()
-        rel.show(top=100, to=open('author_ridge_pos.txt','w'))
-        '''
-        #rel = RelevanceByMutualInfo(tweets, labels, extractor=feature_extraction.BinaryPOS)
-        #mis = rel.compute()
-        #rel.show(top=100, to=open('author_mi_pos.txt','w'))
-        
-        # Receiver
-        '''tweets_df = db.import_tagged_by_receiver_gender_tweets_mongodb(limit=10000)
-        tweets = text.preprocess(tweets_df)
-        labels = tweets_df['receiver_gender']'''
-        
-        '''exts = [feature_extraction.CountsBOW(feature_extraction.access_features), feature_extraction.CountsPOS()]
-        rel = RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.FeatureExtractor(exts))
-        mis = rel.compute()
-        rel.show(top=100, to=open('author_lasso_combined.txt','w'))'''
-        
-        '''rel = RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_form()))
-        mis = rel.compute()
-        rel.show(top=100, to=open('receiver_lasso_form.txt','w'))
-        
-        rel = RelevanceByRegression(tweets, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_form()))
-        mis = rel.compute()
-        rel.show(top=100, to=open('receiver_ridge_form.txt','w'))'''
-        '''
-        rel = RelevanceByMutualInfo(tweets, labels, extractor=feature_extraction.BinaryBOW(feature_extraction.access_features))
-        mis = rel.compute()
-        rel.show(top=100, to=open('receiver_mi.txt','w'))'''
-        '''
-        rel = RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.CountsPOS())
-        mis = rel.compute()
-        rel.show(top=100, to=open('receiver_lasso_pos.txt','w'))
-        
-        rel = RelevanceByRegression(tweets, labels, extractor=feature_extraction.CountsPOS())
-        mis = rel.compute()
-        rel.show(top=100, to=open('receiver_ridge_pos.txt','w'))'''
-        
-        # Opposing Receiver
-        '''tweets_df = db.import_tagged_by_opposing_receiver_gender_tweets_mongodb(limit=10000)
-        tweets = text.preprocess(tweets_df)
-        labels = tweets_df['receiver_gender']'''
-        
-        '''rel = RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_form()))
-        mis = rel.compute()
-        rel.show(top=100, to=open('op_receiver_lasso_form.txt','w'))
-        
-        rel = RelevanceByRegression(tweets, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_form()))
-        mis = rel.compute()
-        rel.show(top=100, to=open('op_receiver_ridge_form.txt','w'))'''
-        
-        '''rel = RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.CountsPOS())
-        mis = rel.compute()
-        rel.show(top=100, to=open('op_receiver_lasso_pos.txt','w'))
-        
-        rel = RelevanceByRegression(tweets, labels, extractor=feature_extraction.CountsPOS())
-        mis = rel.compute()
-        rel.show(top=100, to=open('op_receiver_ridge_pos.txt','w'))'''
-    else:
-        tweets_df = db.import_tagged_by_receiver_gender_tweets_mongodb(limit=100)
-        tweets = text.preprocess(tweets_df)
-        bc = BootstrapCandidates('dinero','hola', LogisticRegression())
-        bc.fit(tweets)
-

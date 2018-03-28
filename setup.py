@@ -5,10 +5,10 @@ import time
 
 
 # Setup configuration
-name = 'tiny'
-min_csv = 10
-max_csv = 10
-assign_gender = False
+name = 'sexism'
+min_csv = 1
+max_csv = 11
+flag_assign_gender = False
 
 # Setup
 t = time.time()
@@ -22,20 +22,3 @@ users_df = text.create_dataset(db.generate_files('dumpusers', min_csv, max_csv))
 users_df['gender'] = 0
 db.export_mongodb(tweets_df, users_df)
 print('Time in importing users and tweets:', str(time.time()-t), 's')
-
-if assign_gender:
-    users = db.import_users_mongodb()
-    users = assign_gender.tag_gender_from_r(users, 'r-genders.csv', 0.4)
-    users = assign_gender.tag_gender_from_gender_api(users, 0.4)
-    #users = tag_gender_from_genderize_api(users, 0.4)
-    t1 = time.time()
-    db.export_mongodb(None, users)
-    print('Time in assigning gender to users:', str(time.time()-t1), 's')
-    
-    t2 = time.time()
-    db.update_tweets_by_author_gender()
-    print('Time in assigning author gender to tweets:', str(time.time()-t2), 's')
-    
-    t3 = time.time()
-    db.update_tweets_by_receiver_gender()
-    print('Time in assigning receiver gender to tweets:', str(time.time()-t3), 's')
