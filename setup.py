@@ -8,7 +8,6 @@ import time
 name = 'sexism'
 min_csv = 1
 max_csv = 11
-flag_assign_gender = False
 
 # Setup
 t = time.time()

@@ -2,7 +2,11 @@ from data import mongo
 from common import text, feature_extraction
 from gender import predict_gender
 
+<<<<<<< HEAD
 dbname = 'sexism'
+=======
+dbname = 'tiny'
+>>>>>>> 692670d848cf5e49836f04c44d6f642a6f733c21
 lim = 0
 
 # Main code
