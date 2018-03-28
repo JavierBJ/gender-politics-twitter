@@ -1,5 +1,5 @@
 from common import metadata
-import freeling
+import pyfreeling
 import pandas as pd
 from random import shuffle as shf
 from data import mongo
@@ -40,13 +40,13 @@ def create_dataset(from_file, limit=None, shuffle=False):
     return dataset
 
 def setup_freeling():
-    freeling.util_init_locale('default')
-    tk = freeling.tokenizer(metadata.DATA + metadata.LANG + '/twitter/tokenizer.dat')
-    sp = freeling.splitter(metadata.DATA + metadata.LANG + '/splitter.dat')
-    umap = freeling.RE_map(metadata.DATA + metadata.LANG + '/twitter/usermap.dat')
+    pyfreeling.util_init_locale('default')
+    tk = pyfreeling.tokenizer(metadata.DATA + metadata.LANG + '/twitter/tokenizer.dat')
+    sp = pyfreeling.splitter(metadata.DATA + metadata.LANG + '/splitter.dat')
+    umap = pyfreeling.RE_map(metadata.DATA + metadata.LANG + '/twitter/usermap.dat')
     
     # maco options to be activated and their data files
-    op= freeling.maco_options("es");
+    op= pyfreeling.maco_options("es");
     op.set_data_files("", 
             metadata.DATA + "common/punct.dat",
             metadata.DATA + metadata.LANG + "/dicc.src",
@@ -57,7 +57,7 @@ def setup_freeling():
             metadata.DATA + metadata.LANG + "/quantities.dat",
             metadata.DATA + metadata.LANG + "/probabilitats.dat");
             
-    mf=freeling.maco(op);
+    mf=pyfreeling.maco(op);
     mf.set_active_options(False, True, True, True, # User_Map is already done before maco
             True, True, False, True,
             True, True, True, True );

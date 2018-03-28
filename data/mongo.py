@@ -41,6 +41,7 @@ class DB():
             print('Number of Users updated is:', updates)
     
     def export_mongodb(self, tweets, users):
+        users = users.drop_duplicates('id')
         # Insert all tweets (no updates needed, they are always new)
         if tweets is not None:
             tweets = tweets.to_dict('records') # Records makes a list of dictionaries (one for record)
@@ -90,10 +91,7 @@ class DB():
         return self.import_mongodb('users', query, limit)
     
     def import_mongodb(self, coll, query={}, limit=0):
-        client = pymongo.MongoClient()
-        db = client.sexism
-        
-        cursor = db[coll].find(query).limit(limit)
+        cursor = self.db[coll].find(query).limit(limit)
         df = pd.DataFrame(list(cursor))
         
         print('Imported', len(df), coll)
