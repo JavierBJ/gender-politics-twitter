@@ -12,16 +12,27 @@ def retrieve_accounts(dict_files):
     return accounts
 
 def retrieve_accounts_by_gender(dict_files):
-    accounts = {}
+    dict_gender = {}
     for file, column in dict_files.items():
         dataset = pd.read_csv(file, sep=';')
-        accounts = accounts.append(dataset[column].dropna(), ignore_index=True)
-    return accounts
+        dict_gender.update({d[column]:d['gender'] for d in dataset})
+    return dict_gender
 
 def retrieve_names_by_gender(dict_files):
-    pass
+    dict_gender = {}
+    for file, column in dict_files.items():
+        dataset = pd.read_csv(file, sep=';')
+        dict_gender.update({_extract_name(d[column]):d['gender'] for d in dataset})
+    return dict_gender
+
+def _extract_name(name):
+    if name.contains('Sr.') or name.contains('Sra.'):
+        return (name.split('.')[-1]).split(' ')[0].strip()
+    elif name.contains(','):
+        return (name.split(',')[-1]).strip()
 
 def create_dataset(from_file, limit=None, shuffle=False):
+    print('Creating dataset...')
     if shuffle: # Shuffle order of reading of indicated datasets
         shf(from_file)
     
@@ -36,7 +47,7 @@ def create_dataset(from_file, limit=None, shuffle=False):
             break   # Stop iterating datasets, no more data fits our limit
         else:
             dataset = dataset.append(data, ignore_index=True)
-    
+    print('\tDataset created.')
     return dataset
 
 def setup_freeling():
@@ -64,18 +75,24 @@ def setup_freeling():
     return tk, sp, umap, mf
 
 def preprocess(df):
+    print('Preprocessing tweets...')
     ls_tokens = []
     tk, sp, umap, mf = setup_freeling()
     
     for _,row in df.iterrows():
-        raw_text = row['full_text']
-        tokens = tk.tokenize(raw_text)
-        tokens = sp.split(tokens)
-        tokens = umap.analyze(tokens)
-        tokens = mf.analyze(tokens)
-        ls_tokens.append(tokens)
+        try:
+            raw_text = row['full_text']
+            #print(raw_text)
+            tokens = tk.tokenize(raw_text)
+            tokens = sp.split(tokens)
+            tokens = umap.analyze(tokens)
+            tokens = mf.analyze(tokens)
+            ls_tokens.append(tokens)
+        except Exception:
+            ls_tokens.append(tokens)
     df = df.drop('full_text', axis=1)
     df['full_text'] = pd.Series(ls_tokens)
+    print('\tTweets preprocessed.')
     return df
 
 

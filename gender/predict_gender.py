@@ -94,6 +94,7 @@ class RelevanceByRegression(WordRelevancePredictor):
     
     def show(self, top=20, to=sys.stdout):
         print(self.predname)
+        print('Variables used:', str(len(self.features_idx)))
         print('Samples (total):', str(self.males + self.females))
         print('\tmales:', str(self.males), str(self.males/(self.males+self.females)))
         print('\tfemales:', str(self.females), str(self.females/(self.males+self.females)))

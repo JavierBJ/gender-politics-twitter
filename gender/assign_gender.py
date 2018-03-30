@@ -119,7 +119,26 @@ def _query_genderize_api(names):
 def tag_gender_from_politicians(users):
     accounts_to_genders = text.retrieve_accounts_by_gender(paths_to_accounts)
     names_to_genders = text.retrieve_names_by_gender(paths_to_accounts)
-    
+    is_male = []
+    for user in users:
+        subnames = _split_name(user['name'])
+        is_male.append(_gender_from_splits(subnames))
+    users['gender'] = is_male
+    return users
+
+def _split_name(name):
+    subnames = []
+    uninames = name.split(' ') # Add unigram names
+    l = len(uninames)
+    binames = []
+    for i in range(l-1): # Add bigram names by concatenating unigram names
+        binames.append(str(uninames[i])+str(uninames[i+1]))
+    subnames.extend(uninames)
+    subnames.extend(binames)
+    return subnames
+
+def _gender_from_splits(subnames):
+    pass
 
 def tokenize_names(names):
     ls_tokens = []
