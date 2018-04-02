@@ -7,3 +7,6 @@ dump*.csv
 .pydevproject
 __pycache__/
 _freeling.so
+out_relevance/
+_pyfreeling.so
+pyfreeling.py

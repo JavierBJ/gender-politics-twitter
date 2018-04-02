@@ -13,6 +13,7 @@ class WordRelevancePredictor():
         self.labels = labels
         self.X = np.array(extractor.extract(phrases).encode(phrases))
         self.features_idx = extractor.features_idx
+        #self.supports = extractor.supports
     
     def compute(self):
         print('Not implemented')
@@ -87,7 +88,7 @@ class RelevanceByRegression(WordRelevancePredictor):
         return self.results
     
     def retrieve(self, top=20):
-        l = [(self.features_idx[x], v) for x,v in enumerate(self.results)]  # Generator?
+        l = [(self.features_idx[x], v) for (x,v) in enumerate(self.results)]  # Generator?
         males = sorted(l, key=lambda x:x[1], reverse=True)[:top]
         females = sorted(l, key=lambda x:x[1])[:top]
         return males, females

@@ -25,6 +25,14 @@ def retrieve_names_by_gender(dict_files):
         dict_gender.update({_extract_name(d[column]):d['gender'] for d in dataset})
     return dict_gender
 
+def retrieve_accounts_to_autonomy(dict_files):
+    dict_aut = {}
+    for file, column in dict_files.items():
+        dataset = pd.read_csv(file, sep=';')
+        for data, ccaa in zip(dataset[column],dataset['ccaa']):
+            dict_aut.update({data:ccaa})
+    return dict_aut
+
 def _extract_name(name):
     if name.contains('Sr.') or name.contains('Sra.'):
         return (name.split('.')[-1]).split(' ')[0].strip()

@@ -1,8 +1,9 @@
 import pandas as pd
+import numpy as np
 from common import text
 from data import mongo
 from collections import Counter
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 def word_frequency_distribution(tweets, plot=False):
     form_counts = Counter()
@@ -35,6 +36,40 @@ def word_frequency_distribution(tweets, plot=False):
     
     return form_distribution, lemma_distribution
 
+class DBDescriptor():
+    def __init__(self):
+        self.db = mongo.DB()
+        self.politicians = self.db.import_users_mongodb({'polit':1})
+        self.tweets_from_polit = self.db.import_tweets_mongodb({'msg':'tweet'})
+        self.replies = self.db.import_tweets_mongodb({'msg':'reply'})
+
+    def _variable_per_gender(self, data, var_desired, var_groupby):
+        mean_male = np.mean(data.loc[data[var_groupby]==1, var_desired])
+        mean_female = np.mean(data.loc[data[var_groupby]==-1, var_desired])
+        return mean_male, mean_female
+
+    def _user_variable_per_gender(self, varname):
+        return self._variable_per_gender(self.politicians, varname, 'gender')
+
+    def _tweet_variable_per_gender(self, varname):
+        return self._variable_per_gender(self.tweets_from_polit, varname, 'author_gender')
+
+    def followers_per_gender(self):
+        return self._user_variable_per_gender('followers_count')
+
+    def favorites_received_per_gender(self):
+        return self._tweet_variable_per_gender('favorite_count')
+
+    def retweets_received_per_gender(self):
+        return self._tweet_variable_per_gender('retweet_count')
+
+    def contingency_table(self):
+        from_gender = [1,1,-1,-1]
+        to_gender = [1,-1,1,-1]
+        results = {}
+        for f_gen, t_gen in zip(from_gender, to_gender):
+            results[(f_gen, t_gen)] = len(self.replies[(self.replies['author_gender']==f_gen) & (self.replies['receiver_gender']==t_gen)])
+        return results
 
 if __name__=='__main__':
     tweets = db.import_mongodb('tweets', limit=1000)

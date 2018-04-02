@@ -3,9 +3,9 @@ import os
 import numpy as np
 import pandas as pd
 
-filename = 'dump10t'
-out_tweets = 'dump10t'
-out_users = 'dumpusers10t'
+filename = 'dump03mr'
+out_tweets = filename
+out_users = filename[:4] + 'users' + filename[4:]
 
 def process_text(df1, df2):
     df1 = df1.replace('\n|\r', '', regex=True)
@@ -36,7 +36,7 @@ df_users = pd.DataFrame()
 for file in os.listdir('.'):
     if file.startswith(filename) and file.endswith('.pkl'):
         tweets_recovered, mentions_recovered, replies_recovered = pickle.load(open(file, 'rb'))
-        present_variables = ['id_str', 'created_at', 'full_text', 'retweet_count']
+        present_variables = ['id_str', 'created_at', 'full_text', 'retweet_count', 'favorite_count']
         replies_variables = ['in_reply_to_status_id', 'in_reply_to_user_id']
         user_variables = ['id', 'screen_name', 'name', 'description', 'location', 'verified', 'followers_count', 'friends_count', 'statuses_count', 'favourites_count', 'created_at']
         

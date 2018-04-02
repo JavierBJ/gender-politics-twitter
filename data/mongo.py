@@ -50,25 +50,48 @@ class DB():
     def import_users_mongodb(self, query={}, limit=0):
         return self.import_mongodb('users', query, limit)
     
+    def import_tweets_mongodb(self, query={}, limit=0):
+        return self.import_mongodb('tweets', query, limit)
+
     def import_mongodb(self, coll, query={}, limit=0):
         cursor = self.db[coll].find(query).limit(limit)
         df = pd.DataFrame(list(cursor))
         
         print('Imported', len(df), coll)
         return df
+
+    def _import_query(self, coll, query, limit):
+        filters = []
+        
+        return self.import_mongodb(coll, filters, limit)
     
-    def import_tagged_by_gender_tweets_mongodb(self, tagged_by, limit=0):
-        return self.import_mongodb('tweets', {tagged_by:{'$in':[1,-1]}}, limit)
+    def import_tagged_by_gender_tweets_mongodb(self, tagged_by, msg_type=None, weeks=None, limit=0):
+        filters = []
+        if tagged_by is not None:
+            filters.append({tagged_by:{'$in':[1,-1]}})
+        if msg_type is not None:
+            filters.append({'msg':msg_type})
+        if weeks is not None:
+            filters.append({'week':{'$in':weeks}})
+        return self.import_mongodb('tweets', {'$and':filters}, limit)
     
-    def import_tagged_by_author_gender_tweets_mongodb(self, limit=0):
-        return self.import_tagged_by_gender_tweets_mongodb('author_gender', limit)
+    def import_tagged_by_author_gender_tweets_mongodb(self, weeks=None, limit=0):
+        return self.import_tagged_by_gender_tweets_mongodb('author_gender', limit=limit)
     
-    def import_tagged_by_receiver_gender_tweets_mongodb(self, limit=0):
-        return self.import_tagged_by_gender_tweets_mongodb('receiver_gender', limit)
+    def import_tagged_by_receiver_gender_tweets_mongodb(self, weeks=None, limit=0):
+        return self.import_tagged_by_gender_tweets_mongodb('receiver_gender', limit=limit)
     
     def import_tagged_by_opposing_receiver_gender_tweets_mongodb(self, limit=0):
-        return self.import_mongodb('tweets', {'$or':[{'$and':[{'author_gender':1},{'receiver_gender':-1}]}, {'$and':[{'author_gender':-1},{'receiver_gender':1}]}]}, limit)
+        return self.import_mongodb('tweets', {'$or':[{'$and':[{'author_gender':1},{'receiver_gender':-1}]}, {'$and':[{'author_gender':-1},{'receiver_gender':1}]}]}, limit=limit)
     
+    def import_tagged_by_author_gender_political_tweets_mongodb(self, weeks=None, limit=0):
+        return self.import_tagged_by_gender_tweets_mongodb('author_gender', msg_type='tweet', weeks=weeks, limit=limit)
+        #return self.import_mongodb('tweets', {'$and':[{'msg':'tweet'},{'author_gender':{'$in':[1,-1]}}]}, limit)
+
+    def import_tagged_by_author_gender_individual_tweets_mongodb(self, weeks=None, limit=0):
+        return self.import_tagged_by_gender_tweets_mongodb('author_gender', msg_type='reply', weeks=weeks, limit=limit)
+        #return self.import_mongodb('tweets', {'$and':[{'msg':'reply'},{'author_gender':{'$in':[1,-1]}}]}, limit)
+
     def sample_tweets_mongodb(self, agg_clause):
         cursor = self.db['tweets'].aggregate(agg_clause)
         df = pd.DataFrame(list(cursor))
@@ -93,6 +116,13 @@ class DB():
         except IndexError:
             print('Error getting ID from', name)
     
+    def query_name_by_id(self, id):
+        cursor = self.db['users'].find({'id':id}).limit(1)
+        try:
+            return cursor[0]['screen_name']
+        except IndexError:
+            print('Error getting Screen Name from', id)
+
     def update_tweets(self, tweets, fields):
         updates = 0
         tweets = tweets.to_dict('records')
