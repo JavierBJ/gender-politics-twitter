@@ -10,3 +10,4 @@ _freeling.so
 out_relevance/
 _pyfreeling.so
 pyfreeling.py
+**.pyc
