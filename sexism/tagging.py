@@ -4,6 +4,7 @@ from data import mongo
 import random
 
 def export_untagged_sample(size, tweet_type, n_sample, n_copies, verbose=True):
+    db = mongo.DB()
     tweets_df = db.sample_untagged_by_humans_tweets_mongodb(tweet_type, limit=size)
     
     persons = np.zeros((size, n_copies//2))
@@ -31,6 +32,7 @@ def export_untagged_sample(size, tweet_type, n_sample, n_copies, verbose=True):
             print('\tPerson', str(i+1), ':', dcounts[i+1])
 
 def import_tagged_sample(path_judgements, n_copies):
+    db = mongo.DB()
     df = pd.read_csv(path_judgements+'_1.csv', delimiter=';')
     df = df.drop('Unnamed: 0.1', axis=1)
     for i in range(2,n_copies+1):

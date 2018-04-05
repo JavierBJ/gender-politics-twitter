@@ -14,7 +14,7 @@ class DB():
         print('Exporting data to MongoDB...')
         if tweets is not None:
             tweets = tweets.to_dict('records')
-            tweet_to_text = {tweet['id_str']:tweet['full_text'] for tweet in tweets}
+            tweet_to_text = {str(tweet['id_str']):tweet['full_text'] for tweet in tweets}
             replies_text = [tweet_to_text.get(tweet['in_reply_to_status_id'], '') for tweet in tweets]
             for tweet, rep in zip(tweets, replies_text):
                 tweet.update({'in_reply_to_text':rep})

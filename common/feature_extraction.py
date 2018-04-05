@@ -68,7 +68,7 @@ class FeatureExtractorBOW(FeatureExtractor):
             words = [(w,v) for w,v in words if v>=self.keep_words_freq]
         else:
             words = words.most_common()
-        words = [(w,v) for w,v in words if len(w)>2]    # TODO: do not remove emojis
+        #words = [(w,v) for w,v in words if len(w)>2]    # TODO: do not remove emojis
             
         if self.remove_stopwords:
             words = [(w,v) for w,v in words if w.lower() not in stopwords.words('spanish')]
