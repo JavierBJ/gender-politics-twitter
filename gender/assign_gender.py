@@ -8,7 +8,7 @@ from urllib.parse import quote
 from common import metadata
 
 r_genders_path = '../r-genders.csv'
-paths_to_accounts = {'../diputados_autonomicos.csv':'twitter account', '../diputados_congreso.csv':'handle'}
+paths_to_names = {'diputados_autonomicos.csv':'diputado', 'diputados_congreso.csv':'nombre'}
 associations_api = {'male': 1, 'female': -1}
 
 def tag_gender_from_r(users, path, thr):
@@ -117,12 +117,14 @@ def _query_genderize_api(names):
     return retrn
 
 def tag_gender_from_politicians(users):
-    accounts_to_genders = text.retrieve_accounts_by_gender(paths_to_accounts)
-    names_to_genders = text.retrieve_names_by_gender(paths_to_accounts)
+    names_to_genders = text.retrieve_names_by_gender(paths_to_names)
     is_male = []
-    for user in users:
-        subnames = _split_name(user['name'])
-        is_male.append(_gender_from_splits(subnames))
+    for username in users['name']:
+        if username != username: # Check NaN
+            is_male.append(0)
+        else:
+            subnames = _split_name(username)
+            is_male.append(_gender_from_splits(subnames, names_to_genders))
     users['gender'] = is_male
     return users
 
@@ -137,8 +139,11 @@ def _split_name(name):
     subnames.extend(binames)
     return subnames
 
-def _gender_from_splits(subnames):
-    pass
+def _gender_from_splits(subnames, names_to_genders):
+    for sn in subnames:
+        if sn in names_to_genders:
+            return names_to_genders[sn]
+    return 0	# Default case for when no subname matched a known name
 
 def tokenize_names(names):
     ls_tokens = []

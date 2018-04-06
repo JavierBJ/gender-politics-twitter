@@ -1,5 +1,5 @@
 from common import metadata
-import freeling
+import pyfreeling as freeling
 import pandas as pd
 from random import shuffle as shf
 from data import mongo
@@ -23,7 +23,8 @@ def retrieve_names_by_gender(dict_files):
     dict_gender = {}
     for file, column in dict_files.items():
         dataset = pd.read_csv(file, sep=';')
-        dict_gender.update({_extract_name(d[column]):d['gender'] for d in dataset})
+        dataset = dataset.to_dict('records')
+        dict_gender.update({_extract_name(record[column]):record['gender'] for record in dataset})
     return dict_gender
 
 def retrieve_accounts_to_autonomy(dict_files):
@@ -35,10 +36,12 @@ def retrieve_accounts_to_autonomy(dict_files):
     return dict_aut
 
 def _extract_name(name):
-    if name.contains('Sr.') or name.contains('Sra.'):
+    if 'Sr.' in name or 'Sra.' in name:
         return (name.split('.')[-1]).split(' ')[0].strip()
-    elif name.contains(','):
+    elif ',' in name:
         return (name.split(',')[-1]).strip()
+    else:
+        return (name.split(' ')[0]).strip()
 
 def create_dataset(from_file, limit=None, shuffle=False):
     print('Creating dataset...')

@@ -13,6 +13,9 @@ class DB():
     def export_mongodb(self, tweets, users):
         print('Exporting data to MongoDB...')
         if tweets is not None:
+            tweets = tweets[tweets['full_text'].str.count('@')<3] # Remove tweets with 3 or more mentions. It's hard to see who they refer to.
+            tweets = tweets[~tweets['full_text'].str.startswith('https://')]  # Remove tweets that start by URL. Usually their just a URL.
+            tweets = tweets.reset_index(drop=True)
             tweets = tweets.to_dict('records')
             tweet_to_text = {str(tweet['id_str']):tweet['full_text'] for tweet in tweets}
             replies_text = [tweet_to_text.get(tweet['in_reply_to_status_id'], '') for tweet in tweets]
@@ -21,6 +24,7 @@ class DB():
             print('\tAdded replies text to tweets.')
         if users is not None:
             users = users.drop_duplicates('id')
+            users = assign_gender.tag_gender_from_politicians(users)
             users = assign_gender.tag_gender_from_r(users, 'r-genders.csv', 0.4)
             users = assign_gender.tag_gender_from_gender_api(users, 0.4)
             users = users.to_dict('records')
