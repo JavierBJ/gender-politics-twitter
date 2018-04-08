@@ -1,6 +1,7 @@
 backup/
 common/metadata.py
 dump*.csv
+sample*.csv
 .RData
 .Rhistory
 .project
