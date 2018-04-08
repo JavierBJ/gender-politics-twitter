@@ -39,9 +39,61 @@ def word_frequency_distribution(tweets, plot=False):
 class DBDescriptor():
     def __init__(self):
         self.db = mongo.DB()
-        self.politicians = self.db.import_users_mongodb({'polit':1})
-        self.tweets_from_polit = self.db.import_tweets_mongodb({'msg':'tweet'})
-        self.replies = self.db.import_tweets_mongodb({'msg':'reply'})
+        self.db_politicians = self.db.import_users_mongodb({'polit':1})
+        self.db_tweets_from_polit = self.db.import_tweets_mongodb({'msg':'tweet'})
+        self.db_replies = self.db.import_tweets_mongodb({'msg':'reply'})
+
+    def tweets(self):
+        return self.db.db['tweets'].find().count()
+
+    def originals(self):
+        return self.db.db['tweets'].find({'msg':'tweet'}).count()
+
+    def male_originals(self):
+        return self.db.db['tweets'].find({'msg':'tweet', 'author_gender':1}).count()
+
+    def female_originals(self):
+        return self.db.db['tweets'].find({'msg':'tweet', 'author_gender':-1}).count()
+
+    def mentions(self):
+        return self.db.db['tweets'].find({'msg':'mention'}).count()
+
+    def replies(self):
+        return self.db.db['tweets'].find({'msg':'reply'}).count()
+
+    def users(self):
+        return self.db.db['users'].find().count()
+
+    def politicians(self):
+        return self.db.db['users'].find({'polit':1}).count()
+
+    def individuals(self):
+        return self.db.db['users'].find({'polit':0}).count()
+
+    def politicians_per_aut(self):
+        autonomies = self.db.db['users'].find({'polit':1}).distinct('autname')
+        return {a:self.db.db['users'].find({'autname':a}).count() for a in autonomies}
+
+    def politicians_per_gender(self):
+        m = self.db.db['users'].find({'polit':1, 'gender':1}).count()
+        f = self.db.db['users'].find({'polit':1, 'gender':-1}).count()
+        return m,f
+
+    def individuals_per_gender(self):
+        m = self.db.db['users'].find({'polit':0, 'gender':1}).count()
+        f = self.db.db['users'].find({'polit':0, 'gender':-1}).count()
+        return m,f
+
+    def replies_per_genders(self):
+        import numpy as np
+
+        author_gender = [1, -1, 0]
+        receiver_gender = [1, -1, 0]
+        results = np.zeros((len(author_gender),len(receiver_gender)))
+        for (i,ag) in enumerate(author_gender):
+            for (j,rg) in enumerate(receiver_gender):
+                results[i,j] = self.db.db['tweets'].find({'msg':'reply', 'author_gender':ag, 'receiver_gender':rg}).count()
+        return results
 
     def _variable_per_gender(self, data, var_desired, var_groupby):
         mean_male = np.mean(data.loc[data[var_groupby]==1, var_desired])
@@ -49,10 +101,10 @@ class DBDescriptor():
         return mean_male, mean_female
 
     def _user_variable_per_gender(self, varname):
-        return self._variable_per_gender(self.politicians, varname, 'gender')
+        return self._variable_per_gender(self.db_politicians, varname, 'gender')
 
     def _tweet_variable_per_gender(self, varname):
-        return self._variable_per_gender(self.tweets_from_polit, varname, 'author_gender')
+        return self._variable_per_gender(self.db_tweets_from_polit, varname, 'author_gender')
 
     def followers_per_gender(self):
         return self._user_variable_per_gender('followers_count')
@@ -68,7 +120,7 @@ class DBDescriptor():
         to_gender = [1,-1,1,-1]
         results = {}
         for f_gen, t_gen in zip(from_gender, to_gender):
-            results[(f_gen, t_gen)] = len(self.replies[(self.replies['author_gender']==f_gen) & (self.replies['receiver_gender']==t_gen)])
+            results[(f_gen, t_gen)] = len(self.db_replies[(self.db_replies['author_gender']==f_gen) & (self.db_replies['receiver_gender']==t_gen)])
         return results
 
 if __name__=='__main__':

@@ -68,13 +68,11 @@ class FeatureExtractorBOW(FeatureExtractor):
             words = [(w,v) for w,v in words if v>=self.keep_words_freq]
         else:
             words = words.most_common()
-        #words = [(w,v) for w,v in words if len(w)>2]    # TODO: do not remove emojis
-            
-        if self.remove_stopwords:
-            words = [(w,v) for w,v in words if w.lower() not in stopwords.words('spanish')]
+        words = self._linguistic_filtering(words)
         
         self.features = {x:i for i,(x,_) in enumerate(words)}
         self.features_idx = [w for w,_ in words]
+        self.supports = {x:s for x,s in words}
         
         return self
         
@@ -88,6 +86,27 @@ class FeatureExtractorBOW(FeatureExtractor):
         
         return self'''
     
+    def _linguistic_filtering(self, words):
+        words =  [(w,v) for w,v in words if not self._is_punct(w) and not self._is_short(w)]
+        if self.remove_stopwords:
+            words = [(w,v) for w,v in words if w.lower() not in stopwords.words('spanish')]
+        return words
+
+    def _is_punct(self, w):
+        from string import punctuation
+        for p in punctuation:
+            w = w.replace(p,'')
+        for n in '0123456789':
+            w = w.replace(n,'')
+        return self._is_short(w) # If expression after removing all punctuation is short, return True
+
+    def _is_short(self, w):
+        import emoji
+        if len(w)==1:
+            return w[0] not in emoji.UNICODE_EMOJI
+        else:
+            return len(w)<3
+
     def encode(self, tweets):
         if self.features is not None:
             encodings = []
@@ -112,6 +131,42 @@ class CountsBOW(FeatureExtractorBOW):
     def __init__(self, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
         super().__init__(1,-1, access_fn, keep_words_freq, keep_words_rank, remove_stopwords)
         
+class FeatureExtractorBOWGender(FeatureExtractorBOW):
+    def __init__(self, inc, top, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(inc, top, lambda x: self._tag_by_gender(x.get_lemma(), x.get_tag()), keep_words_freq, keep_words_rank, remove_stopwords)
+
+    def _tag_by_gender(self, lemma, tag):
+        if tag[0] in 'ADP':
+            return (lemma, tag[3])
+        elif tag[0]=='N':
+            return (lemma, tag[2])
+        else:
+            return (lemma, None)
+
+    def _access_features(self, word, access_fn):
+        feat = access_fn(word)
+        if feat[0].startswith('@'):
+            return '_@mention'
+        elif feat[0].startswith('#'):
+            return '_#hashtag'
+        elif feat[0].startswith('https://'):
+            return '_url'
+        return feat
+
+    def _linguistic_filtering(self, words):
+        words =  [(w,v) for w,v in words if not self._is_punct(w[0]) and not self._is_short(w[0])]
+        if self.remove_stopwords:
+            words = [(w,v) for w,v in words if w[0].lower() not in stopwords.words('spanish')]
+        return words
+
+class BinaryBOWGender(FeatureExtractorBOWGender):
+    def __init__(self, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(1,1, keep_words_freq, keep_words_rank, remove_stopwords)
+
+class CountsBOWGender(FeatureExtractorBOWGender):
+    def __init__(self, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(1,-1, keep_words_freq, keep_words_rank, remove_stopwords)
+
 class FeatureExtractorPOS(FeatureExtractorBOW):
     def __init__(self, inc, top):
         super().__init__(inc, top, lambda x: self._analyze_tag(x.get_tag()))

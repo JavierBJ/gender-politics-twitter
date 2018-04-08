@@ -13,7 +13,7 @@ class WordRelevancePredictor():
         self.labels = labels
         self.X = np.array(extractor.extract(phrases).encode(phrases))
         self.features_idx = extractor.features_idx
-        #self.supports = extractor.supports
+        self.supports = extractor.supports
     
     def compute(self):
         print('Not implemented')
@@ -88,7 +88,7 @@ class RelevanceByRegression(WordRelevancePredictor):
         return self.results
     
     def retrieve(self, top=20):
-        l = [(self.features_idx[x], v) for (x,v) in enumerate(self.results)]  # Generator?
+        l = [(self.features_idx[x], v, self.supports[self.features_idx[x]]) for (x,v) in enumerate(self.results)]  # Generator?
         males = sorted(l, key=lambda x:x[1], reverse=True)[:top]
         females = sorted(l, key=lambda x:x[1])[:top]
         return males, females
@@ -103,12 +103,12 @@ class RelevanceByRegression(WordRelevancePredictor):
         print('Male predictors:', file=to)
         print('word : coef : odds_ratio', file=to)
         print('Score:', self.score)
-        for (word, value) in males:
-            print(word, ':', value, ':', np.exp(value), file=to)
+        for (word, value, sup) in males:
+            print(word, ':', value, ':', np.exp(value), ':', sup, file=to)
         print('\nFemale predictors:', file=to)
         print('word : -coef : odds_ratio', file=to)
-        for (word, value) in females:
-            print(word, ':', -value, ':', np.exp(-value), file=to)
+        for (word, value, sup) in females:
+            print(word, ':', -value, ':', np.exp(-value), ':', sup, file=to)
 
 class RelevanceByLassoRegression(RelevanceByRegression):
     def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_lemma())):

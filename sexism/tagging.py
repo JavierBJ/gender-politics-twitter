@@ -3,9 +3,9 @@ import pandas as pd
 from data import mongo
 import random
 
-def export_untagged_sample(size, tweet_type, n_sample, n_copies, verbose=True):
+def export_untagged_sample(size, n_sample, n_copies, verbose=True):
     db = mongo.DB()
-    tweets_df = db.sample_untagged_by_humans_tweets_mongodb(tweet_type, limit=size)
+    tweets_df = db.import_tweets_for_tagging_mongodb(limit=size)
     
     persons = np.zeros((size, n_copies//2))
     for i in range(size):   # Assign a person to each judgement of each tweet
@@ -23,7 +23,6 @@ def export_untagged_sample(size, tweet_type, n_sample, n_copies, verbose=True):
 
     if verbose:
         print('Exported', str(n_copies), 'copies of sample', str(n_sample))
-        print('\tcontaining', str(tweet_type))
         print('\nNumber of assignments to each person:')
         ids, counts = np.unique(persons, return_counts=True)
         dcounts = dict(zip(ids, counts))
@@ -45,5 +44,5 @@ def aggregated_tag():
     pass
 
 if __name__=='__main__':
-    export_untagged_sample(1000, ['mention','reply'], 1, 4)
+    export_untagged_sample(1000, 1, 4)
     #import_tagged_sample('sample_1', 4)

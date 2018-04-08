@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 
-filename = 'dump03mr'
+filename = 'dump13mr'
 out_tweets = filename
 out_users = filename[:4] + 'users' + filename[4:]
 

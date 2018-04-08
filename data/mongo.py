@@ -69,6 +69,10 @@ class DB():
         
         return self.import_mongodb(coll, filters, limit)
     
+    def import_tweets_for_tagging_mongodb(self, limit=0):
+        q = {'$and':[{'msg':'reply'}, {'sexist_1':0}, {'sexist_2':0}, {'sentiment_1':0}, {'sentiment_2':0},{'in_reply_to_text':{'$ne':''}},{'author_gender':{'$ne':0}},{'receiver_gender':{'$ne':0}}]}
+        return self.import_mongodb('tweets', q, limit)
+
     def import_tagged_by_gender_tweets_mongodb(self, tagged_by, msg_type=None, weeks=None, limit=0):
         filters = []
         if tagged_by is not None:
