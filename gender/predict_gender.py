@@ -1,8 +1,9 @@
 from data import mongo
 from common import text, feature_extraction
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegressionCV
 from sklearn.feature_selection import mutual_info_classif
+from sklearn import metrics
 import sys
 
 
@@ -80,7 +81,15 @@ class RelevanceByRegression(WordRelevancePredictor):
         super().__init__(phrases, labels, extractor)
 
     def compute(self):
-        model = LogisticRegression().fit(self.X, self.labels)
+        model = LogisticRegressionCV().fit(self.X, self.labels)
+        preds = model.predict(self.X)
+        print(model.scores_)
+        print(metrics.confusion_matrix(self.labels, preds))
+        print('Kappa:', metrics.cohen_kappa_score(self.labels, preds))
+        print('AUC:', metrics.roc_auc_score(self.labels, preds))
+        print('Precision:', metrics.precision_score(self.labels, preds))
+        print('Recall:', metrics.recall_score(self.labels, preds))
+        print('F1:', metrics.f1_score(self.labels, preds))
         self.females = sum([1 for l in self.labels if l==-1])
         self.males = sum([1 for l in self.labels if l==1])
         self.score = model.score(self.X, self.labels)
@@ -115,7 +124,16 @@ class RelevanceByLassoRegression(RelevanceByRegression):
         super().__init__(phrases, labels, extractor, 'Lasso (L1) regression')
 
     def compute(self):
-        model = LogisticRegression(penalty='l1').fit(self.X, self.labels)
+        model = LogisticRegressionCV(solver='liblinear', penalty='l1', scoring='f1').fit(self.X, self.labels)
+        preds = model.predict(self.X)
+        print(model.Cs_)
+        print(model.scores_)
+        print(metrics.confusion_matrix(self.labels, preds))
+        print('Kappa:', metrics.cohen_kappa_score(self.labels, preds))
+        print('AUC:', metrics.roc_auc_score(self.labels, preds))
+        print('Precision:', metrics.precision_score(self.labels, preds))
+        print('Recall:', metrics.recall_score(self.labels, preds))
+        print('F1:', metrics.f1_score(self.labels, preds))
         self.females = sum([1 for l in self.labels if l==-1])
         self.males = sum([1 for l in self.labels if l==1])
         self.score = model.score(self.X, self.labels)
