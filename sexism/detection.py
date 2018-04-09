@@ -2,23 +2,30 @@ import numpy as np
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import metrics
 from common import text
+from sexism import detection
+from data import mongo
+from common import feature_extraction
+from sklearn.linear_model import LogisticRegression
+import pandas as pd
 
 class Detector():
     def __init__(self, model, extractor, dataset, target, params, score):
         y = dataset[target]
         X = text.preprocess(dataset)
-
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+        self._feature_extraction(X_train, X_test, y_train, y_test, extractor)
+        
+        cv = GridSearchCV(model, params, scoring=score, cv=5)
+        self.model = model
+        self.cv = cv.fit(self.X_train, self.y_train)
+        
+    def _feature_extraction(self, X_train, X_test, y_train, y_test, extractor):
         self.extractor = extractor.extract(X_train)
         self.X_train = np.array(extractor.encode(X_train))
         self.y_train = y_train
         self.X_test = np.array(extractor.encode(X_test))
         self.y_test = y_test
         print(self.X_train.shape, self.y_train.shape, self.X_test.shape, self.y_test.shape)
-        
-        cv = GridSearchCV(model, params, scoring=score, cv=5)
-        self.model = model
-        self.cv = cv.fit(self.X_train, self.y_train)
     
     def describe(self):
         print('        | Train | Test')
@@ -52,3 +59,32 @@ class Detector():
         if X_test is None:
             X_test = self.X_test
         return self.cv.predict(X_test)
+    
+
+class MacroDetector(Detector):
+    def __init__(self, detectors, score):
+        # Get detector with max score
+        dets_per_score = {d:d.metrics()[0][score] for d in detectors}
+        best = max(dets_per_score, key=dets_per_score.get)
+        
+        # Necessary for the inherited functions to work
+        # In essence, MacroDetector looks for the best detector and mutes into it
+        self.X_train = best.X_train
+        self.X_test = best.X_test
+        self.y_train = best.y_train
+        self.y_test = best.y_test
+        self.model = best.model
+        self.cv = best.cv
+
+if __name__=='__main__':
+    db = mongo.DB()
+    dataset = db.import_tagged_by_author_gender_political_tweets_mongodb(limit=1000)
+    target = 'author_gender'
+    model = LogisticRegression()
+    extractor = feature_extraction.BinaryBOWGender(keep_words_rank=50, remove_stopwords=True)
+    params = {'C': [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000]}
+    score = 'roc_auc'
+    det = detection.Detector(model, extractor, dataset, target, params, score)
+    
+    mc = MacroDetector([det], 'roc_auc')
+
