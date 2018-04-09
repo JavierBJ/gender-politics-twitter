@@ -176,5 +176,3 @@ class BootstrapCandidates():
     def predict(self):
         pass
 
-def count_candidate_words(words):
-    pass
