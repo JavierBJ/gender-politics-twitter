@@ -1,7 +1,7 @@
 from sexism import tagging
 
 
-n_tweets = 2000
+n_tweets = 4000
 n_sample = 1
 n_copies = 4
 

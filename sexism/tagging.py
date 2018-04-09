@@ -15,9 +15,17 @@ def export_untagged_sample(size, n_sample, n_copies, verbose=True):
         tweets_df['person_'+str(i+1)] = persons[:,i].tolist()
     
     for i in range(n_copies//2):   # Initialize judgment_i columns to 0s
-        tweets_df['sexist_'+str(i+1)] = 0
-        tweets_df['sentiment_'+str(i+1)] = 0
-        
+        tweets_df['sexist_'+str(i+1)] = 9
+        tweets_df['hostile_'+str(i+1)] = 9
+    
+    # Reorders df so person, sexist and hostile columns are sorted at the end
+    cols = tweets_df.columns.tolist()
+    to_move = [x for x in cols if x.startswith('person_')]
+    to_move += [x for x in cols if x.startswith('sexist_')]
+    to_move += [x for x in cols if x.startswith('hostile_')]
+    for c in to_move:
+        cols += [cols.pop(cols.index(c))] # Move each column name to end of list
+    tweets_df = tweets_df[cols] # Reassign columns in new order to df
     for i in range(n_copies):   # Make n_copies of the csv to be filled (one per person)
         tweets_df.to_csv('sample_'+str(n_sample)+'_'+str(i+1)+'.csv', sep=';', encoding='utf-8')
 
@@ -38,7 +46,7 @@ def import_tagged_sample(path_judgements, n_copies):
         other_df = pd.read_csv(path_judgements+'_'+str(i)+'.csv', delimiter=';')
         for j in range(n_copies//2):
             df['sexist_'+str(j+1)] += other_df['sexist_'+str(j+1)]
-    db.update_tweets(df, 'sexist_1', 'sexist_2', 'sentiment_1', 'sentiment_2')
+    db.update_tweets(df, 'sexist_1', 'sexist_2', 'hostile_1', 'hostile_2')
 
 def aggregated_tag():
     pass

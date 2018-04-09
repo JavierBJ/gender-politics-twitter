@@ -70,7 +70,7 @@ class DB():
         return self.import_mongodb(coll, filters, limit)
     
     def import_tweets_for_tagging_mongodb(self, limit=0):
-        q = {'$and':[{'msg':'reply'}, {'sexist_1':0}, {'sexist_2':0}, {'sentiment_1':0}, {'sentiment_2':0},{'in_reply_to_text':{'$ne':''}},{'author_gender':{'$ne':0}},{'receiver_gender':{'$ne':0}}]}
+        q = {'$and':[{'msg':'reply'}, {'sexist_1':9}, {'sexist_2':9}, {'hostile_1':9}, {'hostile_2':9},{'in_reply_to_text':{'$ne':''}},{'author_gender':{'$ne':0}},{'receiver_gender':{'$ne':0}}]}
         return self.import_mongodb('tweets', q, limit)
 
     def import_tagged_by_gender_tweets_mongodb(self, tagged_by, msg_type=None, weeks=None, limit=0):
@@ -107,13 +107,13 @@ class DB():
     
     def sample_untagged_by_humans_tweets_mongodb(self, tweet_type=['tweet','mention','reply'], limit=100):
         return self.sample_tweets_mongodb([{'$match':{'author_gender':{'$in':[1,-1]}}},
-                                      {'$match':{'msg':{'$in':tweet_type}, 'sexist_1':0, 'sexist_2':0, 'sentiment_1':0, 'sentiment_2':0}},
+                                      {'$match':{'msg':{'$in':tweet_type}, 'sexist_1':9, 'sexist_2':9, 'hostile_1':9, 'hostile_2':9}},
                                       {'$sample':{'size':limit}}])
     
     
     def sample_untagged_by_humans_candidates_mongodb(self, tweet_type=['tweet','mention','reply'], limit=100):
         return self.sample_tweets_mongodb([{'$match':{'author_gender':{'$in':[1,-1]}}},
-                                      {'$match':{'msg':{'$in':tweet_type}, 'sexist_1':0, 'sexist_2':0, 'sentiment_1':0, 'sentiment_2':0}},
+                                      {'$match':{'msg':{'$in':tweet_type}, 'sexist_1':9, 'sexist_2':9, 'hostile_1':9, 'hostile_2':9}},
                                       {'$sample':{'size':limit}}])  # TODO: add appearance of candidate words
     
     
