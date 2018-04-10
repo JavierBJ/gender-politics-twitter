@@ -76,7 +76,7 @@ class RelevanceByMutualInfo(WordRelevancePredictor):
             print(word, ':', value, file=to)
 
 class RelevanceByRegression(WordRelevancePredictor):
-    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_lemma()), predname='Ridge (L2) regression'):
+    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(1, lambda x: x.get_lemma()), predname='Ridge (L2) regression'):
         self.predname = predname
         super().__init__(phrases, labels, extractor)
 
@@ -120,7 +120,7 @@ class RelevanceByRegression(WordRelevancePredictor):
             print(word, ':', -value, ':', np.exp(-value), ':', sup, file=to)
 
 class RelevanceByLassoRegression(RelevanceByRegression):
-    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_lemma())):
+    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(1, lambda x: x.get_lemma())):
         super().__init__(phrases, labels, extractor, 'Lasso (L1) regression')
 
     def compute(self):

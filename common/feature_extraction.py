@@ -31,20 +31,6 @@ class FeatureExtractor():
             newcodes.append(newcode)
             
         return newcodes
-    
-    def _access_features(self, gram, access_fn):
-        new_gram = []
-        for word in gram:
-            feat = access_fn(word)
-            if feat.startswith('@'):
-                new_gram.append('_@mention')
-            elif feat.startswith('#'):
-                new_gram.append('_#hashtag')
-            elif feat.startswith('https://'):
-                new_gram.append('_url')
-            else:
-                new_gram.append(feat)
-        return tuple(new_gram)
 
 class FeatureExtractorBOW(FeatureExtractor):
     def __init__(self, n, inc, top, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
@@ -63,8 +49,7 @@ class FeatureExtractorBOW(FeatureExtractor):
         grams = Counter()
         for tweet in source.full_text:
             for sent in tweet:
-                #grams.update({self._access_features(x, self.access_fn) for x in sent})
-                grams.update({self._access_features(tuple([sent[j] for j in range(i,i+self.n)]), self.access_fn) for i in range(len(sent)-self.n+1)})
+                grams.update({tuple([self.access_fn(sent[j]) for j in range(i,i+self.n)]) for i in range(len(sent)-self.n+1)})
         if self.keep_words_rank>0:
             grams = grams.most_common(self.keep_words_rank)
         elif self.keep_words_freq>0:
@@ -73,8 +58,7 @@ class FeatureExtractorBOW(FeatureExtractor):
             grams = grams.most_common()
         grams = self._linguistic_filtering(grams) # Remove stopwords before most common selection
         
-        ii = range(len(grams))
-        self.features = {x:i for ((x,_),i) in zip(grams, ii)}
+        self.features = {x:i for i,(x,_) in enumerate(grams)}
         self.features_idx = [w for w,_ in grams]
         self.supports = {x:s for x,s in grams}
         
@@ -107,7 +91,9 @@ class FeatureExtractorBOW(FeatureExtractor):
     def _is_short(self, g):
         import emoji
         for w in g:
-            if len(w)==1:
+            if w.startswith('@') or w.startswith('#') or w.startswith('https://'):
+                this_is_short = True
+            elif len(w)==1:
                 this_is_short = w[0] not in emoji.UNICODE_EMOJI
             else:
                 this_is_short = len(w)<3
@@ -122,7 +108,7 @@ class FeatureExtractorBOW(FeatureExtractor):
                 encoding = np.zeros((len(self.features),))  # Prepare encoding vector
                 for sent in tweet:
                     for i in range(len(sent)-self.n+1):
-                        g = self._access_features(tuple([sent[i] for i in range(i,i+self.n)]), self.access_fn)
+                        g = tuple([self.access_fn(sent[i]) for i in range(i,i+self.n)])
                         # Only increment counter if not already in the top
                         if g in self.features and encoding[self.features[g]]<self.top:
                             encoding[self.features[g]] += self.inc
@@ -150,16 +136,6 @@ class FeatureExtractorBOWGender(FeatureExtractorBOW):
             return (lemma, tag[2])
         else:
             return (lemma, None)
-
-    def _access_features(self, word, access_fn):
-        feat = access_fn(word)
-        if feat[0].startswith('@'):
-            return '_@mention'
-        elif feat[0].startswith('#'):
-            return '_#hashtag'
-        elif feat[0].startswith('https://'):
-            return '_url'
-        return feat
 
     def _linguistic_filtering(self, words):
         words =  [(w,v) for w,v in words if not self._is_punct(w[0]) and not self._is_short(w[0])]
@@ -328,8 +304,7 @@ class WordEmbedding(Embedding):
             for tweet in tweets.full_text:
                 encoding = np.zeros((self.dim,))
                 for sent in tweet:
-                    for word in sent:
-                        w = self._access_features(word, self.access_fn)
+                    for w in sent:
                         if w in self.embeddings:    # Aggregate word embeddings over encoding vector
                             encoding = map(self.agg_fn(encoding, self.embeddings[w])) 
                 encodings.append(encoding)
