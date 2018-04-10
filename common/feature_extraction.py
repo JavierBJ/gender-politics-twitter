@@ -10,12 +10,9 @@ class FeatureExtractor():
         self.extractors = extractors
         
     def extract(self, source):
-        c = 0
         for ext in self.extractors:
             ext.extract(source)
-            '''if c>0: # Omits first dict
-                ext.features = {x:i+c for x,i in ext.features.items()}
-            c += len(ext.features)'''
+            
         self.features = {}
         self.features_idx = []
         for ext in self.extractors:
@@ -35,20 +32,25 @@ class FeatureExtractor():
             
         return newcodes
     
-    def _access_features(self, word, access_fn):
-        feat = access_fn(word)
-        if feat.startswith('@'):
-            return '_@mention'
-        elif feat.startswith('#'):
-            return '_#hashtag'
-        elif feat.startswith('https://'):
-            return '_url'
-        return feat
+    def _access_features(self, gram, access_fn):
+        new_gram = []
+        for word in gram:
+            feat = access_fn(word)
+            if feat.startswith('@'):
+                new_gram.append('_@mention')
+            elif feat.startswith('#'):
+                new_gram.append('_#hashtag')
+            elif feat.startswith('https://'):
+                new_gram.append('_url')
+            else:
+                new_gram.append(feat)
+        return tuple(new_gram)
 
 class FeatureExtractorBOW(FeatureExtractor):
-    def __init__(self, inc, top, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+    def __init__(self, n, inc, top, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
         if top<1:
             top = float('inf')  # No top limit if not positive
+        self.n = n
         self.inc = inc
         self.top = top
         self.keep_words_freq = keep_words_freq
@@ -58,54 +60,60 @@ class FeatureExtractorBOW(FeatureExtractor):
         self.features = None
     
     def extract(self, source):
-        words = Counter()
+        grams = Counter()
         for tweet in source.full_text:
             for sent in tweet:
-                words.update({self._access_features(x, self.access_fn) for x in sent})
+                #grams.update({self._access_features(x, self.access_fn) for x in sent})
+                grams.update({self._access_features(tuple([sent[j] for j in range(i,i+self.n)]), self.access_fn) for i in range(len(sent)-self.n+1)})
         if self.keep_words_rank>0:
-            words = words.most_common(self.keep_words_rank)
+            grams = grams.most_common(self.keep_words_rank)
         elif self.keep_words_freq>0:
-            words = [(w,v) for w,v in words if v>=self.keep_words_freq]
+            grams = [(w,v) for w,v in grams if v>=self.keep_words_freq]
         else:
-            words = words.most_common()
-        words = self._linguistic_filtering(words)
+            grams = grams.most_common()
+        grams = self._linguistic_filtering(grams) # Remove stopwords before most common selection
         
-        self.features = {x:i for i,(x,_) in enumerate(words)}
-        self.features_idx = [w for w,_ in words]
-        self.supports = {x:s for x,s in words}
+        ii = range(len(grams))
+        self.features = {x:i for ((x,_),i) in zip(grams, ii)}
+        self.features_idx = [w for w,_ in grams]
+        self.supports = {x:s for x,s in grams}
         
         return self
-        
-        '''words = set()
-        for tweet in source.full_text:
-            for sent in tweet:
-                words.update({self._access_features(x, self.access_fn) for x in sent})
-        
-        self.features = {x:i for i,x in enumerate(words)}
-        self.features_idx = list(words)
-        
-        return self'''
     
-    def _linguistic_filtering(self, words):
-        words =  [(w,v) for w,v in words if not self._is_punct(w) and not self._is_short(w)]
+    def _linguistic_filtering(self, grams):
+        grams =  [(g,v) for g,v in grams if not self._is_punct(g) and not self._is_short(g)]
         if self.remove_stopwords:
-            words = [(w,v) for w,v in words if w.lower() not in stopwords.words('spanish')]
-        return words
+            grams = [(g,v) for g,v in grams if not self._is_sw(g)]
+        return grams
+    
+    def _is_sw(self, g):
+        for w in g:
+            is_sw = w.lower() in stopwords.words('spanish')
+            if is_sw:
+                return True
+        return False
 
-    def _is_punct(self, w):
+    def _is_punct(self, g):
         from string import punctuation
-        for p in punctuation:
-            w = w.replace(p,'')
-        for n in '0123456789':
-            w = w.replace(n,'')
-        return self._is_short(w) # If expression after removing all punctuation is short, return True
+        new_g = []
+        for w in g:
+            for p in punctuation:
+                w = w.replace(p,'')
+            for n in '0123456789':
+                w = w.replace(n,'')
+            new_g.append(w)
+        return self._is_short(tuple(new_g))
 
-    def _is_short(self, w):
+    def _is_short(self, g):
         import emoji
-        if len(w)==1:
-            return w[0] not in emoji.UNICODE_EMOJI
-        else:
-            return len(w)<3
+        for w in g:
+            if len(w)==1:
+                this_is_short = w[0] not in emoji.UNICODE_EMOJI
+            else:
+                this_is_short = len(w)<3
+            if this_is_short:
+                return True # else, continue with next word of n-gram
+        return False    # if no word in n-gram is short, the tuple is not short
 
     def encode(self, tweets):
         if self.features is not None:
@@ -113,27 +121,27 @@ class FeatureExtractorBOW(FeatureExtractor):
             for tweet in tweets.full_text:
                 encoding = np.zeros((len(self.features),))  # Prepare encoding vector
                 for sent in tweet:
-                    for word in sent:
-                        w = self._access_features(word, self.access_fn)
+                    for i in range(len(sent)-self.n+1):
+                        g = self._access_features(tuple([sent[i] for i in range(i,i+self.n)]), self.access_fn)
                         # Only increment counter if not already in the top
-                        if w in self.features and encoding[self.features[w]]<self.top:
-                            encoding[self.features[w]] += self.inc
+                        if g in self.features and encoding[self.features[g]]<self.top:
+                            encoding[self.features[g]] += self.inc
                 encodings.append(encoding)
         else:
             raise AttributeError('Features not extracted. Use FeatureExtractor.extract(source) first')
         return encodings
 
 class BinaryBOW(FeatureExtractorBOW):
-    def __init__(self, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(1,1, access_fn, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, 1,1, access_fn, keep_words_freq, keep_words_rank, remove_stopwords)
 
 class CountsBOW(FeatureExtractorBOW):
-    def __init__(self, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(1,-1, access_fn, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, 1,-1, access_fn, keep_words_freq, keep_words_rank, remove_stopwords)
         
 class FeatureExtractorBOWGender(FeatureExtractorBOW):
-    def __init__(self, inc, top, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(inc, top, lambda x: self._tag_by_gender(x.get_lemma(), x.get_tag()), keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, inc, top, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, inc, top, lambda x: self._tag_by_gender(x.get_lemma(), x.get_tag()), keep_words_freq, keep_words_rank, remove_stopwords)
 
     def _tag_by_gender(self, lemma, tag):
         if tag[0] in 'ADP':
