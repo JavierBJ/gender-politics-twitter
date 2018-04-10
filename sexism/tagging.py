@@ -20,7 +20,8 @@ def export_untagged_sample(size, n_sample, n_copies, verbose=True):
     
     # Reorders df so person, sexist and hostile columns are sorted at the end
     cols = tweets_df.columns.tolist()
-    to_move = [x for x in cols if x.startswith('person_')]
+    to_move = ['receiver_gender', 'author_gender', 'in_reply_to_text', 'full_text']
+    to_move += [x for x in cols if x.startswith('person_')]
     to_move += [x for x in cols if x.startswith('sexist_')]
     to_move += [x for x in cols if x.startswith('hostile_')]
     for c in to_move:

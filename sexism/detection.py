@@ -42,17 +42,20 @@ class Detector():
         
         met = {'accuracy': metrics.accuracy_score(y_test, y_pred),
                'precision': metrics.precision_score(y_test, y_pred),
-               'recall': metrics.recall_score(y_test, y_pred), 
-               'f1': metrics.f1_score(y_test, y_pred), 
-               'roc_auc': metrics.roc_auc_score(y_test, y_pred)}
+               'recall': metrics.recall_score(y_test, y_pred),
+               'f1': metrics.f1_score(y_test, y_pred),
+               'roc_auc': metrics.roc_auc_score(y_test, y_pred),
+               'kappa': metrics.cohen_kappa_score(y_test, y_pred)}
         
+        conf = metrics.confusion_matrix(y_test, y_pred)
+
         cv_all = self.cv.cv_results_
         
         cv_res = {'best_estimator': self.cv.best_estimator_,
                   'best_score': self.cv.best_score_,
                   'best_params': self.cv.best_params_}
             
-        return met, cv_all, cv_res
+        return met, conf, cv_all, cv_res
     
     def predict(self, X_test=None):
         # Uses test specified at creation unless another is passed
@@ -63,9 +66,15 @@ class Detector():
 
 class MacroDetector(Detector):
     def __init__(self, detectors, score):
+        for s in detectors[0].metrics()[0].keys():
+            dets_per_score = {i:d.metrics()[0][s] for i,d in enumerate(detectors)}
+            print(s, dets_per_score)
+            if s==score:
+                dets_scoring = dets_per_score
+                print('\t^This is the evaluation metric')
         # Get detector with max score
-        dets_per_score = {d:d.metrics()[0][score] for d in detectors}
-        best = max(dets_per_score, key=dets_per_score.get)
+        print(dets_per_score)
+        best = detectors[max(dets_per_score, key=dets_per_score.get)]
         
         # Necessary for the inherited functions to work
         # In essence, MacroDetector looks for the best detector and mutes into it
