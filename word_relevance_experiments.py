@@ -133,11 +133,11 @@ tweets = text.preprocess(tweets_df)
 labels = tweets['author_gender']
 
 print('Experiment Individual Lasso...')
-rel = predict_gender.RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.BinaryBOWGender(1, keep_words_rank=1000, remove_stopwords=True))
+rel = predict_gender.RelevanceByLassoRegression(tweets, labels, extractor=feature_extraction.BinaryChars(3, keep_words_rank=1000, remove_stopwords=True))
 print('\t',len(rel.features_idx),'features extracted.')
 mis = rel.compute()
 print('\tRelevances computed.')
-rel.show(top=100, to=open('out_relevance/individual_lasso_gender_rank3000_sw.txt', 'w'))
+rel.show(top=100, to=open('out_relevance/individual_lasso_chars3_rank1000_sw.txt', 'w'))
 
 '''print('Experiment Individual MI...')
 rel = predict_gender.RelevanceByMutualInfo(tweets, labels, extractor=feature_extraction.BinaryBOW(lambda x: x.get_form(), keep_words_rank=1000, remove_stopwords=True))

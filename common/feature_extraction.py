@@ -53,26 +53,37 @@ class FeatureExtractorBOW(FeatureExtractor):
             tweets_filtered.append([token for sent in tweet for token in sent if not (self._is_sw(self.access_word(self.access_fn(token))) 
                                                     or self._is_punct(self.access_word(self.access_fn(token))) 
                                                     or self._is_short(self.access_word(self.access_fn(token))))])
+        self.tweets_filtered = tweets_filtered
+        
         # Elaborate dictionary of n-grams
-        grams = Counter()
-        for tweet in tweets_filtered:
-            for sent in tweet:
-                grams.update({tuple([self.access_fn(sent[j]) for j in range(i,i+self.n)]) for i in range(len(sent)-self.n+1)})
+        self.grams = self._elaborate_ngrams()
         
         # Cut out dictionary of n-grams
+        self.grams = self._cut_out()
+            
+        # Create variables for use of features
+        self.features = {x:i for i,(x,_) in enumerate(self.grams)}
+        self.features_idx = [w for w,_ in self.grams]
+        self.supports = {x:s for x,s in self.grams}
+        
+        return self
+    
+    def _elaborate_ngrams(self):
+        grams = Counter()
+        for tweet in self.tweets_filtered:
+            for sent in tweet:
+                grams.update({tuple([self.access_fn(sent[j]) for j in range(i,i+self.n)]) for i in range(len(sent)-self.n+1)})
+        return grams
+    
+    def _cut_out(self):
+        grams = self.grams
         if self.keep_words_rank>0:
             grams = grams.most_common(self.keep_words_rank)
         elif self.keep_words_freq>0:
             grams = [(w,v) for w,v in grams if v>=self.keep_words_freq]
         else:
             grams = grams.most_common()
-            
-        # Create variables for use of features
-        self.features = {x:i for i,(x,_) in enumerate(grams)}
-        self.features_idx = [w for w,_ in grams]
-        self.supports = {x:s for x,s in grams}
-        
-        return self
+        return grams
     
     def _is_sw(self, w):
         return self.remove_stopwords and w.lower() in stopwords.words('spanish')
@@ -272,6 +283,41 @@ class CountsPOS(FeatureExtractorPOS):
     def __init__(self):
         super().__init__(1,-1)
 
+class FeatureExtractorChars(FeatureExtractorBOW):
+    def __init__(self, n, inc, top, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, inc, top, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
+    
+    def _elaborate_ngrams(self):
+        grams = Counter()
+        for tweet in self.tweets_filtered:
+            tweet_text = ' '.join([self.access_fn(token) for token in tweet])   # Sentence separation ommited at text-line creation
+            grams.update({tuple([tweet_text[j] for j in range(i,i+self.n)]) for i in range(len(tweet_text)-self.n+1)})
+        return grams
+    
+    def encode(self, tweets):
+        if self.features is not None:
+            encodings = []
+            for tweet in tweets.full_text:
+                tweet_text = ' '.join([self.access_fn(token) for sent in tweet for token in sent])
+                encoding = np.zeros((len(self.features),))  # Prepare encoding vector
+                for i in range(len(tweet_text)-self.n+1):
+                    g = tuple([tweet_text[i] for i in range(i,i+self.n)])
+                    # Only increment counter if not already in the top
+                    if g in self.features and encoding[self.features[g]]<self.top:
+                        encoding[self.features[g]] += self.inc
+                encodings.append(encoding)
+        else:
+            raise AttributeError('Features not extracted. Use FeatureExtractor.extract(source) first')
+        return encodings
+
+class BinaryChars(FeatureExtractorChars):
+    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, 1, 1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
+        
+class CountsChars(FeatureExtractorChars):
+    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, 1, -1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
+
 class Embedding(FeatureExtractor):
     def extract(self, pre_trained_emb):
         self.embeddings = pre_trained_emb
@@ -297,11 +343,4 @@ class WordEmbedding(Embedding):
                 encodings.append(encoding)
         else:
             raise AttributeError('Embeddings not specified. Use Embedding.extract(pre_trained_emb) first')
-    
-if __name__=='__main__':
-    tweets = db.import_mongodb('tweets', limit=100)
-    tweets = text.preprocess(tweets)
-    #fe = BinaryBOW(lambda x: x.get_lemma())
-    fe = CountsBOW(lambda x: x.get_lemma())
-    result = fe.extract(tweets).encode(tweets)
-    print(result)
+
