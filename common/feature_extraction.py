@@ -33,7 +33,7 @@ class FeatureExtractor():
         return newcodes
 
 class FeatureExtractorBOW(FeatureExtractor):
-    def __init__(self, n, inc, top, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+    def __init__(self, n, inc, top, access_fn, access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
         if top<1:
             top = float('inf')  # No top limit if not positive
         self.n = n
@@ -41,65 +41,58 @@ class FeatureExtractorBOW(FeatureExtractor):
         self.top = top
         self.keep_words_freq = keep_words_freq
         self.keep_words_rank = keep_words_rank
-        self.remove_stopwords = remove_stopwords    # TODO: how to handle stopwords. List of words or based on morfo?
+        self.remove_stopwords = remove_stopwords
         self.access_fn = access_fn
         self.features = None
+        self.access_word = access_word
     
     def extract(self, source):
-        grams = Counter()
+        # Filter out unnecessary tokens from tokenized tweets
+        tweets_filtered = []
         for tweet in source.full_text:
+            tweets_filtered.append([token for sent in tweet for token in sent if not (self._is_sw(self.access_word(self.access_fn(token))) 
+                                                    or self._is_punct(self.access_word(self.access_fn(token))) 
+                                                    or self._is_short(self.access_word(self.access_fn(token))))])
+        # Elaborate dictionary of n-grams
+        grams = Counter()
+        for tweet in tweets_filtered:
             for sent in tweet:
                 grams.update({tuple([self.access_fn(sent[j]) for j in range(i,i+self.n)]) for i in range(len(sent)-self.n+1)})
+        
+        # Cut out dictionary of n-grams
         if self.keep_words_rank>0:
             grams = grams.most_common(self.keep_words_rank)
         elif self.keep_words_freq>0:
             grams = [(w,v) for w,v in grams if v>=self.keep_words_freq]
         else:
             grams = grams.most_common()
-        grams = self._linguistic_filtering(grams) # Remove stopwords before most common selection
-        
+            
+        # Create variables for use of features
         self.features = {x:i for i,(x,_) in enumerate(grams)}
         self.features_idx = [w for w,_ in grams]
         self.supports = {x:s for x,s in grams}
         
         return self
     
-    def _linguistic_filtering(self, grams):
-        grams =  [(g,v) for g,v in grams if not self._is_punct(g) and not self._is_short(g)]
-        if self.remove_stopwords:
-            grams = [(g,v) for g,v in grams if not self._is_sw(g)]
-        return grams
-    
-    def _is_sw(self, g):
-        for w in g:
-            is_sw = w.lower() in stopwords.words('spanish')
-            if is_sw:
-                return True
-        return False
+    def _is_sw(self, w):
+        return self.remove_stopwords and w.lower() in stopwords.words('spanish')
 
-    def _is_punct(self, g):
+    def _is_punct(self, w):
         from string import punctuation
-        new_g = []
-        for w in g:
-            for p in punctuation:
-                w = w.replace(p,'')
-            for n in '0123456789':
-                w = w.replace(n,'')
-            new_g.append(w)
-        return self._is_short(tuple(new_g))
+        for p in punctuation:
+            w = w.replace(p,'')
+        for n in '0123456789':
+            w = w.replace(n,'')
+        return self._is_short(w)
 
-    def _is_short(self, g):
+    def _is_short(self, w):
         import emoji
-        for w in g:
-            if w.startswith('@') or w.startswith('#') or w.startswith('https://'):
-                this_is_short = True
-            elif len(w)==1:
-                this_is_short = w[0] not in emoji.UNICODE_EMOJI
-            else:
-                this_is_short = len(w)<3
-            if this_is_short:
-                return True # else, continue with next word of n-gram
-        return False    # if no word in n-gram is short, the tuple is not short
+        if w.startswith('@') or w.startswith('#') or w.startswith('https://'):
+            return True
+        elif len(w)==1:
+            return w[0] not in emoji.UNICODE_EMOJI
+        else:
+            return len(w)<3
 
     def encode(self, tweets):
         if self.features is not None:
@@ -118,16 +111,16 @@ class FeatureExtractorBOW(FeatureExtractor):
         return encodings
 
 class BinaryBOW(FeatureExtractorBOW):
-    def __init__(self, n, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, 1,1, access_fn, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, 1,1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
 
 class CountsBOW(FeatureExtractorBOW):
-    def __init__(self, n, access_fn, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, 1,-1, access_fn, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, 1,-1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
         
 class FeatureExtractorBOWGender(FeatureExtractorBOW):
     def __init__(self, n, inc, top, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, inc, top, lambda x: self._tag_by_gender(x.get_lemma(), x.get_tag()), keep_words_freq, keep_words_rank, remove_stopwords)
+        super().__init__(n, inc, top, lambda x: self._tag_by_gender(x.get_lemma(), x.get_tag()), lambda x: x[0], keep_words_freq, keep_words_rank, remove_stopwords)
 
     def _tag_by_gender(self, lemma, tag):
         if tag[0] in 'ADP':
@@ -135,21 +128,15 @@ class FeatureExtractorBOWGender(FeatureExtractorBOW):
         elif tag[0]=='N':
             return (lemma, tag[2])
         else:
-            return (lemma, None)
-
-    def _linguistic_filtering(self, words):
-        words =  [(w,v) for w,v in words if not self._is_punct(w[0]) and not self._is_short(w[0])]
-        if self.remove_stopwords:
-            words = [(w,v) for w,v in words if w[0].lower() not in stopwords.words('spanish')]
-        return words
+            return (lemma, '0')
 
 class BinaryBOWGender(FeatureExtractorBOWGender):
-    def __init__(self, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(1,1, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, 1,1, keep_words_freq, keep_words_rank, remove_stopwords)
 
 class CountsBOWGender(FeatureExtractorBOWGender):
-    def __init__(self, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(1,-1, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+        super().__init__(n, 1,-1, keep_words_freq, keep_words_rank, remove_stopwords)
 
 class FeatureExtractorPOS(FeatureExtractorBOW):
     def __init__(self, inc, top):
