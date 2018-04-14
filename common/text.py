@@ -1,5 +1,5 @@
 from common import metadata
-import pyfreeling as freeling
+import freeling
 import pandas as pd
 from random import shuffle as shf
 from data import mongo
