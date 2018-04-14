@@ -19,12 +19,19 @@ def retrieve_accounts_by_gender(dict_files):
         dict_gender.update({d[column]:d['gender'] for d in dataset})
     return dict_gender
 
-def retrieve_names_by_gender(dict_files):
+def retrieve_names_by_gender(dict_files, extr=True, low=False):
     dict_gender = {}
     for file, column in dict_files.items():
         dataset = pd.read_csv(file, sep=';')
         dataset = dataset.to_dict('records')
-        dict_gender.update({_extract_name(record[column]):record['gender'] for record in dataset})
+        if low:
+            apply = lambda x: x.lower()
+        else:
+            apply = lambda x:x
+        if extr:
+            dict_gender.update({apply(_extract_name(record[column])):record['gender'] for record in dataset})
+        else:
+            dict_gender.update({apply(record[column]):record['gender'] for record in dataset})
     return dict_gender
 
 def retrieve_accounts_to_autonomy(dict_files):
