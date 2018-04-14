@@ -24,6 +24,7 @@ class DB():
             print('\tAdded replies text to tweets.')
         if users is not None:
             users = users.drop_duplicates('id')
+            users = assign_gender.tag_politicians_gender(users)
             users = assign_gender.tag_gender_from_politicians(users)
             users = assign_gender.tag_gender_from_r(users, 'r-genders.csv', 0.4)
             users = assign_gender.tag_gender_from_gender_api(users, 0.4)
@@ -86,9 +87,6 @@ class DB():
     def import_tagged_by_author_gender_tweets_mongodb(self, weeks=None, limit=0):
         return self.import_tagged_by_gender_tweets_mongodb('author_gender', limit=limit)
     
-    def import_tagged_by_receiver_gender_tweets_mongodb(self, weeks=None, limit=0):
-        return self.import_tagged_by_gender_tweets_mongodb('receiver_gender', limit=limit)
-    
     def import_tagged_by_opposing_receiver_gender_tweets_mongodb(self, limit=0):
         return self.import_mongodb('tweets', {'$or':[{'$and':[{'author_gender':1},{'receiver_gender':-1}]}, {'$and':[{'author_gender':-1},{'receiver_gender':1}]}]}, limit=limit)
     
@@ -99,6 +97,9 @@ class DB():
     def import_tagged_by_author_gender_individual_tweets_mongodb(self, weeks=None, limit=0):
         return self.import_tagged_by_gender_tweets_mongodb('author_gender', msg_type='reply', weeks=weeks, limit=limit)
         #return self.import_mongodb('tweets', {'$and':[{'msg':'reply'},{'author_gender':{'$in':[1,-1]}}]}, limit)
+
+    def import_tagged_by_receiver_gender_tweets_mongodb(self, weeks=None, limit=0):
+        return self.import_tagged_by_gender_tweets_mongodb('receiver_gender', limit=limit)
 
     def sample_tweets_mongodb(self, agg_clause):
         cursor = self.db['tweets'].aggregate(agg_clause)

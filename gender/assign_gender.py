@@ -9,7 +9,27 @@ from common import metadata
 
 r_genders_path = '../r-genders.csv'
 paths_to_names = {'diputados_autonomicos.csv':'diputado', 'diputados_congreso.csv':'nombre'}
+paths_to_screennames={'diputados_autonomicos.csv':'twitter account', 'diputados_congreso.csv':'handle'}
+paths_to_genders = {'diputados_autonomicos.csv':'gender', 'diputados_congreso.csv':'gender'}
 associations_api = {'male': 1, 'female': -1}
+
+def tag_politicians_gender(users):
+    names_to_genders = text.retrieve_names_by_gender(paths_to_screennames, extr=False)
+    is_male = []
+    for username,polit,gen in zip(users['screen_name'], users['polit'], users['gender']):
+        if gen==0:
+            if polit==1:
+                if username in names_to_genders:
+                    is_male.append(-2*names_to_genders[username]+1)	# csv are encoded as male:0 female:1. -2n+1 gives male:1 female:-1.
+                else:
+                    print('Failed at', username)	# Should not happen
+                    is_male.append(0)
+            else:
+                is_male.append(0)	# Gender of individuals to be assigned by other methods
+        else:
+            is_male.append(gen)	# Already assigned by another method
+    users['gender'] = is_male
+    return users
 
 def tag_gender_from_r(users, path, thr):
     genders = pd.read_csv(path)
@@ -117,14 +137,18 @@ def _query_genderize_api(names):
     return retrn
 
 def tag_gender_from_politicians(users):
-    names_to_genders = text.retrieve_names_by_gender(paths_to_names)
+    names_to_genders = text.retrieve_names_by_gender(paths_to_names, low=True)
     is_male = []
-    for username in users['name']:
-        if username != username: # Check NaN
-            is_male.append(0)
+    for username,gen in zip(users['name'], users['gender']):
+        if gen==0:
+            if username != username: # Check NaN
+                is_male.append(0)
+            else:
+                username = username.lower()
+                subnames = _split_name(username)
+                is_male.append(_gender_from_splits(subnames, names_to_genders))
         else:
-            subnames = _split_name(username)
-            is_male.append(_gender_from_splits(subnames, names_to_genders))
+            is_male.append(gen)	# Gender already assigned by another method
     users['gender'] = is_male
     return users
 
@@ -142,7 +166,7 @@ def _split_name(name):
 def _gender_from_splits(subnames, names_to_genders):
     for sn in subnames:
         if sn in names_to_genders:
-            return names_to_genders[sn]
+            return -2*names_to_genders[sn]+1	#Tagged as male:0 female:1. -2n+1 makes it male:1 female:-1
     return 0	# Default case for when no subname matched a known name
 
 def tokenize_names(names):

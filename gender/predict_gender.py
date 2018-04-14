@@ -81,7 +81,7 @@ class RelevanceByRegression(WordRelevancePredictor):
         super().__init__(phrases, labels, extractor)
 
     def compute(self):
-        model = LogisticRegressionCV().fit(self.X, self.labels)
+        model = LogisticRegressionCV(class_weight='balanced').fit(self.X, self.labels)
         preds = model.predict(self.X)
         print(model.scores_)
         print(metrics.confusion_matrix(self.labels, preds))
@@ -124,7 +124,7 @@ class RelevanceByLassoRegression(RelevanceByRegression):
         super().__init__(phrases, labels, extractor, 'Lasso (L1) regression')
 
     def compute(self):
-        model = LogisticRegressionCV(solver='liblinear', penalty='l1', scoring='f1').fit(self.X, self.labels)
+        model = LogisticRegressionCV(class_weight='balanced', solver='liblinear', penalty='l1', scoring='f1').fit(self.X, self.labels)
         preds = model.predict(self.X)
         print(model.Cs_)
         print(model.scores_)
