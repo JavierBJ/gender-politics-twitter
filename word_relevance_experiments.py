@@ -11,8 +11,8 @@ kwf = None
 kwr = 5000
 n = 1
 top_vars = 100
-exp_name = 'Receiver Lasso Gender (top 3000 words considered) (removing stopwords)'
-path = 'out_relevance/receiver_lasso_gender_rank3000_sw.txt'
+exp_name = 'Author Individual Lasso Gender (top 5000 words considered) (removing stopwords)'
+path = 'out_relevance/author_individual_lasso_gender_rank5000_sw.txt'
 
 # Main code
 # ---------
@@ -20,16 +20,16 @@ db = mongo.DB(dbname)
 
 # DB to import
 #tweets_df = db.import_tagged_by_author_gender_tweets_mongodb(weeks=wks, limit=lim)
-tweets_df = db.import_tagged_by_receiver_gender_tweets_mongodb(weeks=wks, limit=lim)
+#tweets_df = db.import_tagged_by_receiver_gender_tweets_mongodb(weeks=wks, limit=lim)
 #tweets_df = db.import_tagged_by_author_gender_political_tweets_mongodb(weeks=wks, limit=lim)
-#tweets_df = db.import_tagged_by_author_gender_individual_tweets_mongodb(weeks=wks, limit=lim)
+tweets_df = db.import_tagged_by_author_gender_individual_tweets_mongodb(weeks=wks, limit=lim)
 #tweets_df = db.import_tagged_by_receiver_gender_individual_tweets_mongodb(weeks=wks, limit=lim)
 
 tweets = text.preprocess(tweets_df)
 
 # Target variable
-#labels = tweets['author_gender']
-labels = tweets['receiver_gender']
+labels = tweets['author_gender']
+#labels = tweets['receiver_gender']
 
 # Feature extraction
 #ext = feature_extraction.BinaryBOW(n, lambda x: x.get_lemma(), keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)

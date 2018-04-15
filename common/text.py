@@ -5,11 +5,14 @@ from random import shuffle as shf
 from data import mongo
 from collections import Counter
 
-def retrieve_accounts(dict_files):
+def retrieve_accounts(dict_files, low=False):
     accounts = pd.Series()
     for file, column in dict_files.items():
         dataset = pd.read_csv(file, sep=';')
-        accounts = accounts.append(dataset[column].dropna(), ignore_index=True)
+        if low:
+            accounts = accounts.append(dataset[column].dropna().str.lower(), ignore_index=True)
+        else:
+            accounts = accounts.append(dataset[column].dropna(), ignore_index=True)
     return accounts
 
 def retrieve_accounts_by_gender(dict_files):
@@ -39,6 +42,8 @@ def retrieve_accounts_to_autonomy(dict_files):
     for file, column in dict_files.items():
         dataset = pd.read_csv(file, sep=';')
         for data, ccaa in zip(dataset[column],dataset['ccaa']):
+            if data==data:
+                data = data.lower()
             dict_aut.update({data:ccaa})
     return dict_aut
 

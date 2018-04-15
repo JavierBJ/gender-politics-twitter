@@ -1,13 +1,19 @@
 import pandas as pd
 from data import mongo
 from common import text
+import sys
 
 # ----------------------------> RUN ON DUMPUSERS FIRST!
 
 # Path names
-num = 13
+num = 1
 code = 't'
-is_users = False
+is_users = True
+
+if len(sys.argv)==4:
+    num = int(sys.argv[1])
+    code = str(sys.argv[2])
+    is_users = bool(sys.argv[3])
 
 if num<10:
     num = '0' + str(num)
@@ -34,11 +40,11 @@ ORDERED_COLS = ['id_str', 'in_reply_to_status_id', 'user_id', 'in_reply_to_user_
 if 'users' in path_in:
     df = pd.read_csv(path_in, delimiter=';')
     accounts = text.retrieve_accounts({'diputados_congreso.csv':'handle', 'diputados_autonomicos.csv':'twitter account'})
-    accounts = [acc.strip() for acc in accounts]
+    accounts = [acc.strip().lower() for acc in accounts]
     df['polit'] = 0
-    df['polit'][df['screen_name'].isin(accounts)] = 1
+    df['polit'][df['screen_name'].str.lower().isin(accounts)] = 1
     dict_aut = text.retrieve_accounts_to_autonomy({'diputados_autonomicos.csv': 'twitter account'})
-    df['autname'] = [dict_aut.get(sn) if sn in dict_aut else 'No' for sn in df['screen_name']]
+    df['autname'] = [dict_aut.get(sn) if sn in dict_aut else 'No' for sn in df['screen_name'].str.lower()]
     df = df.drop([x for x in df.columns if 'Unnamed' in x], axis=1)
 else:
     df = pd.read_csv(path_in, delimiter=';')
@@ -58,7 +64,7 @@ else:
         # Add user data from csv
         path_users = 'dumpusers' + str(num) + code + '.csv'
         users = pd.read_csv(path_users, delimiter=';')
-        ids = [id for id,name in zip(users['id'], users['screen_name']) if name in accounts] # User IDs from Congreso
+        ids = [id for id,name in zip(users['id'], users['screen_name']) if name.lower() in accounts] # User IDs from Congreso
         print(ids[0:10], len(ids))
         df['aut'] = 1
         df['aut'][df['user_id'].isin(ids)] = 0
