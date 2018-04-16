@@ -8,7 +8,7 @@ consumer_secret = "H4yZig0A2oXUXCaBgRLNMZZgIPRCc8ZhK7MrlP6WGNG5qjMP25"
 access_token = "184798106-6IC8AWCnwB0UpKk3lWWYNdR0P1UtKOSXFwDAQHmC"
 access_token_secret = "jnTp1gDykV7th52e7GXoenRpzCGLOIabTRr0GZKdfCsny"
 
-dataset = pd.read_csv('../diputados_autonomicos.csv', sep=';', encoding='ISO-8859-1')
+dataset = pd.read_csv('../diputados_autonomicos.csv', sep=';', encoding='ISO-8859-1', dtype='str')
 accounts = dataset['twitter account'].dropna()
 
 #api = twitter.Twitter(auth=twitter.OAuth(access_token, access_token_secret, consumer_key, consumer_secret), retry=10, tweet_mode='extended')

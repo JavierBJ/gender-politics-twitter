@@ -2,7 +2,7 @@ import pandas as pd
 
 path = 'dump02t.csv'
 
-csv = pd.read_csv(path, delimiter=';')
+csv = pd.read_csv(path, delimiter=';', dtype='str')
 
 rts = 0
 for tweet in csv['full_text']:

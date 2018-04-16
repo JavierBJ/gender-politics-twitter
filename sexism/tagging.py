@@ -41,10 +41,10 @@ def export_untagged_sample(size, n_sample, n_copies, verbose=True):
 
 def import_tagged_sample(path_judgements, n_copies):
     db = mongo.DB()
-    df = pd.read_csv(path_judgements+'_1.csv', delimiter=';')
+    df = pd.read_csv(path_judgements+'_1.csv', delimiter=';', dtype='str')
     df = df.drop('Unnamed: 0.1', axis=1)
     for i in range(2,n_copies+1):
-        other_df = pd.read_csv(path_judgements+'_'+str(i)+'.csv', delimiter=';')
+        other_df = pd.read_csv(path_judgements+'_'+str(i)+'.csv', delimiter=';', dtype='str')
         for j in range(n_copies//2):
             df['sexist_'+str(j+1)] += other_df['sexist_'+str(j+1)]
     db.update_tweets(df, 'sexist_1', 'sexist_2', 'hostile_1', 'hostile_2')

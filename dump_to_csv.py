@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 
-filename = 'dump13mr'
+filename = 'dump13t'
 out_tweets = filename
 out_users = filename[:4] + 'users' + filename[4:]
 
@@ -24,9 +24,9 @@ def to_csv(recoveries, status_variables, user_stranger_key, user_variables, repl
             df_tweets = pd.DataFrame([[str(getattr(i,j)) for j in variables] for i in recoveries], columns = variables)
             for var in replies_variables:
                 df_tweets[var] = np.nan
-        df_tweets[user_stranger_key] = pd.Series([x.user.id for x in recoveries])
+        df_tweets[user_stranger_key] = pd.Series([str(x.user.id) for x in recoveries])
         
-        df_users = pd.DataFrame([[getattr(i.user,j) for j in user_variables] for i in recoveries], columns = user_variables)
+        df_users = pd.DataFrame([[str(getattr(i.user,j)) for j in user_variables] for i in recoveries], columns = user_variables)
         df_users = df_users.drop_duplicates()
         
     return df_tweets, df_users

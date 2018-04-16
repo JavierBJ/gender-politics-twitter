@@ -8,7 +8,7 @@ from collections import Counter
 def retrieve_accounts(dict_files, low=False):
     accounts = pd.Series()
     for file, column in dict_files.items():
-        dataset = pd.read_csv(file, sep=';')
+        dataset = pd.read_csv(file, sep=';', dtype='str')
         if low:
             accounts = accounts.append(dataset[column].dropna().str.lower(), ignore_index=True)
         else:
@@ -18,29 +18,29 @@ def retrieve_accounts(dict_files, low=False):
 def retrieve_accounts_by_gender(dict_files):
     dict_gender = {}
     for file, column in dict_files.items():
-        dataset = pd.read_csv(file, sep=';')
+        dataset = pd.read_csv(file, sep=';', dtype='str')
         dict_gender.update({d[column]:d['gender'] for d in dataset})
     return dict_gender
 
 def retrieve_names_by_gender(dict_files, extr=True, low=False):
     dict_gender = {}
     for file, column in dict_files.items():
-        dataset = pd.read_csv(file, sep=';')
+        dataset = pd.read_csv(file, sep=';', dtype='str')
         dataset = dataset.to_dict('records')
         if low:
-            apply = lambda x: x.lower()
+            apply = lambda x: x.lower() if x==x else x
         else:
             apply = lambda x:x
         if extr:
-            dict_gender.update({apply(_extract_name(record[column])):record['gender'] for record in dataset})
+            dict_gender.update({apply(_extract_name(record[column])):int(record['gender']) for record in dataset})
         else:
-            dict_gender.update({apply(record[column]):record['gender'] for record in dataset})
+            dict_gender.update({apply(record[column]):int(record['gender']) for record in dataset})
     return dict_gender
 
 def retrieve_accounts_to_autonomy(dict_files):
     dict_aut = {}
     for file, column in dict_files.items():
-        dataset = pd.read_csv(file, sep=';')
+        dataset = pd.read_csv(file, sep=';', dtype='str')
         for data, ccaa in zip(dataset[column],dataset['ccaa']):
             if data==data:
                 data = data.lower()
@@ -62,7 +62,7 @@ def create_dataset(from_file, limit=None, shuffle=False):
     
     dataset = pd.DataFrame()
     for file in from_file:
-        data = pd.read_csv(file, delimiter=';', encoding='utf-8', engine='python')
+        data = pd.read_csv(file, delimiter=';', encoding='utf-8', engine='python', dtype='str')
         if shuffle: # Shuffle each dataset indicated
             data = data.sample(frac=1)
         

@@ -14,9 +14,12 @@ paths_to_genders = {'diputados_autonomicos.csv':'gender', 'diputados_congreso.cs
 associations_api = {'male': 1, 'female': -1}
 
 def tag_politicians_gender(users):
-    names_to_genders = text.retrieve_names_by_gender(paths_to_screennames, extr=False)
+    names_to_genders = text.retrieve_names_by_gender(paths_to_screennames, extr=False, low=True)
     is_male = []
     for username,polit,gen in zip(users['screen_name'], users['polit'], users['gender']):
+        polit = int(polit)
+        gen = int(gen)
+        username = username.lower()
         if gen==0:
             if polit==1:
                 if username in names_to_genders:

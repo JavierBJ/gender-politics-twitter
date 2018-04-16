@@ -6,9 +6,9 @@ import sys
 # ----------------------------> RUN ON DUMPUSERS FIRST!
 
 # Path names
-num = 1
+num = 13
 code = 't'
-is_users = True
+is_users = False
 
 if len(sys.argv)==4:
     num = int(sys.argv[1])
@@ -38,7 +38,7 @@ add_msg_type = True
 ORDERED_COLS = ['id_str', 'in_reply_to_status_id', 'user_id', 'in_reply_to_user_id', 'created_at', 'retweet_count', 'favorite_count', 'full_text']
 
 if 'users' in path_in:
-    df = pd.read_csv(path_in, delimiter=';')
+    df = pd.read_csv(path_in, delimiter=';', dtype='str')
     accounts = text.retrieve_accounts({'diputados_congreso.csv':'handle', 'diputados_autonomicos.csv':'twitter account'})
     accounts = [acc.strip().lower() for acc in accounts]
     df['polit'] = 0
@@ -47,7 +47,7 @@ if 'users' in path_in:
     df['autname'] = [dict_aut.get(sn) if sn in dict_aut else 'No' for sn in df['screen_name'].str.lower()]
     df = df.drop([x for x in df.columns if 'Unnamed' in x], axis=1)
 else:
-    df = pd.read_csv(path_in, delimiter=';')
+    df = pd.read_csv(path_in, delimiter=';', dtype='str')
     if remove_rts:
         df = df[~df['full_text'].astype(str).str.startswith('RT @')]
     if reorder_cols:
@@ -59,11 +59,11 @@ else:
     if add_fill_in_cols and 'is_sexist' not in df:
         df['is_sexist'] = ''
     if add_origin:
-        accounts = text.retrieve_accounts({'diputados_congreso.csv':'handle'}) # Accounts from Congreso
+        accounts = text.retrieve_accounts({'diputados_congreso.csv':'handle'}, low=True) # Accounts from Congreso
         print(accounts[0:10], len(accounts))
         # Add user data from csv
         path_users = 'dumpusers' + str(num) + code + '.csv'
-        users = pd.read_csv(path_users, delimiter=';')
+        users = pd.read_csv(path_users, delimiter=';', dtype='str')
         ids = [id for id,name in zip(users['id'], users['screen_name']) if name.lower() in accounts] # User IDs from Congreso
         print(ids[0:10], len(ids))
         df['aut'] = 1
