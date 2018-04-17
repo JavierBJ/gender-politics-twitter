@@ -6,8 +6,8 @@ import sys
 # ----------------------------> RUN ON DUMPUSERS FIRST!
 
 # Path names
-num = 1
-code = 't'
+num = 14
+code = 'mr'
 is_users = False
 
 if len(sys.argv)==4:

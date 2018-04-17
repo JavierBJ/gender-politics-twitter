@@ -5,8 +5,8 @@ import pandas as pd
 import sys
 
 
-num = 13
-code = 't'
+num = 14
+code = 'mr'
 
 if len(sys.argv)==3:
     num = int(sys.argv[1])
