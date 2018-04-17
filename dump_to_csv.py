@@ -2,8 +2,22 @@ import pickle
 import os
 import numpy as np
 import pandas as pd
+import sys
 
-filename = 'dump13t'
+
+num = 13
+code = 't'
+
+if len(sys.argv)==3:
+    num = int(sys.argv[1])
+    code = str(sys.argv[2])
+
+if num<10:
+    num = '0' + str(num)
+else:
+    num = str(num)
+
+filename = 'dump'+num+code
 out_tweets = filename
 out_users = filename[:4] + 'users' + filename[4:]
 
@@ -49,9 +63,5 @@ for file in os.listdir('.'):
         df_users = pd.concat([df_users, df_users_tweets, df_users_mentions, df_users_replies])
 
 df_statuses, df_users = process_text(df_statuses, df_users)
-
-#df_statuses.to_csv(out_tweets+'.csv', sep=';', encoding='utf-8', float_format='{:f}'.format)
-#df_users.to_csv(out_users+'.csv', sep=';', encoding='utf-8', float_format='{:f}'.format)
-
 df_statuses.to_csv(out_tweets+'.csv', sep=';', encoding='utf-8')
 df_users.to_csv(out_users+'.csv', sep=';', encoding='utf-8')

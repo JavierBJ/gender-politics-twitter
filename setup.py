@@ -5,7 +5,7 @@ import time
 
 
 # Setup configuration
-name = 'sexism'
+name = 'new'
 min_csv = 1
 max_csv = 13
 

@@ -2,7 +2,7 @@
 
 #num=1 2 3 4 5 6 7 8 9 10 11 12 13
 code="t mr"
-is_users="True False"
+is_users="1 0"
 
 for n in $(seq 1 13);
 do

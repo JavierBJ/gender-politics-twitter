@@ -6,14 +6,14 @@ import sys
 # ----------------------------> RUN ON DUMPUSERS FIRST!
 
 # Path names
-num = 13
+num = 1
 code = 't'
 is_users = False
 
 if len(sys.argv)==4:
     num = int(sys.argv[1])
     code = str(sys.argv[2])
-    is_users = bool(sys.argv[3])
+    is_users = bool(int(sys.argv[3]))
 
 if num<10:
     num = '0' + str(num)
