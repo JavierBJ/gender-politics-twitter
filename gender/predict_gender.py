@@ -124,10 +124,13 @@ class RelevanceByLassoRegression(RelevanceByRegression):
         super().__init__(phrases, labels, extractor, 'Lasso (L1) regression')
 
     def compute(self):
-        model = LogisticRegressionCV(class_weight='balanced', solver='liblinear', penalty='l1', scoring='f1').fit(self.X, self.labels)
+        cs = [0.1, 1, 10, 100]
+        model = LogisticRegressionCV(class_weight='balanced', solver='liblinear', penalty='l1', scoring='f1', Cs=cs).fit(self.X, self.labels)
         preds = model.predict(self.X)
         print(model.Cs_)
         print(model.scores_)
+        print(model.get_params())
+        print(model.C_)
         print(metrics.confusion_matrix(self.labels, preds))
         print('Kappa:', metrics.cohen_kappa_score(self.labels, preds))
         print('AUC:', metrics.roc_auc_score(self.labels, preds))

@@ -1,5 +1,5 @@
 from common import metadata
-import freeling
+import pyfreeling as freeling
 import pandas as pd
 from random import shuffle as shf
 from data import mongo
@@ -124,6 +124,18 @@ def preprocess(df, filter_lang=None):
     df['full_text'] = pd.Series(ls_tokens)
     print('\tTweets preprocessed.')
     return df
+
+def tokenize(df):
+    print('Tokenizing tweets...')
+    tk, _, _, _ = setup_freeling()
+    all_tokens = []
+    for _, row in df.iterrows():
+        raw_text = row['full_text']
+        tokens = tk.tokenize(raw_text)
+        tokens = [w.get_form() for w in tokens]
+        all_tokens.extend(tokens)
+    print('\tTweets tokenized...')
+    return ' '.join(all_tokens)	# String of whitespace-separated tokens
 
 def identify_language(df):
     freeling.util_init_locale('default')
