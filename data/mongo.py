@@ -1,8 +1,8 @@
 import pymongo
 import pandas as pd
-from common import text
 from time import time
 from gender import assign_gender
+from sexism import tagging
 
 class DB():
     
@@ -13,6 +13,7 @@ class DB():
     def export_mongodb(self, tweets, users):
         print('Exporting data to MongoDB...')
         if tweets is not None:
+            tweets = tagging.aggregate_tags(tweets, samples=None)
             tweets = tweets[tweets['full_text'].str.count('@')<3] # Remove tweets with 3 or more mentions. It's hard to see who they refer to.
             tweets = tweets[~tweets['full_text'].str.startswith('https://')]  # Remove tweets that start by URL. Usually their just a URL.
             tweets = tweets.reset_index(drop=True)

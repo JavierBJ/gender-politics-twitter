@@ -1,13 +1,12 @@
 from common import text
 from data import mongo
-from gender import assign_gender
 import time
 
 
 # Setup configuration
-name = 'sexism'
+name = 'tagged'
 min_csv = 1
-max_csv = 14
+max_csv = 15
 
 # Setup
 t = time.time()
