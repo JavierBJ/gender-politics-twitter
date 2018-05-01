@@ -71,8 +71,7 @@ class FeatureExtractorBOW(FeatureExtractor):
     def _elaborate_ngrams(self):
         grams = Counter()
         for tweet in self.tweets_filtered:
-            for sent in tweet:
-                grams.update({tuple([self.access_fn(sent[j]) for j in range(i,i+self.n)]) for i in range(len(sent)-self.n+1)})
+            grams.update({tuple([self.access_fn(tweet[j]) for j in range(i,i+self.n)]) for i in range(len(tweet)-self.n+1)})
         return grams
     
     def _cut_out(self):
