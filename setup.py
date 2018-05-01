@@ -7,7 +7,7 @@ import time
 # Setup configuration
 name = 'sexism'
 min_csv = 1
-max_csv = 14
+max_csv = 15
 
 # Setup
 t = time.time()
