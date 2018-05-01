@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from data import mongo
 import random
+import os
 
 def export_untagged_sample(size, n_sample, n_copies, verbose=True):
     db = mongo.DB()
@@ -49,8 +50,66 @@ def import_tagged_sample(path_judgements, n_copies):
             df['sexist_'+str(j+1)] += other_df['sexist_'+str(j+1)]
     db.update_tweets(df, 'sexist_1', 'sexist_2', 'hostile_1', 'hostile_2')
 
-def aggregated_tag():
-    pass
+def aggregate_tags(tweets, samples=None):
+    if samples is None:
+        files = os.listdir('.')
+        samples = range(1, 1+max([int(f[7]) for f in files if f.startswith('sample_')]))
+    
+    for s in samples:
+        sexist1 = pd.Series()
+        sexist2 = pd.Series()
+        hostile1 = pd.Series()
+        hostile2 = pd.Series()
+        copies = range(1, 1+max([int(f[9]) for f in files if f.startswith('sample_'+str(s)+'_')]))
+        for c in copies:
+            df = pd.read_csv('sample_'+str(s)+'_'+str(c)+'.csv', delimiter=';')
+            sexist1, sexist2, hostile1, hostile2 = _aggregate_copies(df, sexist1, sexist2, hostile1, hostile2)
+        sexist1 = sexist1.replace(0,9).replace(-1,0)
+        sexist2 = sexist2.replace(0,9).replace(-1,0)
+        hostile1 = hostile1.replace(0,9).replace(-1,0)
+        hostile2 = hostile2.replace(0,9).replace(-1,0)
+    
+        # Only tag those with agreement
+        sexist = pd.Series([x if x==y else 9 for x,y in zip(sexist1, sexist2)])
+        hostile = pd.Series([x if x==y else 9 for x,y in zip(hostile1, hostile2)])
+
+        # Do updates based on tweet id
+        df = pd.read_csv('sample_'+str(s)+'_1.csv', delimiter=';', dtype='str')
+        ids = df['id_str']
+        p1s = df['person_1']
+        p2s = df['person_2']
+        s1s = df['sexist_1']
+        s2s = df['sexist_2']
+        h1s = df['hostile_1']
+        h2s = df['hostile_2']
+        for idx, p1, p2, s1, s2, h1, h2, is_s, is_h in zip(ids, p1s, p2s, s1s, s2s, h1s, h2s, sexist, hostile):
+            tweets.loc[tweets['id_str']==idx, 'is_sexist'] = is_s
+            tweets.loc[tweets['id_str']==idx, 'is_hostile'] = is_h
+            tweets.loc[tweets['id_str']==idx, 'person_1'] = p1
+            tweets.loc[tweets['id_str']==idx, 'person_2'] = p2
+            tweets.loc[tweets['id_str']==idx, 'sexist_1'] = s1
+            tweets.loc[tweets['id_str']==idx, 'sexist_2'] = s2
+            tweets.loc[tweets['id_str']==idx, 'hostile_1'] = h1
+            tweets.loc[tweets['id_str']==idx, 'hostile_2'] = h2
+    return tweets
+
+def _aggregate_copies(df, sexist1, sexist2, hostile1, hostile2):
+    s1 = df['sexist_1'].astype('float').replace(0,-1).replace(9,0)
+    s2 = df['sexist_2'].astype('float').replace(0,-1).replace(9,0)
+    h1 = df['hostile_1'].astype('float').replace(0,-1).replace(9,0)
+    h2 = df['hostile_2'].astype('float').replace(0,-1).replace(9,0)
+    
+    if sexist1.empty:
+        sexist1 = s1
+        sexist2 = s2
+        hostile1 = h1
+        hostile2 = h2
+    else:
+        sexist1 += s1
+        sexist2 += s2
+        hostile1 += h1
+        hostile2 += h2
+    return sexist1, sexist2, hostile1, hostile2
 
 if __name__=='__main__':
     export_untagged_sample(1000, 1, 4)

@@ -1,4 +1,3 @@
-from data import mongo
 from common import text
 import pandas as pd
 import json
