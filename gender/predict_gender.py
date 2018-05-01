@@ -1,7 +1,7 @@
 from data import mongo
 from common import text, feature_extraction
 import numpy as np
-from sklearn.linear_model import LogisticRegressionCV
+from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import mutual_info_classif
 from sklearn import metrics
 import sys
@@ -120,17 +120,13 @@ class RelevanceByRegression(WordRelevancePredictor):
             print(word, ':', -value, ':', np.exp(-value), ':', sup, file=to)
 
 class RelevanceByLassoRegression(RelevanceByRegression):
-    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(1, lambda x: x.get_lemma())):
+    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(1, lambda x: x.get_lemma()), c=1):
+        self.c = c
         super().__init__(phrases, labels, extractor, 'Lasso (L1) regression')
 
     def compute(self):
-        cs = [0.1, 1, 10, 100]
-        model = LogisticRegressionCV(class_weight='balanced', solver='liblinear', penalty='l1', scoring='f1', Cs=cs).fit(self.X, self.labels)
+        model = LogisticRegression(class_weight='balanced', solver='liblinear', penalty='l1', C=self.c).fit(self.X, self.labels)
         preds = model.predict(self.X)
-        print(model.Cs_)
-        print(model.scores_)
-        print(model.get_params())
-        print(model.C_)
         print(metrics.confusion_matrix(self.labels, preds))
         print('Kappa:', metrics.cohen_kappa_score(self.labels, preds))
         print('AUC:', metrics.roc_auc_score(self.labels, preds))
