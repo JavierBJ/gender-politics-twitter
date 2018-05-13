@@ -10,10 +10,11 @@ class DB():
         client = pymongo.MongoClient()  # Default parameters in local
         self.db = client[db_name]
 
-    def export_mongodb(self, tweets, users):
+    def export_mongodb(self, tweets, users, tags=True):
         print('Exporting data to MongoDB...')
         if tweets is not None:
-            tweets = tagging.aggregate_tags(tweets, samples=None)
+            if tags:
+                tweets = tagging.aggregate_tags(tweets, samples=None)
             tweets = tweets[tweets['full_text'].str.count('@')<3] # Remove tweets with 3 or more mentions. It's hard to see who they refer to.
             tweets = tweets[~tweets['full_text'].str.startswith('https://')]  # Remove tweets that start by URL. Usually their just a URL.
             tweets = tweets.reset_index(drop=True)

@@ -6,14 +6,14 @@ print('Embeddings of gender-words...')
 for k,v in embs.items():
     print('\t', k, ':', v)
 print('Explained variances...')
-print(emb.principal_components(embs))
+print(emb.PrincipalComponentsAnalysis(embs.values()).principal_components())
 
 rembs = emb.get_random_embeddings(10)
 print('Embeddings of random words...')
 for k,v in rembs.items():
     print('\t', k, ':', v)
 print('Explained variances...')
-print(emb.principal_components(rembs))
+print(emb.PrincipalComponentsAnalysis(rembs.values()).principal_components())
 
 print('Distances EL - ELLA:')
 print('\tCosine:', emb.cosine(embs['el'], embs['ella']))
