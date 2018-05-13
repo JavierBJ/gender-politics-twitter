@@ -50,30 +50,33 @@ class RelevanceByMutualInfo(WordRelevancePredictor):
         return results
     
     def compute(self):
+        print('Compute...')
         male_results = mutual_info_classif(self.X, self.labels)
         female_results = mutual_info_classif(self.X, [-x for x in self.labels])
+        print('pmis done')
         results = {}
         for i in range(self.X.shape[1]):
             results[(i,1)] = male_results[i]
             results[(i,-1)] = female_results[i]
         self.results = results
+        print('Computed')
         return results
     
     def retrieve(self, top=20):
-        males = sorted([(self.features_idx[x],v) for (x,y),v in self.results.items() if y==1], key=lambda x:x[1], reverse=True)[:top]
-        females = sorted([(self.features_idx[x],v) for (x,y),v in self.results.items() if y==-1], key=lambda x:x[1], reverse=True)[:top]
+        males = sorted([(self.features_idx[x],v,self.supports[self.features_idx[x]]) for (x,y),v in self.results.items() if y==1], key=lambda x:x[1], reverse=True)[:top]
+        females = sorted([(self.features_idx[x],v,self.supports[self.features_idx[x]]) for (x,y),v in self.results.items() if y==-1], key=lambda x:x[1], reverse=True)[:top]
         return males, females
     
     def show(self, top=20, to=sys.stdout):
         males, females = self.retrieve(top)
         print('Male predictors:', file=to)
-        print('word : mutual_info', file=to)
-        for (word, value) in males:
-            print(word, ':', value, file=to)
+        print('word : mutual_info', ':', 'support', file=to)
+        for (word, value, sup) in males:
+            print(word, ':', value, ':', sup, file=to)
         print('\nFemale predictors:', file=to)
-        print('word : mutual_info', file=to)
-        for (word, value) in females:
-            print(word, ':', value, file=to)
+        print('word : mutual_info', ':', 'support', file=to)
+        for (word, value, sup) in females:
+            print(word, ':', value, ':', sup, file=to)
 
 class RelevanceByRegression(WordRelevancePredictor):
     def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(1, lambda x: x.get_lemma()), predname='Ridge (L2) regression'):
