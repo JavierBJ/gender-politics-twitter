@@ -76,10 +76,10 @@ class FeatureExtractorBOW(FeatureExtractor):
     
     def _cut_out(self):
         grams = self.grams
-        if self.keep_words_rank>0:
+        if self.keep_words_rank is not None and self.keep_words_rank>0:
             grams = grams.most_common(self.keep_words_rank)
-        elif self.keep_words_freq>0:
-            grams = [(w,v) for w,v in grams if v>=self.keep_words_freq]
+        elif self.keep_words_freq is not None and self.keep_words_freq>0:
+            grams = [(w,v) for w,v in grams.items() if v>=self.keep_words_freq]
         else:
             grams = grams.most_common()
         return grams

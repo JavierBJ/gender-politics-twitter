@@ -50,16 +50,19 @@ class RelevanceByMutualInfo(WordRelevancePredictor):
         return results
     
     def compute(self):
-        print('Compute...')
+        smooth = True
+        fmax = 100
+        alpha = 0.75
         male_results = mutual_info_classif(self.X, self.labels)
         female_results = mutual_info_classif(self.X, [-x for x in self.labels])
-        print('pmis done')
         results = {}
         for i in range(self.X.shape[1]):
             results[(i,1)] = male_results[i]
             results[(i,-1)] = female_results[i]
+            if smooth and self.supports[self.features_idx[i]]<fmax:
+                results[(i,1)] = results[(i,1)] * pow(self.supports[self.features_idx[i]]/fmax, alpha)
+                results[(i,-1)] = results[(i,-1)] * pow(self.supports[self.features_idx[i]]/fmax, alpha)
         self.results = results
-        print('Computed')
         return results
     
     def retrieve(self, top=20):
