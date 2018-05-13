@@ -54,7 +54,7 @@ def aggregate_tags(tweets, samples=None):
     if samples is None:
         files = os.listdir('.')
         samples = range(1, 1+max([int(f[7]) for f in files if f.startswith('sample_')]))
-    
+
     for s in samples:
         sexist1 = pd.Series()
         sexist2 = pd.Series()
@@ -78,11 +78,7 @@ def aggregate_tags(tweets, samples=None):
         ids = df['id_str']
         p1s = df['person_1']
         p2s = df['person_2']
-        s1s = df['sexist_1']
-        s2s = df['sexist_2']
-        h1s = df['hostile_1']
-        h2s = df['hostile_2']
-        for idx, p1, p2, s1, s2, h1, h2, is_s, is_h in zip(ids, p1s, p2s, s1s, s2s, h1s, h2s, sexist, hostile):
+        for idx, p1, p2, s1, s2, h1, h2, is_s, is_h in zip(ids, p1s, p2s, sexist1, sexist2, hostile1, hostile2, sexist, hostile):
             tweets.loc[tweets['id_str']==idx, 'is_sexist'] = is_s
             tweets.loc[tweets['id_str']==idx, 'is_hostile'] = is_h
             tweets.loc[tweets['id_str']==idx, 'person_1'] = p1
