@@ -7,17 +7,17 @@ from common import metadata, text
 
 
 # Set these variables to the desired values before execution
-num_file = 15
+num_file = 18
 to_dump_tweets = True
 to_dump_mentions = False
 to_dump_replies = False
-recover_tweets_since_id = 983459141904715776
+recover_tweets_since_id = 994865424620802050
 paths_to_accounts = {'diputados_autonomicos.csv':'twitter account', 'diputados_congreso.csv':'handle'}
 
 # Constants related with maximum number of recoveries possible
-LIMIT_TWEET_RECOVERIES = 100
-LIMIT_MENTION_RECOVERIES = 100
-LIMIT_REPLY_RECOVERIES = 100
+LIMIT_TWEET_RECOVERIES = 1000
+LIMIT_MENTION_RECOVERIES = 1000
+LIMIT_REPLY_RECOVERIES = 1000
 TRIES = 5
 
 # Related with filenames
