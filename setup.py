@@ -4,9 +4,9 @@ import time
 
 
 # Setup configuration
-name = 'tagged'
+name = 'sexism'
 min_csv = 1
-max_csv = 15
+max_csv = 17
 
 # Setup
 t = time.time()
