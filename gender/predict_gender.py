@@ -1,6 +1,7 @@
 from data import mongo
 from common import text, feature_extraction
 import numpy as np
+from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import mutual_info_classif
 from sklearn import metrics
@@ -23,32 +24,6 @@ class WordRelevancePredictor():
         print('Not implemented')
     
 class RelevanceByMutualInfo(WordRelevancePredictor):
-    def compute_old(self):
-        # Document counts
-        N = len(self.labels)
-        count_male = sum([1 for x in self.labels if x==1])
-        count_female = sum([1 for x in self.labels if x==-1])
-        
-        # Term counts
-        term_counts = []
-        for i in range(self.X.shape[1]):
-            term_counts.append(sum(self.X[:,i]))
-        
-        # Term AND Document counts
-        term_male_counts = []
-        term_female_counts = []
-        for i in range(self.X.shape[1]):
-            term_male_counts.append(sum([x for j,x in enumerate(self.X[:,i]) if self.labels[j]==1]))
-            term_female_counts.append(sum([x for j,x in enumerate(self.X[:,i]) if self.labels[j]==-1]))
-        
-        # Mutual information for each term and document pair
-        results = {}
-        for i in range(self.X.shape[1]):
-            results[(i,1)] = np.log(N * term_male_counts[i] / (term_counts[i] * count_male))
-            results[(i,-1)] = np.log(N * term_female_counts[i] / (term_counts[i] * count_female))
-        self.results = results
-        return results
-    
     def compute(self):
         smooth = True
         fmax = 100
@@ -56,18 +31,22 @@ class RelevanceByMutualInfo(WordRelevancePredictor):
         male_results = mutual_info_classif(self.X, self.labels)
         female_results = mutual_info_classif(self.X, [-x for x in self.labels])
         results = {}
+        ratios = {}
         for i in range(self.X.shape[1]):
             results[(i,1)] = male_results[i]
             results[(i,-1)] = female_results[i]
             if smooth and self.supports[self.features_idx[i]]<fmax:
                 results[(i,1)] = results[(i,1)] * pow(self.supports[self.features_idx[i]]/fmax, alpha)
                 results[(i,-1)] = results[(i,-1)] * pow(self.supports[self.features_idx[i]]/fmax, alpha)
-        self.results = results
-        return results
+            ratios[i] = results[(i,1)]/results[(i,-1)]
+        self.results = ratios
+        return ratios
     
     def retrieve(self, top=20):
-        males = sorted([(self.features_idx[x],v,self.supports[self.features_idx[x]]) for (x,y),v in self.results.items() if y==1], key=lambda x:x[1], reverse=True)[:top]
-        females = sorted([(self.features_idx[x],v,self.supports[self.features_idx[x]]) for (x,y),v in self.results.items() if y==-1], key=lambda x:x[1], reverse=True)[:top]
+        #males = sorted([(self.features_idx[x],v,self.supports[self.features_idx[x]]) for (x,y),v in self.results.items() if y==1], key=lambda x:x[1], reverse=True)[:top]
+        #females = sorted([(self.features_idx[x],v,self.supports[self.features_idx[x]]) for (x,y),v in self.results.items() if y==-1], key=lambda x:x[1], reverse=True)[:top]
+        males = sorted([(self.features_idx[x],v,self.supports[self.features_idx[x]]) for x,v in self.results.items()], key=lambda x:x[1], reverse=True)[:top]
+        females = sorted([(self.features_idx[x],v,self.supports[self.features_idx[x]]) for x,v in self.results.items()], key=lambda x:x[1])[:top]
         return males, females
     
     def show(self, top=20, to=sys.stdout):
@@ -144,6 +123,27 @@ class RelevanceByLassoRegression(RelevanceByRegression):
         self.score = model.score(self.X, self.labels)
         self.results = model.coef_.flatten()
         return self.results
+
+class RelevanceBySupportVectors(RelevanceByRegression):
+    def __init__(self, phrases, labels, extractor=feature_extraction.BinaryBOW(1, lambda x: x.get_lemma()), c=1):
+        self.c = c
+        super().__init__(phrases, labels, extractor, 'Linear SVM')
+
+    def compute(self):
+        model = LinearSVC(class_weight='balanced', C=self.c).fit(self.X, self.labels)
+        preds = model.predict(self.X)
+        print(metrics.confusion_matrix(self.labels, preds))
+        print('Kappa:', metrics.cohen_kappa_score(self.labels, preds))
+        print('AUC:', metrics.roc_auc_score(self.labels, preds))
+        print('Precision:', metrics.precision_score(self.labels, preds))
+        print('Recall:', metrics.recall_score(self.labels, preds))
+        print('F1:', metrics.f1_score(self.labels, preds))
+        self.females = sum([1 for l in self.labels if l==-1])
+        self.males = sum([1 for l in self.labels if l==1])
+        self.score = model.score(self.X, self.labels)
+        self.results = model.coef_.flatten()
+        return self.results
+
 
 class BootstrapCandidates():
     def __init__(self, positive_words, negative_words, model, extractor, access_fn, tol=1.5):

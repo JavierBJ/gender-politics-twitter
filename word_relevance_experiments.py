@@ -4,7 +4,7 @@ from gender import predict_gender
 
 # Parameters
 dbname = 'sexism'
-lim = 10000
+lim = 100000
 wks = None
 sw = True
 kwf = None
@@ -12,16 +12,16 @@ kwr = 5000
 n = 1
 c_reg = 10
 top_vars = 100
-exp_name = 'Author PMI Lemma (top 5000 words considered) (removing stopwords)'
-path = 'out_relevance/author_pmi_lemma_rank5000_sw.txt'
+exp_name = 'Receiver SVM Lemma (rank500 words considered) (removing stopwords)'
+path = 'out_relevance/receiver_svm_lemma_rank500_sw.txt'
 
 # Main code
 # ---------
 db = mongo.DB(dbname)
 
 # DB to import
-tweets_df = db.import_tagged_by_author_gender_tweets_mongodb(weeks=wks, limit=lim)
-#tweets_df = db.import_tagged_by_receiver_gender_tweets_mongodb(weeks=wks, limit=lim)
+#tweets_df = db.import_tagged_by_author_gender_tweets_mongodb(weeks=wks, limit=lim)
+tweets_df = db.import_tagged_by_receiver_gender_tweets_mongodb(weeks=wks, limit=lim)
 #tweets_df = db.import_tagged_by_author_gender_political_tweets_mongodb(weeks=wks, limit=lim)
 #tweets_df = db.import_tagged_by_author_gender_individual_tweets_mongodb(weeks=wks, limit=lim)
 #tweets_df = db.import_tagged_by_receiver_gender_individual_tweets_mongodb(weeks=wks, limit=lim)
@@ -29,8 +29,8 @@ tweets_df = db.import_tagged_by_author_gender_tweets_mongodb(weeks=wks, limit=li
 tweets = text.preprocess(tweets_df)
 
 # Target variable
-labels = tweets['author_gender']
-#labels = tweets['receiver_gender']
+#labels = tweets['author_gender']
+labels = tweets['receiver_gender']
 
 # Feature extraction
 ext = feature_extraction.BinaryBOW(n, lambda x: x.get_lemma(), keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
@@ -41,7 +41,8 @@ ext = feature_extraction.BinaryBOW(n, lambda x: x.get_lemma(), keep_words_freq=k
 # Relevance
 #rel = predict_gender.RelevanceByLassoRegression(tweets, labels, extractor=ext, c=c_reg)
 #rel = predict_gender.RelevanceByRegression(tweets, labels, extractor=ext)
-rel = predict_gender.RelevanceByMutualInfo(tweets, labels, extractor=ext)
+#rel = predict_gender.RelevanceByMutualInfo(tweets, labels, extractor=ext)
+rel = predict_gender.RelevanceBySupportVectors(tweets, labels, extractor=ext, c=c_reg)
 
 # Execution
 print('Experiment', exp_name, '...')

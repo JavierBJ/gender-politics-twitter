@@ -28,9 +28,9 @@ class Detector():
         print(self.X_train.shape, self.y_train.shape, self.X_test.shape, self.y_test.shape)
     
     def describe(self):
-        print('        | Train | Test')
-        print('Males   |', sum([1 for t in self.y_train if t==1]), sum([1 for t in self.y_test if t==1]))
-        print('Females |', sum([1 for t in self.y_train if t==-1]), sum([1 for t in self.y_test if t==-1]))
+        print('         | Train | Test')
+        print('Class 1  |', sum([1 for t in self.y_train if t==1]), sum([1 for t in self.y_test if t==1]))
+        print('Class 0  |', sum([1 for t in self.y_train if t==0]), sum([1 for t in self.y_test if t==0]))
 
     def metrics(self, X_test=None, y_test=None):
         # Uses test specified at creation unless another is passed

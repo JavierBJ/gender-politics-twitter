@@ -109,19 +109,20 @@ def preprocess(df, filter_lang=None):
     
     ls_tokens = []
     tk, sp, umap, mf = setup_freeling()
-    for _,row in df.iterrows():
-        try:
-            raw_text = row['full_text']
-            #print(raw_text)
-            tokens = tk.tokenize(raw_text)
-            tokens = sp.split(tokens)
-            tokens = umap.analyze(tokens)
-            tokens = mf.analyze(tokens)
-            ls_tokens.append(tokens)
-        except Exception:
-            ls_tokens.append(tokens)
-    df = df.drop('full_text', axis=1)
-    df['full_text'] = pd.Series(ls_tokens)
+    for col in ['full_text', 'in_reply_to_text']:
+        for _,row in df.iterrows():
+            try:
+                raw_text = row[col]
+                #print(raw_text)
+                tokens = tk.tokenize(raw_text)
+                tokens = sp.split(tokens)
+                tokens = umap.analyze(tokens)
+                tokens = mf.analyze(tokens)
+                ls_tokens.append(tokens)
+            except Exception:
+                ls_tokens.append(tokens)
+        df = df.drop(col, axis=1)
+        df[col] = pd.Series(ls_tokens)
     print('\tTweets preprocessed.')
     return df
 
