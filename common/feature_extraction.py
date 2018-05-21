@@ -33,7 +33,7 @@ class FeatureExtractor():
         return newcodes
 
 class FeatureExtractorBOW(FeatureExtractor):
-    def __init__(self, n, inc, top, access_fn, access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
+    def __init__(self, n, inc, top, access_fn, access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         if top<1:
             top = float('inf')  # No top limit if not positive
         self.n = n
@@ -45,11 +45,12 @@ class FeatureExtractorBOW(FeatureExtractor):
         self.access_fn = access_fn
         self.features = None
         self.access_word = access_word
+        self.field = field
     
     def extract(self, source):
         # Filter out unnecessary tokens from tokenized tweets
         tweets_filtered = []
-        for tweet in source.full_text:
+        for tweet in source[self.field]:
             tweets_filtered.append([token for sent in tweet for token in sent if not (self._is_sw(self.access_word(self.access_fn(token))) 
                                                     or self._is_punct(self.access_word(self.access_fn(token))) 
                                                     or self._is_short(self.access_word(self.access_fn(token))))])
@@ -76,10 +77,10 @@ class FeatureExtractorBOW(FeatureExtractor):
     
     def _cut_out(self):
         grams = self.grams
-        if self.keep_words_rank>0:
+        if self.keep_words_rank is not None and self.keep_words_rank>0:
             grams = grams.most_common(self.keep_words_rank)
-        elif self.keep_words_freq>0:
-            grams = [(w,v) for w,v in grams if v>=self.keep_words_freq]
+        elif self.keep_words_freq is not None and self.keep_words_freq>0:
+            grams = [(w,v) for w,v in grams.items() if v>=self.keep_words_freq]
         else:
             grams = grams.most_common()
         return grams
@@ -107,7 +108,7 @@ class FeatureExtractorBOW(FeatureExtractor):
     def encode(self, tweets):
         if self.features is not None:
             encodings = []
-            for tweet in tweets.full_text:
+            for tweet in tweets[self.field]:
                 encoding = np.zeros((len(self.features),))  # Prepare encoding vector
                 for sent in tweet:
                     for i in range(len(sent)-self.n+1):
@@ -121,16 +122,16 @@ class FeatureExtractorBOW(FeatureExtractor):
         return encodings
 
 class BinaryBOW(FeatureExtractorBOW):
-    def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, 1,1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, 1,1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
 
 class CountsBOW(FeatureExtractorBOW):
-    def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, 1,-1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, 1,-1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
         
 class FeatureExtractorBOWGender(FeatureExtractorBOW):
-    def __init__(self, n, inc, top, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, inc, top, lambda x: self._tag_by_gender(x.get_lemma(), x.get_tag()), lambda x: x[0], keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, inc, top, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, inc, top, lambda x: self._tag_by_gender(x.get_lemma(), x.get_tag()), lambda x: x[0], keep_words_freq, keep_words_rank, remove_stopwords, field)
 
     def _tag_by_gender(self, lemma, tag):
         if tag[0] in 'ADP':
@@ -141,20 +142,20 @@ class FeatureExtractorBOWGender(FeatureExtractorBOW):
             return (lemma, '0')
 
 class BinaryBOWGender(FeatureExtractorBOWGender):
-    def __init__(self, n, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, 1,1, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, 1,1, keep_words_freq, keep_words_rank, remove_stopwords, field)
 
 class CountsBOWGender(FeatureExtractorBOWGender):
-    def __init__(self, n, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, 1,-1, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, 1,-1, keep_words_freq, keep_words_rank, remove_stopwords, field)
 
 class FeatureExtractorPOS(FeatureExtractorBOW):
-    def __init__(self, inc, top):
-        super().__init__(inc, top, lambda x: self._analyze_tag(x.get_tag()))
+    def __init__(self, inc, top, field='full_text'):
+        super().__init__(inc, top, lambda x: self._analyze_tag(x.get_tag()), field)
         
     def extract(self, source):
         tags = set()
-        for tweet in source.full_text:
+        for tweet in source[field]:
             for sent in tweet:
                 for word in sent:
                     tags.update(self.access_fn(word))
@@ -167,7 +168,7 @@ class FeatureExtractorPOS(FeatureExtractorBOW):
     def encode(self, tweets):
         if self.features is not None:
             encodings = []
-            for tweet in tweets.full_text:
+            for tweet in tweets[self.field]:
                 encoding = np.zeros((len(self.features),))  # Prepare encoding vector
                 for sent in tweet:
                     for word in sent:
@@ -283,8 +284,8 @@ class CountsPOS(FeatureExtractorPOS):
         super().__init__(1,-1)
 
 class FeatureExtractorChars(FeatureExtractorBOW):
-    def __init__(self, n, inc, top, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, inc, top, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, inc, top, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, inc, top, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
     
     def _elaborate_ngrams(self):
         grams = Counter()
@@ -296,7 +297,7 @@ class FeatureExtractorChars(FeatureExtractorBOW):
     def encode(self, tweets):
         if self.features is not None:
             encodings = []
-            for tweet in tweets.full_text:
+            for tweet in tweets[self.field]:
                 tweet_text = ' '.join([self.access_fn(token) for sent in tweet for token in sent])
                 encoding = np.zeros((len(self.features),))  # Prepare encoding vector
                 for i in range(len(tweet_text)-self.n+1):
@@ -310,12 +311,12 @@ class FeatureExtractorChars(FeatureExtractorBOW):
         return encodings
 
 class BinaryChars(FeatureExtractorChars):
-    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, 1, 1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, 1, 1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
         
 class CountsChars(FeatureExtractorChars):
-    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False):
-        super().__init__(n, 1, -1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords)
+    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, 1, -1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
 
 class Embedding(FeatureExtractor):
     def extract(self, pre_trained_emb):

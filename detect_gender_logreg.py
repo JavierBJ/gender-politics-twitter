@@ -16,7 +16,7 @@ dets = []
 word_ranks = [100, 500, 1000, 5000]
 
 for (i,wr) in enumerate(word_ranks):
-    ext = feature_extraction.BinaryBOWGender(keep_words_rank=wr, remove_stopwords=True)
+    ext = feature_extraction.BinaryBOWGender(n=1, keep_words_rank=wr, remove_stopwords=True)
     det = detection.Detector(model, ext, dataset, target, params, score)
     met, conf, cv_all, cv_best = det.metrics()
     dets.append(det)

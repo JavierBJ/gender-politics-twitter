@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split, KFold
 from sklearn import metrics
 from common import text
 from sexism import detection
@@ -15,54 +15,59 @@ class Detector():
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
         self._feature_extraction(X_train, X_test, y_train, y_test, extractor)
         
-        cv = GridSearchCV(model, params, scoring=score, cv=5)
-        self.model = model
-        self.cv = cv.fit(self.X_train, self.y_train)
-        
+        return self
+
+    def compute():
+        kf = KFold(n_splits=10)
+        self.results = np.zeros((self.X.shape[1],))
+        tr_f1, tr_prec, tr_recall, tr_auc, val_f1, val_prec, val_recall, val_auc = 0, 0, 0, 0, 0, 0, 0, 0
+        for train_idx, val_idx in kf.split(self.X):
+            model = model.fit(self.X[train_idx], self.labels[train_idx])
+            tr_preds = model.predict(self.X[train_idx])
+            val_preds = model.predict(self.X[val_idx])
+            tr_f1 += metrics.f1_score(self.y[train_idx], tr_preds)
+            tr_prec += metrics.precision_score(self.y[train_idx], tr_preds)
+            tr_recall += metrics.recall_score(self.y[train_idx], tr_preds)
+            tr_auc += metrics.roc_auc_score(self.y[train_idx], tr_preds)
+            val_f1 += metrics.f1_score(self.y[val_idx], val_preds)
+            val_prec += metrics.precision_score(self.y[val_idx], val_preds)
+            val_recall += metrics.recall_score(self.y[val_idx], val_preds)
+            val_auc += metrics.roc_auc_score(self.y[val_idx], val_preds)
+            self.results = np.add(self.results, model.coef_.flatten(), casting='unsafe')
+        self.results /= self.folds
+        tr_f1 /= self.folds
+        tr_prec /= self.folds
+        tr_recall /= self.folds
+        tr_auc /= self.folds
+        val_f1 /= self.folds
+        val_prec /= self.folds
+        val_recall /= self.folds
+        val_auc /= self.folds
+
+        # Let test scores calculated, it is responsibility of the developer not to look at them until a model is selected by validation
+        te_preds = model.predict(self.X_test)
+        te_f1 = metrics.f1_score(self.y_test, te_preds)
+        te_prec = metrics.precision_score(self.y_test, te_preds)
+        te_recall = metrics.recall_score(self.y_test, te_preds)
+        te_auc = metrics.roc_auc_score(self.y_test, te_preds)
+
+        self.scores = {'Train_F1' : tr_f1, 'Train_Precision': tr_prec, 'Train_Recall': tr_recall, 'Train_AUC': tr_auc, \
+                'Validation_F1' : val_f1, 'Validation_Precision': val_prec, 'Validation_Recall': val_recall, 'Validation_AUC': val_auc, \
+                'Test_F1': te_f1, 'Test_Precision': te_prec, 'Test_Recall': te_recall, 'Test_AUC': te_auc}
+        return self.results
+
     def _feature_extraction(self, X_train, X_test, y_train, y_test, extractor):
         self.extractor = extractor.extract(X_train)
-        self.X_train = np.array(extractor.encode(X_train))
-        self.y_train = y_train
+        self.X = np.array(extractor.encode(X_train))
+        self.y = y_train
         self.X_test = np.array(extractor.encode(X_test))
         self.y_test = y_test
-        print(self.X_train.shape, self.y_train.shape, self.X_test.shape, self.y_test.shape)
     
     def describe(self):
-        print('        | Train | Test')
-        print('Males   |', sum([1 for t in self.y_train if t==1]), sum([1 for t in self.y_test if t==1]))
-        print('Females |', sum([1 for t in self.y_train if t==-1]), sum([1 for t in self.y_test if t==-1]))
+        print('         | Train | Test')
+        print('Class 1  |', sum([1 for t in self.y if t==1]), sum([1 for t in self.y_test if t==1]))
+        print('Class 0  |', sum([1 for t in self.y if t==0]), sum([1 for t in self.y_test if t==0]))
 
-    def metrics(self, X_test=None, y_test=None):
-        # Uses test specified at creation unless another is passed
-        if X_test is None:
-            X_test = self.X_test
-        if y_test is None:
-            y_test = self.y_test
-        y_pred = self.predict(X_test)
-        
-        met = {'accuracy': metrics.accuracy_score(y_test, y_pred),
-               'precision': metrics.precision_score(y_test, y_pred),
-               'recall': metrics.recall_score(y_test, y_pred),
-               'f1': metrics.f1_score(y_test, y_pred),
-               'roc_auc': metrics.roc_auc_score(y_test, y_pred),
-               'kappa': metrics.cohen_kappa_score(y_test, y_pred)}
-        
-        conf = metrics.confusion_matrix(y_test, y_pred)
-
-        cv_all = self.cv.cv_results_
-        
-        cv_res = {'best_estimator': self.cv.best_estimator_,
-                  'best_score': self.cv.best_score_,
-                  'best_params': self.cv.best_params_}
-            
-        return met, conf, cv_all, cv_res
-    
-    def predict(self, X_test=None):
-        # Uses test specified at creation unless another is passed
-        if X_test is None:
-            X_test = self.X_test
-        return self.cv.predict(X_test)
-    
 
 class MacroDetector(Detector):
     def __init__(self, detectors, score):
