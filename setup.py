@@ -6,7 +6,7 @@ import time
 # Setup configuration
 name = 'tagged'
 min_csv = 1
-max_csv = 15
+max_csv = 16
 
 # Setup
 t = time.time()

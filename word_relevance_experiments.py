@@ -4,7 +4,7 @@ from gender import predict_gender
 
 # Parameters
 dbname = 'sexism'
-lim = 0
+lim = 1000
 wks = None
 sw = True
 kwf = None

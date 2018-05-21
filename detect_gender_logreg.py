@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 import pandas as pd
 
 # Common stuff for all methods (data and parameters)
-db = mongo.DB()
+db = mongo.DB('new')
 dataset = db.import_tagged_by_author_gender_political_tweets_mongodb()
 target = 'author_gender'
 model = LogisticRegression(class_weight='balanced')
