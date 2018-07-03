@@ -4,6 +4,7 @@ from data import mongo
 from common import text, metadata
 from collections import Counter
 from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import TfidfTransformer
 
 class FeatureExtractor():
     def __init__(self, extractors):
@@ -30,7 +31,7 @@ class FeatureExtractor():
             newcode = np.concatenate(newcode).ravel().tolist()
             newcodes.append(newcode)
             
-        return newcodes
+        return np.array(newcodes)
 
 class FeatureExtractorBOW(FeatureExtractor):
     def __init__(self, n, inc, top, access_fn, access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
@@ -105,7 +106,7 @@ class FeatureExtractorBOW(FeatureExtractor):
         else:
             return len(w)<3
 
-    def encode(self, tweets):
+    def _vectorize(self, tweets):
         if self.features is not None:
             encodings = []
             for tweet in tweets[self.field]:
@@ -121,6 +122,9 @@ class FeatureExtractorBOW(FeatureExtractor):
             raise AttributeError('Features not extracted. Use FeatureExtractor.extract(source) first')
         return encodings
 
+    def encode(self, tweets):
+        return np.array(self._vectorize(tweets))
+
 class BinaryBOW(FeatureExtractorBOW):
     def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, 1,1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
@@ -128,7 +132,15 @@ class BinaryBOW(FeatureExtractorBOW):
 class CountsBOW(FeatureExtractorBOW):
     def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, 1,-1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
-        
+
+class TfIdfBOW(CountsBOW):
+    def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
+
+    def encode(self, tweets):
+        counts = self._vectorize(tweets)
+        return TfidfTransformer().fit_transform(counts).todense()
+
 class FeatureExtractorBOWGender(FeatureExtractorBOW):
     def __init__(self, n, inc, top, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, inc, top, lambda x: self._tag_by_gender(x.get_lemma(), x.get_tag()), lambda x: x[0], keep_words_freq, keep_words_rank, remove_stopwords, field)
@@ -148,6 +160,14 @@ class BinaryBOWGender(FeatureExtractorBOWGender):
 class CountsBOWGender(FeatureExtractorBOWGender):
     def __init__(self, n, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, 1,-1, keep_words_freq, keep_words_rank, remove_stopwords, field)
+
+class TfIdfBOWGender(CountsBOWGender):
+    def __init__(self, n, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, keep_words_freq, keep_words_rank, remove_stopwords, field)
+
+    def encode(self, tweets):
+        counts = self._vectorize(tweets)
+        return TfidfTransformer().fit_transform(counts).todense()
 
 class FeatureExtractorPOS(FeatureExtractorBOW):
     def __init__(self, inc, top, field='full_text'):
@@ -294,7 +314,7 @@ class FeatureExtractorChars(FeatureExtractorBOW):
             grams.update({tuple([tweet_text[j] for j in range(i,i+self.n)]) for i in range(len(tweet_text)-self.n+1)})
         return grams
     
-    def encode(self, tweets):
+    def _vectorize(self, tweets):
         if self.features is not None:
             encodings = []
             for tweet in tweets[self.field]:
@@ -310,6 +330,9 @@ class FeatureExtractorChars(FeatureExtractorBOW):
             raise AttributeError('Features not extracted. Use FeatureExtractor.extract(source) first')
         return encodings
 
+    def encode(self, tweets):
+        return np.array(self._vectorize(tweets))
+
 class BinaryChars(FeatureExtractorChars):
     def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, 1, 1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
@@ -317,6 +340,14 @@ class BinaryChars(FeatureExtractorChars):
 class CountsChars(FeatureExtractorChars):
     def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, 1, -1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
+
+class TfIdfChars(CountsChars):
+    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+        super().__init__(n, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
+
+    def encode(self, tweets):
+        counts = self._vectorize(tweets)
+        return TfidfTransformer().fit_transform(counts).todense()
 
 class Embedding(FeatureExtractor):
     def extract(self, pre_trained_emb):

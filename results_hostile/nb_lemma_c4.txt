@@ -1,0 +1,39 @@
+Imported 8767 tweets
+Preprocessing tweets...
+	Tweets preprocessed.
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Naive Bayes Type  = Gaussian ...
+         | Train | Test
+Class 1  | 1539 422
+Class 0  | 5474 1332
+Train - Validation
+F1: 0.5645751084184444 - 0.46433669600701694
+Precision: 0.39759858310666046 - 0.3290008618763848
+Recall: 0.9735930057508474 - 0.7921846972612714
+AUC: 0.7793531424658767 - 0.6686667847603408
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Naive Bayes Type  = Multinomial ...
+         | Train | Test
+Class 1  | 1586 375
+Class 0  | 5427 1379
+Train - Validation
+F1: 0.3994313913662199 - 0.28870812825054837
+Precision: 0.9008996700312231 - 0.7980153833092227
+Recall: 0.25670053603080345 - 0.17682286393761235
+AUC: 0.6242136858000007 - 0.5817873217539735
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Naive Bayes Type  = Bernoulli ...
+         | Train | Test
+Class 1  | 1554 407
+Class 0  | 5459 1347
+Train - Validation
+F1: 0.5332622031011445 - 0.46608545292950315
+Precision: 0.47219182487246336 - 0.41037208511621986
+Recall: 0.6125560117828718 - 0.5408374996863872
+AUC: 0.7088059931729159 - 0.6599989185248298
+
+Best experiment: Extractor = tfidfchars KeepWordsRank = 5000 Naive Bayes Type = Bernoulli
+Test scores
+F1: 0.4878587196467991
+Precision: 0.44288577154308617
+Recall: 0.542997542997543
+AUC: 0.6683064923599445

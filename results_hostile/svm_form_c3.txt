@@ -1,0 +1,89 @@
+Imported 8767 tweets
+Preprocessing tweets...
+	Tweets preprocessed.
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 0.0001 ...
+         | Train | Test
+Class 1  | 1550 411
+Class 0  | 5463 1343
+Train - Validation
+F1: 0.21689458378153664 - 0.21998317887885102
+Precision: 0.13237393156857513 - 0.13474503253390557
+Recall: 0.6 - 0.6
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 0.001 ...
+         | Train | Test
+Class 1  | 1557 404
+Class 0  | 5456 1350
+Train - Validation
+F1: 0.2903601626107348 - 0.2932529908844029
+Precision: 0.1773711415620301 - 0.17979138471292538
+Recall: 0.8 - 0.8
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 0.01 ...
+         | Train | Test
+Class 1  | 1565 396
+Class 0  | 5448 1358
+Train - Validation
+F1: 0.25481083074579736 - 0.2608058073896151
+Precision: 0.15575443745093515 - 0.16030660310260883
+Recall: 0.7 - 0.7
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 0.1 ...
+         | Train | Test
+Class 1  | 1559 402
+Class 0  | 5454 1352
+Train - Validation
+F1: 0.29134898675418125 - 0.28751670174004307
+Precision: 0.1781087134560354 - 0.175431516230375
+Recall: 0.8 - 0.8
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 1 ...
+         | Train | Test
+Class 1  | 1554 407
+Class 0  | 5459 1347
+Train - Validation
+F1: 0.2537910297550886 - 0.25520407638905085
+Precision: 0.1549939836875241 - 0.15617209440319282
+Recall: 0.7 - 0.7
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 10 ...
+         | Train | Test
+Class 1  | 1559 402
+Class 0  | 5454 1352
+Train - Validation
+F1: 0.10932879986290019 - 0.10725653193279941
+Precision: 0.06684447247337469 - 0.06530455068258206
+Recall: 0.3 - 0.3
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 100 ...
+         | Train | Test
+Class 1  | 1563 398
+Class 0  | 5450 1356
+Train - Validation
+F1: 0.5524799402417943 - 0.5113896908373148
+Precision: 0.42836874407478226 - 0.39748953406255916
+Recall: 0.7779197483755493 - 0.7186517453386465
+AUC: 0.740080908866348 - 0.7030343330499467
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 1000 ...
+         | Train | Test
+Class 1  | 1570 391
+Class 0  | 5443 1363
+Train - Validation
+F1: 0.7662271750285692 - 0.6219600409724046
+Precision: 0.6591976279568847 - 0.5352769678395577
+Recall: 0.9147860586488195 - 0.7434523827760622
+AUC: 0.8891688994139455 - 0.778661585097002
+
+Best experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 1000
+Test scores
+F1: 0.6012396694214875
+Precision: 0.5043327556325823
+Recall: 0.7442455242966752
+AUC: 0.767207134855601

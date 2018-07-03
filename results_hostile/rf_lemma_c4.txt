@@ -1,0 +1,169 @@
+Imported 8767 tweets
+Preprocessing tweets...
+	Tweets preprocessed.
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = auto Leaf = 1 ...
+         | Train | Test
+Class 1  | 1578 383
+Class 0  | 5435 1371
+Train - Validation
+F1: 0.9988705598301788 - 0.667746873869165
+Precision: 1.0 - 0.9449481180961206
+Recall: 0.9977440635460206 - 0.5174208376435094
+AUC: 0.9988720317730104 - 0.7542945692736893
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = auto Leaf = 20 ...
+         | Train | Test
+Class 1  | 1578 383
+Class 0  | 5435 1371
+Train - Validation
+F1: 0.09048496098318173 - 0.045736498291653604
+Precision: 0.8880728315816075 - 0.6754761904761905
+Recall: 0.04814365487324654 - 0.02392798808765866
+AUC: 0.5229876867110356 - 0.5103228436862494
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = auto Leaf = 50 ...
+         | Train | Test
+Class 1  | 1537 424
+Class 0  | 5476 1330
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = auto Leaf = 100 ...
+         | Train | Test
+Class 1  | 1576 385
+Class 0  | 5437 1369
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.1 Leaf = 1 ...
+         | Train | Test
+Class 1  | 1578 383
+Class 0  | 5435 1371
+Train - Validation
+F1: 0.9990142515542508 - 0.6681508585295586
+Precision: 0.9995081161818616 - 0.8761136208493093
+Recall: 0.9985216774057768 - 0.5414746365696663
+AUC: 0.9991892345555783 - 0.7595458420810065
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.1 Leaf = 20 ...
+         | Train | Test
+Class 1  | 1562 399
+Class 0  | 5451 1355
+Train - Validation
+F1: 0.2678985692731226 - 0.2066192858228753
+Precision: 0.8207648947844394 - 0.7595021425942479
+Recall: 0.1601153878486992 - 0.12007565164921682
+AUC: 0.5750535878277242 - 0.5546282111837757
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.1 Leaf = 50 ...
+         | Train | Test
+Class 1  | 1595 366
+Class 0  | 5418 1388
+Train - Validation
+F1: 0.1510104204172084 - 0.13862683523602076
+Precision: 0.7367309159746072 - 0.7061471484312041
+Recall: 0.08415693850942055 - 0.07728110878598493
+AUC: 0.5376389530107074 - 0.5338350372999784
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.1 Leaf = 100 ...
+         | Train | Test
+Class 1  | 1569 392
+Class 0  | 5444 1362
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.2 Leaf = 1 ...
+         | Train | Test
+Class 1  | 1559 402
+Class 0  | 5454 1352
+Train - Validation
+F1: 0.9990366731055801 - 0.6815558096830626
+Precision: 0.9994303342020684 - 0.8629484335025
+Recall: 0.99864385423838 - 0.563388187384205
+AUC: 0.9992404024354207 - 0.7689511517366692
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.2 Leaf = 20 ...
+         | Train | Test
+Class 1  | 1551 410
+Class 0  | 5462 1344
+Train - Validation
+F1: 0.3300544355982175 - 0.24531749745494383
+Precision: 0.8411749125942627 - 0.7384322601244181
+Recall: 0.20550670096332396 - 0.14738973531482374
+AUC: 0.5972404101595823 - 0.5663704233025817
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.2 Leaf = 50 ...
+         | Train | Test
+Class 1  | 1533 428
+Class 0  | 5480 1326
+Train - Validation
+F1: 0.16792420862424148 - 0.16250458771522164
+Precision: 0.7316294546081593 - 0.7346263788782971
+Recall: 0.09486789125344308 - 0.09189901942310533
+AUC: 0.5425681337535182 - 0.5409527919152666
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.2 Leaf = 100 ...
+         | Train | Test
+Class 1  | 1570 391
+Class 0  | 5443 1363
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.5 Leaf = 1 ...
+         | Train | Test
+Class 1  | 1548 413
+Class 0  | 5465 1341
+Train - Validation
+F1: 0.998815762001465 - 0.6790843220579051
+Precision: 1.0 - 0.8469214585250846
+Recall: 0.9976350430561445 - 0.567886574117576
+AUC: 0.9988175215280723 - 0.7694138639061765
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.5 Leaf = 20 ...
+         | Train | Test
+Class 1  | 1567 394
+Class 0  | 5446 1360
+Train - Validation
+F1: 0.4055446612478928 - 0.2759723160259498
+Precision: 0.843872137775632 - 0.6922836155072998
+Recall: 0.2669875385021046 - 0.17298915261878206
+AUC: 0.6263835123466357 - 0.5752681747681787
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.5 Leaf = 50 ...
+         | Train | Test
+Class 1  | 1582 379
+Class 0  | 5431 1375
+Train - Validation
+F1: 0.22595265252973004 - 0.2046414295595656
+Precision: 0.7226917154897508 - 0.6950654900654901
+Recall: 0.1340240250115163 - 0.12064513328581787
+AUC: 0.5594945133299605 - 0.5524057246635021
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.5 Leaf = 100 ...
+         | Train | Test
+Class 1  | 1571 390
+Class 0  | 5442 1364
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Best experiment: Extractor = tfidfchars KeepWordsRank = 5000 MaxFeatures = 0.2 Leaf = 1
+Test scores
+F1: 0.6897590361445782
+Precision: 0.8740458015267175
+Recall: 0.5696517412935324
+AUC: 0.7726217286349317

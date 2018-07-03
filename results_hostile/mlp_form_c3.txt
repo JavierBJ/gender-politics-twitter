@@ -1,0 +1,909 @@
+Imported 8767 tweets
+Preprocessing tweets...
+	Tweets preprocessed.
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.001 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1562 399
+Class 0  | 5451 1355
+Train - Validation
+F1: 0.9995738531157862 - 0.7164801179437241
+Precision: 0.9997874326836774 - 0.7542546538837931
+Recall: 0.9993604759226067 - 0.6841755515734363
+AUC: 0.9996496340097215 - 0.8100316229015248
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.001 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1553 408
+Class 0  | 5460 1346
+Train - Validation
+F1: 0.9996071914072321 - 0.7304181115402729
+Precision: 0.9998575452324326 - 0.7604265497428283
+Recall: 0.9993570166016637 - 0.7036063717059575
+AUC: 0.9996581333485729 - 0.8202852878380142
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.001 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1574 387
+Class 0  | 5439 1367
+Train - Validation
+F1: 0.9996125225519472 - 0.7229455884888903
+Precision: 0.9998610145934677 - 0.7527086216762754
+Recall: 0.999364255097422 - 0.696663987215919
+AUC: 0.9996616105195768 - 0.8150296883443516
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.001 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1560 401
+Class 0  | 5453 1353
+Train - Validation
+F1: 0.9855411417173828 - 0.7227444229059795
+Precision: 0.9931663565635471 - 0.7631301336790333
+Recall: 0.9781027684372205 - 0.6874783429545536
+AUC: 0.9880840344319664 - 0.8128765056921263
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.001 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1587 374
+Class 0  | 5426 1380
+Train - Validation
+F1: 0.39092219217080815 - 0.2964911929683206
+Precision: 0.9318220878463371 - 0.8524393995324226
+Recall: 0.24901801838712095 - 0.18161900596755273
+AUC: 0.6217847685420999 - 0.5862342635104991
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.001 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1560 401
+Class 0  | 5453 1353
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.001 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1537 424
+Class 0  | 5476 1330
+Train - Validation
+F1: 1.0 - 0.7063751829028718
+Precision: 1.0 - 0.7603033905252967
+Recall: 1.0 - 0.6607728190624157
+AUC: 1.0 - 0.801285787232343
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.001 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1554 407
+Class 0  | 5459 1347
+Train - Validation
+F1: 0.9996779398242943 - 0.7287388411330455
+Precision: 1.0 - 0.7559574980671978
+Recall: 0.9993561100831094 - 0.7049472300860268
+AUC: 0.9996780550415549 - 0.8202105532303822
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.001 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1552 409
+Class 0  | 5461 1345
+Train - Validation
+F1: 0.9995711669815643 - 0.7317860433008548
+Precision: 1.0 - 0.7919565707870672
+Recall: 0.9991427901002361 - 0.6815441819924543
+AUC: 0.999571395050118 - 0.8153229851131567
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.001 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1608 353
+Class 0  | 5405 1401
+Train - Validation
+F1: 0.9831905692120951 - 0.7214634258597803
+Precision: 0.9925153339301463 - 0.7572301429362303
+Recall: 0.9741295139041748 - 0.6909410041146413
+AUC: 0.9859650482726494 - 0.8124730461713613
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.001 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1595 366
+Class 0  | 5418 1388
+Train - Validation
+F1: 0.36826497857714424 - 0.2804038299191246
+Precision: 0.9271177037798906 - 0.8519988968560396
+Recall: 0.23466663940573693 - 0.1713998072992546
+AUC: 0.6145636359067093 - 0.5811920581380148
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.001 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1549 412
+Class 0  | 5464 1342
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.001 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1569 392
+Class 0  | 5444 1362
+Train - Validation
+F1: 0.9996809492109417 - 0.723594468825566
+Precision: 1.0 - 0.7592336769536399
+Recall: 0.9993621245599424 - 0.6923731950203795
+AUC: 0.9996810622799712 - 0.8145888310620821
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.001 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1560 401
+Class 0  | 5453 1353
+Train - Validation
+F1: 0.9998580426712091 - 0.738217221576746
+Precision: 0.9998592540464462 - 0.7832417108754994
+Recall: 0.9998569815696949 - 0.6991553819591245
+AUC: 0.9999080534253544 - 0.8219741841777838
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.001 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1573 388
+Class 0  | 5440 1366
+Train - Validation
+F1: 0.9996469360318307 - 0.7314156474919428
+Precision: 0.9994364636425102 - 0.7879522347987419
+Recall: 0.9998581052648534 - 0.6848695104849718
+AUC: 0.9998473448334287 - 0.8155109578233863
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.001 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1567 394
+Class 0  | 5446 1360
+Train - Validation
+F1: 0.9750966233793521 - 0.7259874226432651
+Precision: 0.9918868511353216 - 0.7694054023002465
+Recall: 0.959596117337927 - 0.6890570540606561
+AUC: 0.9786454100889198 - 0.8146751426180685
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.001 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1568 393
+Class 0  | 5445 1361
+Train - Validation
+F1: 0.3418306330911377 - 0.2580572109687368
+Precision: 0.9172787371650418 - 0.8358028492983122
+Recall: 0.21530201677718833 - 0.15750299391705477
+AUC: 0.6044585410809722 - 0.5740754538792554
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.001 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1590 371
+Class 0  | 5423 1383
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.01 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1548 413
+Class 0  | 5465 1341
+Train - Validation
+F1: 0.9997134154235713 - 0.7175927094859318
+Precision: 0.9994274976991513 - 0.7344927381477949
+Recall: 1.0 - 0.702161565490686
+AUC: 0.9999186640449906 - 0.8150384358574568
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.01 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1569 392
+Class 0  | 5444 1362
+Train - Validation
+F1: 0.9889891394754029 - 0.7107262613429399
+Precision: 0.9896211255299423 - 0.7280152276708356
+Recall: 0.9884940078004393 - 0.6977132446772083
+AUC: 0.9927381671652162 - 0.8111401824624286
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.01 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1597 364
+Class 0  | 5416 1390
+Train - Validation
+F1: 0.9959210581574043 - 0.7321762100822283
+Precision: 0.9965455041695085 - 0.7629807695619104
+Recall: 0.9953154432466744 - 0.7089616065331441
+AUC: 0.9971442364341918 - 0.8214802426837894
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.01 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1567 394
+Class 0  | 5446 1360
+Train - Validation
+F1: 0.9794235947750185 - 0.7114436925415835
+Precision: 0.9924618855756806 - 0.7460678728119977
+Recall: 0.9669638590180456 - 0.6838468361270219
+AUC: 0.9824212077194587 - 0.807514081451018
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.01 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1573 388
+Class 0  | 5440 1366
+Train - Validation
+F1: 0.08241025537839662 - 0.0479735862927438
+Precision: 0.8448275467476684 - 0.7494736842105263
+Recall: 0.045075372899344344 - 0.025632507542602524
+AUC: 0.5219754233207989 - 0.5124490964619981
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.01 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1570 391
+Class 0  | 5443 1363
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.01 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1582 379
+Class 0  | 5431 1375
+Train - Validation
+F1: 0.9971977721755565 - 0.721353705639822
+Precision: 0.9996390929200842 - 0.7481570746140274
+Recall: 0.9948571958704356 - 0.6987239168204625
+AUC: 0.9973774500505359 - 0.814869692730803
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.01 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1558 403
+Class 0  | 5455 1351
+Train - Validation
+F1: 0.9704080355944329 - 0.7110135223866326
+Precision: 0.9719599000821377 - 0.7303930123743393
+Recall: 0.9698093493184053 - 0.6998165332551778
+AUC: 0.9808337135984815 - 0.8107548123186745
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.01 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1561 400
+Class 0  | 5452 1354
+Train - Validation
+F1: 0.9954080334921981 - 0.7269232868678952
+Precision: 0.9954487040082759 - 0.7343892951738774
+Recall: 0.9953770964239388 - 0.7216349971071424
+AUC: 0.9970363813701171 - 0.8233202232235118
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.01 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1599 362
+Class 0  | 5414 1392
+Train - Validation
+F1: 0.9878607521909208 - 0.7149513992108458
+Precision: 0.9921989503285704 - 0.7291159105685514
+Recall: 0.9836215416834276 - 0.7036552419380546
+AUC: 0.990661486458467 - 0.8133419899797396
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.01 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1594 367
+Class 0  | 5419 1387
+Train - Validation
+F1: 0.2593353157122424 - 0.19288201089511864
+Precision: 0.8664324638937237 - 0.8060378719025335
+Recall: 0.16756688896761845 - 0.11820010913948717
+AUC: 0.5789770729079935 - 0.5540142904840508
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.01 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1565 396
+Class 0  | 5448 1358
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.01 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1546 415
+Class 0  | 5467 1339
+Train - Validation
+F1: 0.9827133172030582 - 0.6927455845310948
+Precision: 0.9922547677609479 - 0.7397760049022867
+Recall: 0.9747344147683812 - 0.6564746046000939
+AUC: 0.9863107509413453 - 0.7951228498462874
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.01 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1560 401
+Class 0  | 5453 1353
+Train - Validation
+F1: 0.9882444544529283 - 0.7361679094970448
+Precision: 0.9855916031764412 - 0.7434115774353895
+Recall: 0.9910079457989376 - 0.7320318432169264
+AUC: 0.9934037516940126 - 0.8293915020267159
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.01 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1586 375
+Class 0  | 5427 1379
+Train - Validation
+F1: 0.9946473574811929 - 0.7251819134826388
+Precision: 0.9939699865081877 - 0.7267569614405305
+Recall: 0.9953798117404773 - 0.7270437814547146
+AUC: 0.996800378048593 - 0.822577828237657
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.01 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1555 406
+Class 0  | 5458 1348
+Train - Validation
+F1: 0.9860918222645946 - 0.7319242241498164
+Precision: 0.9885905424208701 - 0.752416839962806
+Recall: 0.9837675053510144 - 0.7157968574613932
+AUC: 0.9902462731214394 - 0.823979787857836
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.01 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1540 421
+Class 0  | 5473 1333
+Train - Validation
+F1: 0.10882232407494374 - 0.06785426987203877
+Precision: 0.7081287302006538 - 0.5762004662004662
+Recall: 0.061340517594681246 - 0.037019973178103224
+AUC: 0.5293807070264283 - 0.5170550344728962
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.01 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1555 406
+Class 0  | 5458 1348
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.05 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1538 423
+Class 0  | 5475 1331
+Train - Validation
+F1: 0.9607026043262149 - 0.688445261999212
+Precision: 0.9589689379707209 - 0.6959361686957685
+Recall: 0.9626486734661428 - 0.6827664377105602
+AUC: 0.975502359925503 - 0.7994158312383005
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.05 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1575 386
+Class 0  | 5438 1368
+Train - Validation
+F1: 0.9815824496713363 - 0.712297722490729
+Precision: 0.9772812611068581 - 0.7082753918672808
+Recall: 0.986290279900917 - 0.7186374549139788
+AUC: 0.9897572385630535 - 0.8158528055974982
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.05 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1556 405
+Class 0  | 5457 1349
+Train - Validation
+F1: 0.9772281176596949 - 0.7102925692213301
+Precision: 0.9835679780158479 - 0.7216351487989929
+Recall: 0.9714897453456264 - 0.7065928990709959
+AUC: 0.9833820900721324 - 0.8135515875555207
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.05 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1565 396
+Class 0  | 5448 1358
+Train - Validation
+F1: 0.8873509641982513 - 0.6741676350278082
+Precision: 0.9105982588410864 - 0.7269868794474927
+Recall: 0.8669056963901184 - 0.6339131679535492
+AUC: 0.9210571272302509 - 0.7816720137086899
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.05 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1579 382
+Class 0  | 5434 1372
+Train - Validation
+F1: 0.06834979377972332 - 0.04286335998899809
+Precision: 0.6525677946554235 - 0.48690476190476184
+Recall: 0.03718388734224709 - 0.02284325944755881
+AUC: 0.5180098290491368 - 0.5103049189945439
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.05 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1535 426
+Class 0  | 5478 1328
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.05 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1574 387
+Class 0  | 5439 1367
+Train - Validation
+F1: 0.9695685810072447 - 0.7042473038021998
+Precision: 0.9696704887296109 - 0.7262009272838567
+Recall: 0.9701309480220026 - 0.6882236804580549
+AUC: 0.9805387183800296 - 0.8056652077355124
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.05 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1572 389
+Class 0  | 5441 1365
+Train - Validation
+F1: 0.9876980815916676 - 0.7129091576349118
+Precision: 0.9827166250514855 - 0.7156441518245433
+Recall: 0.9930948709366267 - 0.7147431861627085
+AUC: 0.9939353341047171 - 0.8150066882986173
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.05 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1576 385
+Class 0  | 5437 1369
+Train - Validation
+F1: 0.9695939997957927 - 0.7006005197403141
+Precision: 0.981799313097043 - 0.738464855856805
+Recall: 0.9586929169579484 - 0.6758897804121989
+AUC: 0.9766902994726234 - 0.8023027581879049
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.05 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1584 377
+Class 0  | 5429 1377
+Train - Validation
+F1: 0.8753856949703858 - 0.6676777665147007
+Precision: 0.874655446176871 - 0.6777030180196059
+Recall: 0.879243539414546 - 0.6663657265251507
+AUC: 0.9205676745399561 - 0.7859531227660359
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.05 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1579 382
+Class 0  | 5434 1372
+Train - Validation
+F1: 0.10349605099361499 - 0.060118309214321305
+Precision: 0.7284577233945997 - 0.6013419913419914
+Recall: 0.05704352546474115 - 0.03201093567872319
+AUC: 0.5275213541891025 - 0.5153515009291568
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.05 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1578 383
+Class 0  | 5435 1371
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.05 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1570 391
+Class 0  | 5443 1363
+Train - Validation
+F1: 0.9676137508574622 - 0.6997184032694299
+Precision: 0.9764043379672153 - 0.7298658529876481
+Recall: 0.9592709917343587 - 0.6748965263024145
+AUC: 0.9762994301287907 - 0.8013805338287459
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.05 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1545 416
+Class 0  | 5468 1338
+Train - Validation
+F1: 0.9905849266778537 - 0.7295901988361386
+Precision: 0.991835526114401 - 0.741288489889744
+Recall: 0.9894191270070365 - 0.7205075517500925
+AUC: 0.9935524928689292 - 0.8244752134350595
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.05 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1564 397
+Class 0  | 5449 1357
+Train - Validation
+F1: 0.9756486129486982 - 0.7130565085770674
+Precision: 0.9874909713128034 - 0.750397914209314
+Recall: 0.9647554692474909 - 0.6841916013394282
+AUC: 0.9806140285841616 - 0.8088822584950428
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.05 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1583 378
+Class 0  | 5430 1376
+Train - Validation
+F1: 0.8636201085028226 - 0.6466030955685022
+Precision: 0.8880542848437896 - 0.6832893892847253
+Recall: 0.8447788708265909 - 0.6187549933443977
+AUC: 0.9063545536694226 - 0.7671456918821401
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.05 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1592 369
+Class 0  | 5421 1385
+Train - Validation
+F1: 0.15428960979648854 - 0.10394011952458357
+Precision: 0.7129998314218399 - 0.5647294372294371
+Recall: 0.09720057986470365 - 0.062278264996101076
+AUC: 0.5448381767411826 - 0.5268145536363935
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.05 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1580 381
+Class 0  | 5433 1373
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.1 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1564 397
+Class 0  | 5449 1357
+Train - Validation
+F1: 0.9550680734528869 - 0.6952511049442118
+Precision: 0.9537816452436866 - 0.6953618815981648
+Recall: 0.9571383877780362 - 0.6996063192124514
+AUC: 0.9718517385976078 - 0.8048181579682525
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.1 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1552 409
+Class 0  | 5461 1345
+Train - Validation
+F1: 0.9735920682272002 - 0.7180309296185274
+Precision: 0.9778274303371559 - 0.7471945553151846
+Recall: 0.9700532766992899 - 0.6945278429789747
+AUC: 0.9818451205832446 - 0.8133352193414092
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.1 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1555 406
+Class 0  | 5458 1348
+Train - Validation
+F1: 0.9435456004178656 - 0.6947741082857916
+Precision: 0.957622842313804 - 0.7307360746404206
+Recall: 0.931137064276502 - 0.6689336184584981
+AUC: 0.9596148459159736 - 0.7985669951661252
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.1 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1559 402
+Class 0  | 5454 1352
+Train - Validation
+F1: 0.742963177397907 - 0.5646933626235487
+Precision: 0.859129494925841 - 0.7026502491340418
+Recall: 0.6607920717562019 - 0.48197064315683324
+AUC: 0.8143372459791524 - 0.710455689034742
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.1 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1571 390
+Class 0  | 5442 1364
+Train - Validation
+F1: 0.1504619601653642 - 0.11739003309131926
+Precision: 0.7090663460493338 - 0.6695360195360196
+Recall: 0.0925475972692255 - 0.0723648450333612
+AUC: 0.5433081698740383 - 0.5321724395399557
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 0.1 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1564 397
+Class 0  | 5449 1357
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.1 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1564 397
+Class 0  | 5449 1357
+Train - Validation
+F1: 0.9515476498487206 - 0.6987691562398155
+Precision: 0.9441948004628957 - 0.699257787893848
+Recall: 0.9596787576075936 - 0.700393929703106
+AUC: 0.9715757969938051 - 0.8063676760743039
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.1 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1555 406
+Class 0  | 5458 1348
+Train - Validation
+F1: 0.9780673493994344 - 0.7141408726326052
+Precision: 0.9738479591596907 - 0.7196468249187545
+Recall: 0.9824286154756013 - 0.7101356554333085
+AUC: 0.9874502729212938 - 0.8152516116745355
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.1 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1542 419
+Class 0  | 5471 1335
+Train - Validation
+F1: 0.9336160084125368 - 0.6676933862159238
+Precision: 0.9476760963996167 - 0.6963775769674002
+Recall: 0.9214853600876147 - 0.6473084736930068
+AUC: 0.953480743695839 - 0.7831622115595622
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.1 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1583 378
+Class 0  | 5430 1376
+Train - Validation
+F1: 0.7096952880980527 - 0.546368522420271
+Precision: 0.8601576527374457 - 0.7303776752806013
+Recall: 0.6111341090097799 - 0.44197720061030144
+AUC: 0.79042623254748 - 0.6964610444929887
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.1 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1555 406
+Class 0  | 5458 1348
+Train - Validation
+F1: 0.09184469274638482 - 0.07012138154774623
+Precision: 0.8404610758318375 - 0.775
+Recall: 0.049931021685586593 - 0.03797517602973945
+AUC: 0.5243140452427684 - 0.51770290448064
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 0.1 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1550 411
+Class 0  | 5463 1343
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.1 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1579 382
+Class 0  | 5434 1372
+Train - Validation
+F1: 0.9609609941873334 - 0.7091360108818253
+Precision: 0.9598311580917022 - 0.7233868028341018
+Recall: 0.9621731434074766 - 0.697263370733299
+AUC: 0.9752308987245362 - 0.8098034618582345
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.1 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1570 391
+Class 0  | 5443 1363
+Train - Validation
+F1: 0.9805749636887138 - 0.7019824583291308
+Precision: 0.9845578347173541 - 0.7212989796440148
+Recall: 0.9767148553288291 - 0.6852031071559498
+AUC: 0.9861425671205714 - 0.804159553812441
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.1 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1554 407
+Class 0  | 5459 1347
+Train - Validation
+F1: 0.9117868686377164 - 0.6587030887114604
+Precision: 0.941841019924204 - 0.6883125112961831
+Recall: 0.8872309303620807 - 0.6380401083275059
+AUC: 0.9355432437096864 - 0.7779606619294983
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.1 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1581 380
+Class 0  | 5432 1374
+Train - Validation
+F1: 0.7501834421097697 - 0.582903815691639
+Precision: 0.8423681208738121 - 0.707926144718564
+Recall: 0.6855219290817247 - 0.5061007858348752
+AUC: 0.8229420024571514 - 0.720531283154046
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.1 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1558 403
+Class 0  | 5455 1351
+Train - Validation
+F1: 0.11858587371490859 - 0.08885556021213023
+Precision: 0.9227200423468208 - 0.74465737514518
+Recall: 0.06842404046478608 - 0.05076485008399183
+AUC: 0.5325613351581521 - 0.523548064415419
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.1 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1548 413
+Class 0  | 5465 1341
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 1 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1559 402
+Class 0  | 5454 1352
+Train - Validation
+F1: 0.0034048232119750473 - 0.0
+Precision: 0.6 - 0.0
+Recall: 0.001708364397684132 - 0.0
+AUC: 0.500854182198842 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 1 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1573 388
+Class 0  | 5440 1366
+Train - Validation
+F1: 0.15372739460817236 - 0.12012536162005785
+Precision: 0.2476277497453066 - 0.11826243124929844
+Recall: 0.16010540836369633 - 0.12220938570631823
+AUC: 0.5719247900806415 - 0.5487583815515069
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 1 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1566 395
+Class 0  | 5447 1359
+Train - Validation
+F1: 0.2464162990750681 - 0.20291061794689064
+Precision: 0.29114914493332994 - 0.25182784272658143
+Recall: 0.22451736601240468 - 0.17910033519141677
+AUC: 0.598407773565547 - 0.572350083367247
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 1 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1578 383
+Class 0  | 5435 1371
+Train - Validation
+F1: 0.015096774193548388 - 0.0058479532163742695
+Precision: 0.0854014598540146 - 0.08333333333333334
+Recall: 0.008280254777070064 - 0.0030303030303030303
+AUC: 0.503935962423243 - 0.5014220416455053
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 1 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1562 399
+Class 0  | 5451 1355
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 100 Learning Rate = 1 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1583 378
+Class 0  | 5430 1376
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 1 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1580 381
+Class 0  | 5433 1373
+Train - Validation
+F1: 0.0025374085307213953 - 0.00111731843575419
+Precision: 0.7 - 0.1
+Recall: 0.0012729206474022905 - 0.0005617977528089887
+AUC: 0.5006364603237012 - 0.5002808988764045
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 1 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1558 403
+Class 0  | 5455 1351
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 1 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1588 373
+Class 0  | 5425 1381
+Train - Validation
+F1: 0.11034860971696869 - 0.09956709956709957
+Precision: 0.14781365449030387 - 0.1372863247863248
+Recall: 0.08907122307752119 - 0.07946625871154174
+AUC: 0.5401787039549216 - 0.534721956413274
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 1 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1573 388
+Class 0  | 5440 1366
+Train - Validation
+F1: 0.0008528784648187633 - 0.0022988505747126436
+Precision: 0.1 - 0.1
+Recall: 0.0004282655246252677 - 0.0011627906976744186
+AUC: 0.5002141327623126 - 0.5005813953488373
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 1 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1540 421
+Class 0  | 5473 1333
+Train - Validation
+F1: 0.017902542372881358 - 0.010476190476190476
+Precision: 0.033267716535433076 - 0.022
+Recall: 0.012246376811594203 - 0.006875000000000001
+AUC: 0.5026864487464298 - 0.4998330637707948
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 200 Learning Rate = 1 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1565 396
+Class 0  | 5448 1358
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 1 Alpha = 0.0001 ...
+         | Train | Test
+Class 1  | 1571 390
+Class 0  | 5442 1364
+Train - Validation
+F1: 0.14227618169749473 - 0.10406091370558376
+Precision: 0.9539758735397891 - 0.1294871794871795
+Recall: 0.1407915321969566 - 0.10499562937062937
+AUC: 0.5618749658004897 - 0.5409789229475928
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 1 Alpha = 0.001 ...
+         | Train | Test
+Class 1  | 1584 377
+Class 0  | 5429 1377
+Train - Validation
+F1: 0.08164160401002507 - 0.05977653631284916
+Precision: 0.07403409090909091 - 0.051941747572815535
+Recall: 0.09099162011173184 - 0.07039473684210526
+AUC: 0.540812473306532 - 0.5261973684210526
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 1 Alpha = 0.01 ...
+         | Train | Test
+Class 1  | 1581 380
+Class 0  | 5432 1374
+Train - Validation
+F1: 0.34798697250351407 - 0.26596217145068185
+Precision: 0.5912118626214392 - 0.5096860964262822
+Recall: 0.25590030025537397 - 0.19108891940365555
+AUC: 0.6201196322673922 - 0.5844794421859951
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 1 Alpha = 0.1 ...
+         | Train | Test
+Class 1  | 1556 405
+Class 0  | 5457 1349
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 1 Alpha = 1 ...
+         | Train | Test
+Class 1  | 1535 426
+Class 0  | 5478 1328
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 1 Alpha = 10 ...
+         | Train | Test
+Class 1  | 1588 373
+Class 0  | 5425 1381
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Best experiment: Extractor = tfidfchars KeepWordsRank = 5000 Hidden = 500 Learning Rate = 0.001 Alpha = 0.001 ...
+Test scores
+F1: 0.7398692810457517
+Precision: 0.7774725274725275
+Recall: 0.7057356608478803
+AUC: 0.8229343492709468

@@ -104,10 +104,10 @@ class DB():
         return self.import_tagged_by_gender_tweets_mongodb('receiver_gender', limit=limit)
 
     def import_tagged_by_hostile_tweets_mongodb(self, weeks=None, limit=0):
-        return self.import_mongodb('tweets', {'is_hostile': {'$in': [1,0]}}, limit)
+        return self.import_mongodb('tweets', {'is_hostile': {'$in': [1,-1]}}, limit)
 
     def import_tagged_by_sexist_tweets_mongodb(self, weeks=None, limit=0):
-        return self.import_mongodb('tweets', {'is_sexist': {'$in': [1,0]}}, limit)
+        return self.import_mongodb('tweets', {'is_sexist': {'$in': [1,-1]}}, limit)
 
     def sample_tweets_mongodb(self, agg_clause):
         cursor = self.db['tweets'].aggregate(agg_clause)

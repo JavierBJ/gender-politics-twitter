@@ -64,10 +64,10 @@ def aggregate_tags(tweets, samples=None):
         for c in copies:
             df = pd.read_csv('sample_'+str(s)+'_'+str(c)+'.csv', delimiter=';')
             sexist1, sexist2, hostile1, hostile2 = _aggregate_copies(df, sexist1, sexist2, hostile1, hostile2)
-        sexist1 = sexist1.replace(0,9).replace(-1,0)
-        sexist2 = sexist2.replace(0,9).replace(-1,0)
-        hostile1 = hostile1.replace(0,9).replace(-1,0)
-        hostile2 = hostile2.replace(0,9).replace(-1,0)
+        sexist1 = sexist1.replace(0,9)
+        sexist2 = sexist2.replace(0,9)
+        hostile1 = hostile1.replace(0,9)
+        hostile2 = hostile2.replace(0,9)
     
         # Only tag those with agreement
         sexist = pd.Series([x if x==y else 9 for x,y in zip(sexist1, sexist2)])

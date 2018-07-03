@@ -1,0 +1,56 @@
+Imported 2370 tweets
+Keep words rank: 100
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 100) (1896,) (474, 100) (474,)
+{'precision': 0.33962264150943394, 'f1': 0.4014869888475836, 'roc_auc': 0.6012237762237763, 'recall': 0.4909090909090909, 'kappa': 0.17521561507035865, 'accuracy': 0.6603375527426161}
+[[259 105]
+ [ 56  54]]
+{'best_estimator': LogisticRegression(C=1, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False), 'best_params': {'C': 1}, 'best_score': 0.6879218720583331}
+Keep words rank: 500
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 500) (1896,) (474, 500) (474,)
+{'precision': 0.48120300751879697, 'f1': 0.5614035087719299, 'roc_auc': 0.745813081516456, 'recall': 0.6736842105263158, 'kappa': 0.4275500591773145, 'accuracy': 0.7890295358649789}
+[[310  69]
+ [ 31  64]]
+{'best_estimator': LogisticRegression(C=1, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False), 'best_params': {'C': 1}, 'best_score': 0.7566852283176826}
+Keep words rank: 1000
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 1000) (1896,) (474, 1000) (474,)
+{'precision': 0.572463768115942, 'f1': 0.6345381526104418, 'roc_auc': 0.7745886382250018, 'recall': 0.7117117117117117, 'kappa': 0.5064194987984895, 'accuracy': 0.8080168776371308}
+[[304  59]
+ [ 32  79]]
+{'best_estimator': LogisticRegression(C=1, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False), 'best_params': {'C': 1}, 'best_score': 0.7823471510478056}
+Keep words rank: 2000
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 2000) (1896,) (474, 2000) (474,)
+{'precision': 0.5871559633027523, 'f1': 0.6153846153846154, 'roc_auc': 0.7632323232323234, 'recall': 0.6464646464646465, 'kappa': 0.5075964160498636, 'accuracy': 0.8312236286919831}
+[[330  45]
+ [ 35  64]]
+{'best_estimator': LogisticRegression(C=1, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False), 'best_params': {'C': 1}, 'best_score': 0.8333507910434184}
+Keep words rank: 5000
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 4396) (1896,) (474, 4396) (474,)
+{'precision': 0.7625, 'f1': 0.6853932584269663, 'roc_auc': 0.78595853234911, 'recall': 0.6224489795918368, 'kappa': 0.6135794561229838, 'accuracy': 0.8818565400843882}
+[[357  19]
+ [ 37  61]]
+{'best_estimator': LogisticRegression(C=1, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False), 'best_params': {'C': 1}, 'best_score': 0.8241284715927985}

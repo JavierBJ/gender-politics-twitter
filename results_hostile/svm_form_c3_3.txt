@@ -1,0 +1,39 @@
+Imported 8767 tweets
+Preprocessing tweets...
+	Tweets preprocessed.
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 1000000 ...
+         | Train | Test
+Class 1  | 1578 383
+Class 0  | 5435 1371
+Train - Validation
+F1: 0.999682722672893 - 0.7125270155070003
+Precision: 1.0 - 0.7075584988146328
+Recall: 0.9993656689779501 - 0.7198143414624024
+AUC: 0.9996828344889751 - 0.8163934938566134
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 10000000 ...
+         | Train | Test
+Class 1  | 1571 390
+Class 0  | 5442 1364
+Train - Validation
+F1: 0.9997172357383282 - 0.7081586448557331
+Precision: 0.9994346712978034 - 0.7042726881602254
+Recall: 1.0 - 0.7134362582555953
+AUC: 0.9999183255760412 - 0.8134729552278864
+
+Experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 100000000 ...
+         | Train | Test
+Class 1  | 1587 374
+Class 0  | 5426 1380
+Train - Validation
+F1: 1.0 - 0.6981104709558265
+Precision: 1.0 - 0.6854100310703934
+Recall: 1.0 - 0.7122907476310064
+AUC: 1.0 - 0.8082489527490246
+
+Best experiment: Extractor = tfidfchars KeepWordsRank = 5000 C = 1000000
+Test scores
+F1: 0.7317708333333333
+Precision: 0.7298701298701299
+Recall: 0.7336814621409922
+AUC: 0.8289122117415392

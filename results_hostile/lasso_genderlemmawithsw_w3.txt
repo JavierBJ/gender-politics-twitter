@@ -1,0 +1,79 @@
+Imported 8767 tweets
+Preprocessing tweets...
+	Tweets preprocessed.
+Experiment: Extractor = tfidf KeepWordsRank = 5000 C = 0.0001 ...
+         | Train | Test
+Class 1  | 1552 409
+Class 0  | 5461 1345
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidf KeepWordsRank = 5000 C = 0.001 ...
+         | Train | Test
+Class 1  | 1571 390
+Class 0  | 5442 1364
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidf KeepWordsRank = 5000 C = 0.01 ...
+         | Train | Test
+Class 1  | 1548 413
+Class 0  | 5465 1341
+Train - Validation
+F1: 0.0 - 0.0
+Precision: 0.0 - 0.0
+Recall: 0.0 - 0.0
+AUC: 0.5 - 0.5
+
+Experiment: Extractor = tfidf KeepWordsRank = 5000 C = 0.1 ...
+         | Train | Test
+Class 1  | 1599 362
+Class 0  | 5414 1392
+Train - Validation
+F1: 0.030173665369683245 - 0.030073218460345563
+Precision: 0.43126718396822195 - 0.45191919191919194
+Recall: 0.0156352214416998 - 0.015677054199806445
+AUC: 0.5047700968926668 - 0.5048020786795655
+
+Experiment: Extractor = tfidf KeepWordsRank = 5000 C = 1 ...
+         | Train | Test
+Class 1  | 1566 395
+Class 0  | 5447 1359
+Train - Validation
+F1: 0.3546263528771497 - 0.25622886051501215
+Precision: 0.7469464807236615 - 0.6395288848578322
+Recall: 0.23258380259047598 - 0.16094059613518327
+AUC: 0.6049501298383884 - 0.5676367693605888
+
+Experiment: Extractor = tfidf KeepWordsRank = 5000 C = 10 ...
+         | Train | Test
+Class 1  | 1552 409
+Class 0  | 5461 1345
+Train - Validation
+F1: 0.4224589352292166 - 0.3444030841602051
+Precision: 0.7956782888960052 - 0.7008134371684877
+Recall: 0.2875872324254378 - 0.2301797778153678
+AUC: 0.6332943268195155 - 0.6011567370565887
+
+Experiment: Extractor = tfidf KeepWordsRank = 5000 C = 100 ...
+         | Train | Test
+Class 1  | 1590 371
+Class 0  | 5423 1383
+Train - Validation
+F1: 0.4336912781800056 - 0.3733953420227548
+Precision: 0.8000423310543041 - 0.7208263209077563
+Recall: 0.2974889217239426 - 0.2528781043369047
+AUC: 0.6378443871937007 - 0.6121341881065697
+
+Best experiment: Extractor = tfidf KeepWordsRank = 5000 C = 100
+Test scores
+F1: 0.24411134903640258
+Precision: 0.59375
+Recall: 0.15363881401617252
+AUC: 0.562719623927826

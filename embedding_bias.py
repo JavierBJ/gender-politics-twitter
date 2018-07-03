@@ -17,17 +17,21 @@ def gendered_bias_neutral(source_males, source_females, target_neutral):
     return gb
 
 # Direct bias (gender-neutral alignment to gender-direction)
-'''embs = emb.get_embeddings(source_males+source_females)
+embeds = emb.Embeddings(50)
+source_embs = embeds.get_embeddings(metadata.source_males+metadata.source_females)
+#target_embs = embeds.get_embeddings(metadata.target_qualif_neutral+metadata.target_gender_neutral+metadata.target_other_neutral)
+target_embs = embeds.get_embeddings(metadata.target_models)
 gender_dir = emb.PrincipalComponentsAnalysis(source_embs.values()).principal_direction()
 db = 0
 print('Direct bias...')
-for v in target_neutral:
+#for v in metadata.target_qualif_neutral+metadata.target_gender_neutral+metadata.target_other_neutral:
+for v in metadata.target_models:
     cos = emb.cosine(gender_dir, target_embs[v])
     db += cos
     print('\t', v, cos)
 db /= len(target_embs)
-print('Direct bias:', db, '\n')'''
-
+print('Direct bias:', db, '\n')
+'''
 # Gendered bias with gender-neutral qualificative words
 print('Gendered bias on gender-neutral qualificative words...')
 gb = gendered_bias_neutral(metadata.source_males, metadata.source_females, metadata.target_qualif_neutral)
@@ -68,3 +72,4 @@ print('Gendered bias gender-paired:', gb, '\n')
 gb *= (len(target_males)+len(source_males))
 gb /= (len(target_males)+len(source_males)*2+len(target_neutral))
 print('Gendered bias aggregated:', gb)
+'''

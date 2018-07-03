@@ -2,26 +2,29 @@ import numpy as np
 from scipy import spatial
 from sklearn.decomposition import PCA
 
-path_emb = 'vectors.txt'
 
-def get_embeddings(words=None, norm=False):
-    all = (words is None or words==[])
-    with open(path_emb, 'r') as f:
-        embs = [v.split() for v in f if all or v.split()[0] in words]
-    if norm:
-        return {v[0]:_normalize([float(x) for x in v[1:]]) for v in embs}
-    return {v[0]:[float(x) for x in v[1:]] for v in embs}
+class Embeddings():
+    def __init__(self, n):
+        self.path_emb = 'vectors_'+str(n)+'.txt'
 
-def get_random_embeddings(n=10, norm=False):
-    import random
-    with open(path_emb, 'r') as f:
-        embs = random.sample([v.split() for v in f], n)
-    if norm:
-        return {v[0]:_normalize([float(x) for x in v[1:]]) for v in embs}
-    return {v[0]:[float(x) for x in v[1:]] for v in embs}
+    def get_embeddings(self, words=None, norm=False):
+        all = (words is None or words==[])
+        with open(self.path_emb, 'r') as f:
+            embs = [v.split() for v in f if all or v.split()[0] in words]
+        if norm:
+            return {v[0]:self._normalize([float(x) for x in v[1:]]) for v in embs}
+        return {v[0]:[float(x) for x in v[1:]] for v in embs}
 
-def _normalize(v):
-    return v / np.linalg.norm(v)
+    def get_random_embeddings(self, n=10, norm=False):
+        import random
+        with open(self.path_emb, 'r') as f:
+            embs = random.sample([v.split() for v in f], n)
+        if norm:
+            return {v[0]:self._normalize([float(x) for x in v[1:]]) for v in embs}
+        return {v[0]:[float(x) for x in v[1:]] for v in embs}
+
+    def _normalize(self, v):
+        return v / np.linalg.norm(v)
 
 class PrincipalComponentsAnalysis():
     def __init__(self, embs=None):

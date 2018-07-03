@@ -1,0 +1,202 @@
+Imported 8767 tweets
+Preprocessing tweets...
+	Tweets preprocessed.
+         | Train | Test
+Class 1  | 1581 380
+Class 0  | 5432 1374
+Train - Validation - Test
+F1: 0.999683569864614 - 0.7279550022776939 - 0.753004005340454
+Precision: 1.0 - 0.7498225290187562 - 0.7642276422764228
+Recall: 0.9993673621658677 - 0.7080655915972789 - 0.7421052631578947
+AUC: 0.9996836810829339 - 0.8196163090801699 - 0.839393242932659
+
+Confusion matrix:
+[[1287   87]
+ [  98  282]]
+
+Error analysis:
+-1.0;1;1;@davidbonvehi @Pdemocratacat Tras asumir que la vía unilateral no tiene sentido con el 47_% de los votos .
+1.0;1;0;@mjburuaga @ppcantabria y como buena familia , unidos para robar https://t.co/BVmLm6aVSd
+1.0;1;0;@isauralealf @PSOE Apoyar a el PP .............
+1.0;1;0;@meripita44 @AVJK5022 Ya sabemos que las COMISIONES , nunca resuelven nada de nada , para que sin ? Para que algún grupo político cobre por ellas , como siempre a costa nuestra . La casta política ha salido de el más tonto de cada casa . Señores el tema ya pasó por la justicia dejen de marear la perdiz .
+-1.0;1;1;@jcoscu Vigila l ’ ortografia , Coscu .
+1.0;-1;-1;@ForcadellCarme @rogertorrent11 Felicite vd a sus cómplices porque pronto ya veremos a ver donde estará vd ! ! !
+-1.0;1;1;@juangilpodemos Me sumo en nuestro círculo a tu pesar Juan_Antonio_Gil desde Fuengirola @podemosFuengi
+1.0;1;0;@TeresaRodr_ Ahorrense los 2000_€ y traten de ser ustedes mismos , encadenen a la mujer y le impidan tener relaciones sexuales hasta que no se case .
+1.0;1;1;@lluis_llach Estas enfermo , esto acabarán mal , sois unos putos fanáticos .
+-1.0;1;-1;@susanadiaz @psoedeandalucia Igualdad_Susana , ? Con quien ? Para quien ? . Tu has visto el funcionamiento de nuestra sanidad . Tu has visto como funciona la educación . Tu has visto como funciona tu Autonomía . Sal a la calle y pasea . Y Entérate de los problemas de nuestra sociedad
+1.0;1;-1;@susanadiaz mejora la sanidad y la educación , que te la has cargado .
+1.0;-1;0;@MailloAntonio NO , es un chulería de tu amiga Susana , con la que GOBERNASTE y bien callado q estabas . Ella lo hizo a_sabiendas q se lo iban a TUMBAR , como poasó con las OPOSICIONES_de_Secundaria hace años . Ella usa los enfrentamientos en beneficio propio .
+-1.0;1;-1;@ccifuentes Eso está muy bien , pero podrían proponer un pacto para acabar con la doble o triple administración pública , menudo despilfarro
+1.0;1;0;@nicadichiara @ParlamentoAnd Que cachonda , que sentido de el humor . Una sociedad más justa . jjjjjjj me encanta maxi
+1.0;1;1;@KRLS @Croketadepernil Joder ... quin presi nai
+-1.0;1;1;@JLambanM Me encantan estas " novelistas " .
+-1.0;-1;0;@Noemi_delaCalle Que vayan dimitiendo algunos ya , no ? ? ? Rull y Turull por_ejemplo . Es de vergüenza ..... por fin se va haciendo algo de justicia .
+1.0;1;0;@GFVara Ud. sólo expresa su sexismo de género , que estigmatiza y castiga severamente a un hombre como maltratador por acciones que de ser cometidas por una mujer apenas tendrían consecuencias . Y debe defender estas vilezas misándricas para justificar este crimen de estado antivarón .
+1.0;1;0;@RevillaMiguelA Felicite a los vecinos d #BooDePielagos k gracias_a @Viesgo_ES , esos que nos sangran con el precio d La_Luz y ganan millones a_mansalva , muchos no han podido ni pasar la #Nochevieja en sus casas
+1.0;1;0;@Marta_Sibina A mí lo de ser indepe me parece a_el_fin_y_a_el_cabo una elección , pero lo de ser cursi , eso ... eso es lo que empobrece
+-1.0;1;0;#ALCORCÓN , DIFERENCIAS_ENTRE_PP_Y_PSOE : 4 . EMPLEO 🔴 PSOE : 6.800 empleos DESTRUIDOS en 4 años 🔵 PP : 5.800 parados menos en 4 años #Empleo #Eficacia #Rigor @EmpleoAlcorcon @ImepeAlcorcon
+-1.0;1;1;@aguillamoninsa Animo a por todas @aguillamoninsa fantástico trabajo en la protección de el MarMenor
+-1.0;1;1;@idlserna @aena Sr._Ministro cifra récord gracias o por desgracia de todos los jóvenes que han tenido que emigrar a otros países por las crisis neo liberales periódicas pagadas con dinero público , empobrecen sistemáticamente a la población . Rescates bancarios , sobres , refor . en B de sedes etc ! !
+1.0;1;1;@RodrigoGomGar Porque eso es historia ! ! ! No la que vosotros quereis ! ! La de los 3000 años de la Esperanza
+1.0;1;1;@MayoralRafa Rafa , que ya ha vuelto @Pablo_Iglesias_ , te toca volver a el depósito de objetos de_segunda_mano defectuosos
+-1.0;1;0;@ignacioaguado A_el_PP no les importamos los españoles , nunca les hemos importado y nunca les importaremos . Con llenar la caja B y mantenerse vitalicios les basta y les sobra
+-1.0;1;0;@RevillaMiguelA Todo un éxito sí señor ! ! ! M._Rajoy supo elegir muy bien a el poner un portero de puticlú el primero de la lista ..... espectaculares los resultados ...
+-1.0;1;0;@RodrigoGomGar De el proteccionismo patrio de Trump a el proteccionismo local de ZEC . Vender humo a el votante de algo imparable .
+-1.0;1;-1;@monicaoltra vivimos en un país desidealizado , dirigido por políticos infamemente corruptos y sin ninguna vergüenza . Difícil el patriotismo
+-1.0;-1;-1;@TeresaRodr_ Que impresentable y soberbia . Además sin vergüenza .
+-1.0;-1;-1;@jessicaalbiach Una muestra más de la importáncia que dan a los asesinatos de las mujeres , o_sea poca . ! Indignante !
+-1.0;1;-1;@TeresaRodr_ Esta la que se duerme en su trabajo y así es como cobra los GRANDES_CACIQUES viven a costa de el ciudadano ; en las próximas elecciones hay que quitar a todos los parásitos . es el CÁNCER_DE_EL SIGLO_XXII . fuera 17 REINOS_DE_TAIFAS ; REFERENDUN si keremos o no dichos REINOS
+1.0;1;0;@MaesePads Es mejor ir con la derecha de la mano enhorabuena
+1.0;1;1;@ximopuig Ets un esperpent ... es que no hi ha per on agafar aixo
+1.0;1;-1;@TurRibas @pp_formentera En positiu ? Demà hi ha un ple extraordinari on es teu partit GxF , ens rebutja una a el . legació als pptos 2018 x millorar ses condicions d vida des treballadors des Consell . Bon any nou
+1.0;1;1;@pablocasado_ @Pormarca_Espana Sois líderes en crecimiento los de el pp porque yo el crecimiento no lo veo , bueno me subiste la pensión un 1_€ 50 que lo podíais meterlo en el culo
+1.0;-1;0;@pablocasado_ @marianorajoy ¿ Es mucho pedir que no amenaces con fusilar a nuestro legitimo president ? Aquí el único loco eres tú .
+-1.0;1;1;@GLlamazares ... Gaspar .... ya estoy viendo los comentarios . Te van a poner de franquista para arriba ... Eres de los pocos políticos honestos . No hagas ni caso ...
+1.0;1;1;@GFVara Que piensan hacer con todos los discapacitados y mujeres que tienen una pensión no contributiva de 368_€ ? ? ? Es indignante que los más necesitados tengan que sobrevivir con esta miserable cantidad que les lleva a el estar solos a vivir en calle o comer de basuras ? ? ? Ni renta básica
+1.0;1;1;@_PabloFdez_ @Podemos_CyL Habéis revisado los contratos de publicidad ? Pues ahí hay mucho que explicar , contratos a familiares y demás ...
+1.0;1;1;@germanlogro @martaflich Otro pelotero
+-1.0;1;-1;@ccifuentes @cifupresidenta Vais a hacer mas recortes ?
+-1.0;-1;1;@hugomabarca A esta hay que prohibirla entrar en ningun organismo de la comunidad de madrid . Si quiere trabajar en vacaciones que se vaya a hacer un tour entre las prisiones dnde esten los de gurtel lezo punica , etc
+-1.0;1;-1;@ForcadellCarme Contesta a el neu twit alguna cegada . Som defensor de la libertat des de malllorca
+1.0;1;0;@GFVara Hace falta caer muy bajo y tener una gran falta de criterio para culparnos categóricamente a todos los hombres por lo que hace una inmensa minoría . Y todo para cumplir la infame tarea de implementar y justificar el apartheid hembrista en nuestro país
+-1.0;1;-1;@InesArrimadas En la tierra de mi madre si que son cortijos , aqui se llaman Masias , nunca es tarde para aprender
+-1.0;-1;-1;@ana_schez @20m Listas espera , llamadas media hora antes d cita y en varias ocasiones , para decirte q no te van a atender porque tienen mucha gente . Personal sobrecargado y si protestas , porque has pedido día , te acusan d falta d respeto . Conciertos con privadas . Puestos a dedo a familiares
+1.0;1;1;@VicentMarza Las ayudas a los maestros interinos no son tan generosas . Pero no pararemos hasta conseguir la Consolidacion de nuestros puestos de trabajo , ya_que muchos de nosotros trabajamos en fraude de ley y no tenemos la culpaOpositar es un parche no una solucionIremos donde haga falta .
+-1.0;1;0;@ignacioaguado Van a el Cortijo ! ! !
+-1.0;-1;1;@hugomabarca @eldiarioes Osea que este es uno de los motivos por los que se largo TODO_OFENDIDO de la comision de investigacion ... Vaya vaya
+-1.0;1;1;@JuanjoMoliGal Bochornosas e insultantes fueron en su día las declaraciones de la DG de centros educativos @remedios_lajara mandando a sus casas a los niños si hacia calor y bochornosas e insultantes son sus últimas declaraciones diciendo que la mayoría de colegios de la Región ya tienen sombra
+-1.0;1;-1;@Noemi_delaCalle Y xk no secles imputan los delitos ? ? Xk estafar asi debe ser delito
+1.0;1;1;@gabrielrufian Lo que parece que a vosotros no os molesta el el 4_% y la corrupción de los que mantenéis en el govern de Cataluña , coerencia en el discurso ninguna Rufi
+1.0;1;0;@JLambanM No decías que ibas a bajar impuestos ? , Prometiste que ibas aumentar las ayudas sociales sin subir impuestos , todo mentira
+1.0;1;1;@jmespejosaav @InesArrimadas A mi , tu , no em representes des de el moment que no et saps l'himne de el nostre país . No sou dignes de el nostre Parlament ! ! !
+1.0;1;1;@Albiol_XG @Albert_Rivera El_PP pidiendo limosna en Cataluña , tan chulos que eran antes_de el 21D .
+-1.0;1;1;@Albiol_XG @Albert_Rivera Señor ? García_Albiol , que no , que no es eso , lo que ustedes no tienen son suficientes votos para tener nada . Les ha echado y no lo han hecho ni los independentistas ni los unionistas . Les han echado sus propios votantes hartos de ustedes .
+1.0;1;0;@RafaCatalaPolo @Congreso_Es Usted es un maniPPulador mas temprano k tarde le van a juzgar , y no sus jueces corruPPtos y maniPPulados , el pueblo le va a machacar
+1.0;-1;1;@alberoliver @CercaniasMadrid No me creo una puta mierda
+1.0;-1;-1;@InesArrimadas El día que sientas Catalunya como tu tierra , quizás creeremos que quieres lo mejor para los catalanes . Mientras tanto , tu discurso sólo sirve para conseguir más votos en España . Y ya hemos visto cómo los conseguís , humillación y desprecio ... #seguim
+-1.0;1;-1;@CiudadanaMartaR @InesArrimadas Qué gran verdad ! ! Por éso vosotras ( y vosotros ) tenéis la gran oportunidad de humanizar la política ( que lo inunda todo y lo condiciona todo ... no lo olvidéis ! !
+-1.0;-1;1;@Albiol_XG @Albert_Rivera No se entera Riverita , o no quiere enterarse
+-1.0;1;1;@RamonEspinar @ccifuentes De verdad es lo que creen , que somos unos borregos , y razón no les falta .
+-1.0;-1;1;@ignacioaguado Depende por dnd salga el viento . Este ha perdido el norte . Espero q las siguientes selecciones se tenga q larga pq no va a tener no dos escaños
+1.0;1;0;@pablocasado_ @marianorajoy Palmeros , te refieres a 2.000.000 de Catalanes ?
+1.0;1;1;@miqueliceta @elperiodico Tu creus que avui , que comença una nova legislatura a el Parlament de el teu país has de fer aquest tuit ? . Miquel , que t'has begut l'enteniment , que ja no respectes les institucions ? Miquel el teu temps ja fa anys que va acabar .
+1.0;1;-1;@susanadiaz La_IGUALDAD_DESDE_LA_DISCRIMINACIÓN
+1.0;1;-1;@CBescansa Es mentira que el PP sea el partido más corrupto de Europa . ¿ Que hace Podemos apoyando a Puigdemont_de_CDC o apoyándose en el PSOE_de_los_Eres ? Os importa la corrupción de el enemigo , por_lo_tanto , no os importa la corrupción .
+-1.0;-1;-1;@SofCastanon @javifranky64 Jajajajajajajaja .
+1.0;1;0;@jsalvadorduch Otro manipulando , no tiene nada que ver con esa bandera .
+-1.0;1;1;@RevillaMiguelA Que sencillo es dar lecciones desde un despacho , recorra usted Sra._Villalobos domicilios en cualquier lugar de nuestro país y vera en que situaciones están muchos ciudadanos . Y no diga tantas tonterías , ahora_bien ya sabemos todos los de su caláña como piensan .....
+1.0;1;1;@MayoralRafa @ahorapodemos Si lo tenéis tan claro ¿ Por que no los denunciáis en el juzgado ?
+-1.0;1;-1;@monicaoltra @MCsanchezCs Tú hiciste con Marcos lo mismo que hacen los hombres en política . Tu feminismo empieza cuando sibiste arriba , mientras tanto el mismo comportamiento que todos los hombres
+-1.0;1;-1;@yeyaboya Són el mateixos lletrats i les mateixes interpretacions que permeten que vosaltres hagueu estat diputada . Les mateixes lleis en les que us vau pixar a sobre el passat 6 i 7 de setembre
+1.0;1;0;@anapastorjulian @CasaReal A el unico rey que reconocemos , heredo a el trono de Españistan es a Froilan ! !
+-1.0;-1;-1;@ForcadellCarme @parlament_cat Per mi seràs sempre la Presidenta !
+-1.0;1;0;@juanmarin_cs @CiudadanosCs Dice_Público que Cs es la nueva derecha ... Cosas de el diario podemita . Pero lo que es innegable es que Cs_Andalucía parece el nuevo PSOE_Andaluz . Y eso es gracias_a Marín y su Clan de manzanillosos .
+-1.0;-1;-1;@Noemi_delaCalle Que vayan dimitiendo algunos ya , no ? ? ? Rull y Turull por_ejemplo . Es de vergüenza ..... por fin se va haciendo algo de justicia .
+1.0;-1;0;@juanmarin_cs Todo humo , en el fondo mentira no es lo q dice la propaganda
+1.0;1;1;@EquipoClavijo aver si saga gende de el paro
+1.0;-1;1;@gabrielrufian @pastoreta1 No me pueden molestar las dos cosas ? cada una en su contexto ! , deja de liarla que lo uno no excluye lo otro , tu a escurrir el bulto liando a la gente con los tuyos que sus males son menos malos
+-1.0;1;-1;@Noemi_delaCalle @InesArrimadas Así debe de estar de acuerdo tu colega Nart ? Porque despues de las declaraciones que hizo ?
+-1.0;1;1;@ximopuig Ximo , fora dels països catalans .
+1.0;-1;-1;@ForcadellCarme @rogertorrent11 El que no has fet tu .... representar-la dignament ....
+-1.0;-1;1;@miqueliceta @elperiodico No deies que els independentistes li feien a el programa d'en Serrat boicot ? Amb aquest tuit , tu mateix t'has deixat en evidència . #peneta
+1.0;-1;-1;@ForcadellCarme Viva españa . https://t.co/z5CBGTlWV6
+-1.0;1;1;@CivitiMarti @parlament_cat Treieu les banderes de el darrera discretament . L ’ escut és prou i representa tots els catalans .
+1.0;1;0;@CBescansa Es mentira que el PP sea el partido más corrupto de Europa . ¿ Que hace Podemos apoyando a Puigdemont_de_CDC o apoyándose en el PSOE_de_los_Eres ? Os importa la corrupción de el enemigo , por_lo_tanto , no os importa la corrupción .
+-1.0;1;0;@juangilpodemos Me sumo en nuestro círculo a tu pesar Juan_Antonio_Gil desde Fuengirola @podemosFuengi
+1.0;-1;0;@ignacioaguado @CiudadanosCs Xq votar C's es votar a Aznar
+-1.0;1;1;@Albiol_XG @Albert_Rivera A ver si me aclaro , necesitáis grupo parlamentario pero no tenéis suficientes diputados , mi pregunta , que culpa tiene Rivera ?
+1.0;1;1;@LuisBaraGz @PontevedraViva E orixinal e practico
+-1.0;1;0;@hugomabarca @Mari_Sol_GH Por_favor , esto ya ha dejado de tener gracia , esta peña te miente en la cara y se quedan tan anchos ! ! ! ! por cierto , seguro q buscamos cinico en una enciclopedia y sale la cara de este señor .
+1.0;-1;0;@JA_DelgadoRamos @jusapol Y esta declaración es como Guardia_Civil en excedencia o como diputado de Podemos , porque son cosas que deberían ser antagonistas . Yo jamás iría de_la_mano_de quien alaba y defiende a alguien que mató a un compañero . Demasiada demagogia y fotos para la galería .
+1.0;-1;0;@PatriciaReyesCs Pero ¿ qué es esto ?
+1.0;1;1;@eduardorepi @CarlesMundo Tú eso de renunciar ya sabes que no va contigo . De qué ibas a vivir sin dar palo a el agua .
+-1.0;1;1;@JVMariBoso @MJC_Ibz https://t.co/mlerFpqgaD Eso seria como decir que el PP no gobierna porque no tiene el 50%+1 de el congreso . Es más , el estado tiene mas % en el SAREB que el PP en el congreso .
+-1.0;1;-1;@EvaGSempere se lo he pedido a los reyes de febrero 😁
+1.0;1;0;@RafaCatalaPolo Que justicia hay que innovar ? Lo que tiene que haber es justicia . Indigno de llevar ese apellido .
+-1.0;1;1;@IMendezdeVigo @culturagob Mendel_de_Frigo , el gallina vuelve a arrodillarse ante sus amigos Nazionalistas .
+1.0;-1;1;@LluisRabell Ves dient mentides , que alguna cosa quedarà
+1.0;1;-1;@susanabeltranga @Societatcc Convivencia ? ...
+-1.0;-1;0;@hugomabarca A esta hay que prohibirla entrar en ningun organismo de la comunidad de madrid . Si quiere trabajar en vacaciones que se vaya a hacer un tour entre las prisiones dnde esten los de gurtel lezo punica , etc
+-1.0;-1;-1;@PatriciaReyesCs Lo cierto es que si_no_es_por dos hombres a esa chica se la lleva en el coche . lo cierto es que la complice de el chicle era su mujer . MUJER_HEMBRA . lo cierto es que me voy a encargar de comentarle estas cositas a mis conocidos que os votan a ver que les parece . un saludo
+-1.0;1;-1;@noepmp @ElEspejoCanario Por_favor preguntale porque defiende a un señor empresario ejemplar que tiene a miles de familias sin pagar la nómina hace meses .
+1.0;-1;0;@DavidLlorenteS @Hirundo_H Pablo_Iglesias no es de mí , pero tengo que decir que debe definirse de una vez y de ser izquierda debe serlo pero si estaba y materna naturalmente que le veo más capacitado que ustedes los comunistas y eso le dicho de todo menos bonito pero respeto que no nos dejo tirados a los
+1.0;-1;1;@GLlamazares Llamazares_Le recuerdo que el President_de_la_Generalitat_Josep_Tarradellas fué investido President en México , mala memoria
+1.0;1;0;@EquipoClavijo No pierde una oportunidad para estar en el Candelero ( pura estrategia maketiniana ) ¿ No se si el montaje acarrea gastos ?
+1.0;-1;1;@idlserna @aena Para cuando https://t.co/tomJjwMRdG
+-1.0;1;1;@LluisRabell Para mi como artista no puede ser cuestionado como persona tampoco y eso no anula el derecho a discrepar No me importaría si fuese andaluz me haría sentir orgullo de un andaluz como Serrat pero él es mucho más porque esta abierto a el mundo
+-1.0;-1;-1;@isauralealf @PSOE Como no aumente la natalidad lo veo oscuro el futuro
+-1.0;1;-1;@InesArrimadas Tens tota la rao i el setit comu que es . necesita a catalunya
+-1.0;1;0;@ccifuentes Es verdad ? o es una Fake news ? ? @marianorajoy , https://t.co/o3VjN1kaFZ
+-1.0;-1;0;@CBescansa Y la pregunta es , cómo ? Con tanta pasividad lo dudo . Hay países con más dignidad en los que sus ciudadanos se tiran a la calle a defender lo que les pertenece por derecho , y aquí qué ? Necesitamos líderes no más de lo mismo
+-1.0;1;-1;@susanadiaz @ppandaluz Hola_Susana_Díaz que tal estas bien como van las cosas bien . Un saludo
+1.0;-1;-1;@martarovira @ForcadellCarme A la carcel las dos . Ignorates
+1.0;-1;1;@mikysalo Pues menuda prioridad , a mi me parece que a ciudadanos no lo para nadie 😉
+-1.0;1;1;@JuanMa_Moreno Soy malagueño . La señora Susana_Díaz me esta poniendo todas las trabas posibles para encontrar trabajo . Andalucia es un cortijo de el PSOE y se la están cargando entre uno y otro . Despues hay elecciones y la gente vuelve a votar socialistas . ¿ estamos locos o que ? . Llevo 12 años parado .
+1.0;1;0;@RevillaMiguelA Tu a lo tuyo fiestas , tele y postureo
+1.0;-1;1;@BaltiPicornell @ForcadellCarme Vale , entonces es “ un pasito palante María ” 1,2,3 .... Qué forma de auto engañarse ! !
+-1.0;-1;0;@J_Sanchez_Serna @IMendezdeVigo Que baboso , no soporto a este ministro , no tiene nada que ver con la gente .
+-1.0;-1;-1;@InesArrimadas No desfallezcas Inés . Te apoyamos 1.100.000 personas . Cuando seas tú la presidenta , si lo serás de todos , no como estos supremacistas impresentables . Ánimo !
+1.0;1;1;@javizqui @sanchezcastejon No hay impuestos a la banca . Son impuestos a los usuarios de la banca . No se engañen .
+-1.0;1;-1;@martapascal Investigada . Res mes . Tu tranquila si només t'has reunit , faltaria mes .
+-1.0;-1;-1;@CBescansa Y la pregunta es , cómo ? Con tanta pasividad lo dudo . Hay países con más dignidad en los que sus ciudadanos se tiran a la calle a defender lo que les pertenece por derecho , y aquí qué ? Necesitamos líderes no más de lo mismo
+1.0;-1;1;@albertbatet La republica se puede hacer si se es mayoria pero no es mayoria pues es un 45 por ciento entonces no se puede obligar a un pueblo a hacer lo que no quieren eso es democracia no querer imponer una dictadura
+1.0;-1;1;@sergiobarcelona Aixo s ’ en diu democracia , senyor Sanz
+-1.0;1;1;@Viondi En_Arganzuela , como distrito periférico de el Centro , vivimos las consecuencias de la turistización . Es un tema que a @PSOEMArganzuela nos preocupa . Estamos abiertos a el debate , el análisis y también a la acción . Cualquier cuestión que necesites ya sabes donde nos encontramos . 💪
+-1.0;1;1;@miqueliceta @elperiodico Nosaltres no som els dels boicots . T'has equivocat de bàndol , noi
+1.0;1;1;@miqueliceta @EspejoPublico Quina vergonya la seva actitud devant el nou president de el Parlament , dels de C's es pot esperar però vostè ... Quin poc respecte.#NouParlamentTV3
+-1.0;1;0;@Viondi En_Arganzuela , como distrito periférico de el Centro , vivimos las consecuencias de la turistización . Es un tema que a @PSOEMArganzuela nos preocupa . Estamos abiertos a el debate , el análisis y también a la acción . Cualquier cuestión que necesites ya sabes donde nos encontramos . 💪
+-1.0;1;1;@amonterosoler @fatimaempleo Bueno como diputado y como economista . Pesimo_SG_de_el_CCM_Malaga
+1.0;1;0;@pablocasado_ @marianorajoy Espero que en las próximas elecciones ejijamos un Presidente_de_Gobierno_NORMAL , es decir que no lidere un partido corrupto en procedimientos penales y sin_necesidad_de tener un secuaz para arreglar en Twitter sus cagadas .
+1.0;1;1;@miqueliceta @elperiodico Sí_Miquelet_Miquelet , fins i tot els independentistes han estat bons i reconeixen la trajectòria de Serrat a_pesar_de la seva espanyolitat fastigosa . O potser ara us agrada TV3 ? ?
+1.0;1;0;@nicadichiara Cada vez que hablas sube el pan . Vosotros los políticos , cambiad las leyes para q esto no suceda y poned freno a esto .
+-1.0;-1;-1;@ccifuentes @ElCascabelTRECE Que tal el masaje ?
+-1.0;1;-1;@mxandri73 @KRLS Cuando_un_Gobierno dice mis leyes son sagradas y las de los demás gobiernos serán pisoteadas , se llaman " Gobiernos autoritarios " . Es hora de el diálogo , de volver a la legalidad y enterrar los odios y resucitar la paz . Es hora de ponerse a trabajar , basta de jugar esto es muy serio
+1.0;1;0;@JoanTarda @Esquerra_ERC Lo de vosaltres es de traca
+-1.0;1;1;@jsolerCs @elpuntavui A el final . . si lo que quieren los ciudadanos es que no se haga nada útil en esta comunidad , y que se salten hasta sus propias leyes , que más da si está presente o en el ciber espacio . . la ruina está asegurada . 😉
+-1.0;1;0;@RevillaMiguelA Pese_a que España no puede compararse a otros paises en el nivel de la violencia y la inseguridad ... Sigue muriendo gente . . sigue desapareciendo gente . . y siguen asesinando a personas en la calle . Terminemos con esto . Pongamos mas mano dura a estas cosas . . mis condolencias .
+1.0;1;1;@LopezMirasF Y_la_Paramount a el final noooo ? ... con lo bonica que quedó la primera piedra ... https://t.co/e9ZhMtXewy
+-1.0;1;1;@RodrigoGomGar De el proteccionismo patrio de Trump a el proteccionismo local de ZEC . Vender humo a el votante de algo imparable .
+-1.0;1;1;@CsFernavarro @VCAM63 Fascistas llamando fascistas a sus víctimas . Eso es lo que son esta gentuza .
+1.0;-1;0;@MailloAntonio Dimite tu también que no haces nada solo ganar si . Trabajar
+1.0;1;0;@Marta_Sibina Bien ...... apoyando a los Golpistas
+1.0;1;0;@EduardoFRub @ierrejon Te perdiste muchas clases chaval . Estudia ... y entenderás
+1.0;1;1;@JavierJesparza Tu intervencion d hoy si q ha sido un insulto alas navarras ! !
+1.0;-1;0;@LluisRabell Ves dient mentides , que alguna cosa quedarà
+1.0;1;-1;@susanadiaz Igualdad , que bueno ja ja .
+1.0;1;0;@TeresaRodr_ Vamos a ver cenutria ... Que persona maltratadora ( me da igual hombre que mujer ) va a llamar pidiendo consejo ? Si llama un hombre será porque es maltratado tbn ? O la mujer por el mero hecho de serlo , ya es victima siempre y merece un tfn exclusivo ?
+1.0;1;-1;@TurRibas @pp_formentera En positiu ? Demà hi ha un ple extraordinari on es teu partit GxF , ens rebutja una a el . legació als pptos 2018 x millorar ses condicions d vida des treballadors des Consell . Bon any nou
+1.0;1;0;@Clara_Serra_ Muchas_Muchas_Muchas ... ¿ Alguna solución concreta , en_lugar_de tanta medida abstracta ?
+1.0;1;-1;@eniubo @socialistes_cat que miserables que sou ...
+1.0;1;-1;@MireiaMolla Haztelo mirar https://t.co/MmF1Xh4XMM
+-1.0;1;1;@gebelque explica-ho a @LaVanguardia que l'amic Màrius porta tot el dia fent d'altaveu d'aquests pallassos ...
+1.0;1;0;@isauralealf @PSOE " Kilómetros de socialismo " . Vuestro socialismo se mide con una regla de 30 , no me jodas .
+1.0;1;-1;@martarovira @junqueras Tú eres demasiado ignorante para eatar representando a los catalanes , los que te votaron aún son más ignorantes . Quina vergonya ! ! ! !
+1.0;1;0;@RafaCatalaPolo @Congreso_Es despues de estar unos añitos en el cargo sr. ministro se dio_cuenta ahora que lo q queremos son personas competentes en los juzgados y una justicia rapida y efectiva y no juicios en años luz ? madre mia entonces cuando se de cuenta de las cagadas cronicas q han echo lo publican
+-1.0;1;1;@BarrachinaM @isabelbonig 30 milloness de Euros en actividad turística son 300.000_mil turistas que vengan a ver Bous_de_Carrer de otras Comunidades a 100_€ de gasto cada uno ... No sé Rick , parece ...
+1.0;1;0;@juanmarin_cs CIUDADANOS_ES_UN_PARTIDO_ULTRA_Y_MUY_VIOLENTO ... OJO_CON_LO_QUE_VOTAIS
+1.0;1;-1;@martapascal Unas vacaciones en soto de el real , son altamente recomendables y encima pensión completa , como para quejarse
+1.0;-1;1;@ximopuig Quina indecència ! Tu també tens complexe d'inferioritat ? Aquest odi que demostres cap a Catalunya no és normal ! #marxem #seguim
+-1.0;-1;1;@pbustinduy El placer será mío . Sois bienvenidos todos los partidos políticos . Es una cuestión de humanidad , que sólo se puede resolver desde la política . Si me sigues , te mando mis datos de contacto por mensaje privado . Un saludo
+-1.0;1;1;@ximopuig President , el terme " separatisme " és molt lleig . Es nota que vosté admira Broseta i els de SCC . Seguirem combatent-vos . La lluita continua
+-1.0;1;0;@JLambanM @aragonpsoe Y el impuesto de sucesiones en Aragón ? Y el ICA ? Son de derechas ?
+-1.0;-1;0;@MEspinosa_ @ccifuentes gracias_a ti Maria y a todos nuestros representantes por poner a todos estos ladrones en su sitio la proxima la carcel
+-1.0;1;0;@GLlamazares ... Gaspar .... ya estoy viendo los comentarios . Te van a poner de franquista para arriba ... Eres de los pocos políticos honestos . No hagas ni caso ...
+-1.0;-1;0;@Clara_Serra_ LAS leyes siempreeee las han echo los hombres , si les pasará a ellos lo que nos pasa a las mujeres ya veras como cambiaban las leyes , pero por desgracia tendremos que luchar siempre para defendernos , luego somos feministas ? Hasta cuándo vamos a permitir esto
+1.0;1;0;@JavierJesparza Tu intervencion d hoy si q ha sido un insulto alas navarras ! !
+-1.0;1;0;@RevillaMiguelA Que sencillo es dar lecciones desde un despacho , recorra usted Sra._Villalobos domicilios en cualquier lugar de nuestro país y vera en que situaciones están muchos ciudadanos . Y no diga tantas tonterías , ahora_bien ya sabemos todos los de su caláña como piensan .....
+1.0;1;-1;@martapascal Martita cariño dile a el Cara-Polla_de_Bruselas que te mande fotocopia de esa cara para la investidura a el Parlamento .
+1.0;-1;0;@albertbatet La republica se puede hacer si se es mayoria pero no es mayoria pues es un 45 por ciento entonces no se puede obligar a un pueblo a hacer lo que no quieren eso es democracia no querer imponer una dictadura
+1.0;1;1;@carlesral Autocrítica 0 també , la @cupnacional va apoyar uns pressupostos antisocials i ha estat recolzant el partit més corrupte de Catalunya . Però la culpa no serà mai vostra ni dels vostres socis . Sou uns hipòcrites #CasPalau #Corrupció0 #STOPCorrupció
+1.0;1;-1;@susanadiaz https://t.co/3zTZ48toUPIgualdad dice ! !
+-1.0;1;-1;@susanadiaz Las mochilas , ay las mochilas ! ! ! ! estas son esas mochilas , las de todo un pueblo que la lleva y ni sabe lo que tiene dentro y lo que tiene dentro esa mochila es años de luchas , muertos por el camino , represaliados , heroicos hombres y mujeres que entregaron sus vidas , su libertad .
+-1.0;-1;0;@J_Sanchez_Serna @IMendezdeVigo Que baboso , no soporto a este ministro , no tiene nada que ver con la gente .
+-1.0;-1;-1;@ccifuentes Estimada @ccifuentes es lamentable q en El_Pardo llevemos desde diciembre sin atención pediátrica ! ! ! Desde el 2013 luchando por un servicio decente
+1.0;1;1;@RamonEspinar Tu si q eres una croqueta majete
+1.0;-1;1;@sergiobarcelona Como decía el filósofo Evaristo_Paramos , todos los fascista vivís cara a el culo por eso no veía más_allá_de vuestra nariz , CARA_A_EL_CULO ! ! !
+1.0;1;0;@RodrigoGomGar Porque eso es historia ! ! ! No la que vosotros quereis ! ! La de los 3000 años de la Esperanza
+1.0;1;1;@gabrielrufian Estas amenazando a los tabarnianos sinvergüenza , no se que pensará el colectivo islamico de pensamientos racistas y fascistas
+-1.0;-1;0;@BarrachinaM @PPopular Q políticos independentista persistan en seguir fuera_de la Constitución , engañando a el pueblo sólo dejan patente la soberbia q tienen . Ni negociación ni indulto
+1.0;1;0;@JLambanM No decías que ibas a bajar impuestos ? , Prometiste que ibas aumentar las ayudas sociales sin subir impuestos , todo mentira
+-1.0;1;1;@RamonEspinar @eldiarioes Si como vuetra ideologia , lenin , stalin , gulas , dictadura comunista , ese es vuestro populismo , que placer tendriais e convertir españa en corea de el norte , claro que si vais alli seriais felices totales , pero creo qu hasta de alli os echarian a patadas , po vividores de el cuento
+1.0;1;-1;@martarovira @junqueras I vius el " Narnia " ...

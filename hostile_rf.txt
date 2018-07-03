@@ -1,0 +1,71 @@
+Imported 2370 tweets
+Keep words rank: 100
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 100) (1896,) (474, 100) (474,)
+{'precision': 0.5584415584415584, 'f1': 0.5058823529411764, 'accuracy': 0.8227848101265823, 'recall': 0.46236559139784944, 'roc_auc': 0.6865633731267462, 'kappa': 0.39907633795164354}
+[[347  34]
+ [ 50  43]]
+{'best_score': 0.7696349556859673, 'best_params': {'min_samples_split': 2}, 'best_estimator': RandomForestClassifier(bootstrap=True, class_weight='balanced',
+            criterion='gini', max_depth=None, max_features='auto',
+            max_leaf_nodes=None, min_impurity_decrease=0.0,
+            min_impurity_split=None, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=100, n_jobs=1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)}
+Keep words rank: 500
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 500) (1896,) (474, 500) (474,)
+{'precision': 0.6292134831460674, 'f1': 0.6021505376344086, 'accuracy': 0.8438818565400844, 'recall': 0.5773195876288659, 'roc_auc': 0.744893215565096, 'kappa': 0.5052610792970182}
+[[344  33]
+ [ 41  56]]
+{'best_score': 0.8231080905855322, 'best_params': {'min_samples_split': 2}, 'best_estimator': RandomForestClassifier(bootstrap=True, class_weight='balanced',
+            criterion='gini', max_depth=None, max_features='auto',
+            max_leaf_nodes=None, min_impurity_decrease=0.0,
+            min_impurity_split=None, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=100, n_jobs=1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)}
+Keep words rank: 1000
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 1000) (1896,) (474, 1000) (474,)
+{'precision': 0.873015873015873, 'f1': 0.650887573964497, 'accuracy': 0.8755274261603375, 'recall': 0.5188679245283019, 'roc_auc': 0.7485643970467597, 'kappa': 0.5810337078651686}
+[[360   8]
+ [ 51  55]]
+{'best_score': 0.8578615212874208, 'best_params': {'min_samples_split': 2}, 'best_estimator': RandomForestClassifier(bootstrap=True, class_weight='balanced',
+            criterion='gini', max_depth=None, max_features='auto',
+            max_leaf_nodes=None, min_impurity_decrease=0.0,
+            min_impurity_split=None, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=100, n_jobs=1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)}
+Keep words rank: 2000
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 2000) (1896,) (474, 2000) (474,)
+{'precision': 0.875, 'f1': 0.6473988439306358, 'accuracy': 0.8713080168776371, 'recall': 0.5137614678899083, 'roc_auc': 0.745921829835365, 'kappa': 0.5751065393093313}
+[[357   8]
+ [ 53  56]]
+{'best_score': 0.8424217957191689, 'best_params': {'min_samples_split': 2}, 'best_estimator': RandomForestClassifier(bootstrap=True, class_weight='balanced',
+            criterion='gini', max_depth=None, max_features='auto',
+            max_leaf_nodes=None, min_impurity_decrease=0.0,
+            min_impurity_split=None, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=100, n_jobs=1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)}
+Keep words rank: 5000
+Preprocessing tweets...
+	Tweets preprocessed.
+(1896, 4422) (1896,) (474, 4422) (474,)
+{'precision': 0.8936170212765957, 'f1': 0.5753424657534246, 'accuracy': 0.869198312236287, 'recall': 0.42424242424242425, 'roc_auc': 0.7054545454545456, 'kappa': 0.5093659220675147}
+[[370   5]
+ [ 57  42]]
+{'best_score': 0.8649591882519054, 'best_params': {'min_samples_split': 2}, 'best_estimator': RandomForestClassifier(bootstrap=True, class_weight='balanced',
+            criterion='gini', max_depth=None, max_features='auto',
+            max_leaf_nodes=None, min_impurity_decrease=0.0,
+            min_impurity_split=None, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=100, n_jobs=1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)}
