@@ -3,7 +3,7 @@ from common import models
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description='run experiments of language analysis.')
-    parser.add_argument('who', choices=['author, receiver'], help='outcome to be predicted: author or receiver gender')
+    parser.add_argument('who', choices=['author', 'receiver'], help='outcome to be predicted: author or receiver gender')
     parser.add_argument('alg', choices=['lasso','l1','ridge','l2','svm'], help='learning algorithm')
     parser.add_argument('score', choices=['tr_f1', 'tr_prec', 'tr_rec', 'tr_auc', 'val_f1', 'val_prec', 'val_rec', 'val_auc'], help='scoring function to validate')
     parser.add_argument('-d', '--dbname', default='gender', help='name of the mongodb collection where the data is')
