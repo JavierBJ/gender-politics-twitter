@@ -154,7 +154,7 @@ if len(tweets_recovered)>0:
 fwrite = open(dump_file+'.pkl', 'wb')
 pickle.dump((tweets_recovered, mentions_recovered, replies_recovered), fwrite)
 
-# Write useful data into log
+# Write useful data2 into log
 t = str(time.time() - t1)
 flog.write('Execution time: ' + t + '\n')
 

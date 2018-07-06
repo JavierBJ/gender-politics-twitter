@@ -68,7 +68,7 @@ def create_dataset(from_file, limit=None, shuffle=False):
         
         if limit is not None and len(dataset)+len(data)>limit:    # Take only the part that fits our limit
             dataset = dataset.append(data[:limit-len(dataset)-len(data)], ignore_index=True)
-            break   # Stop iterating datasets, no more data fits our limit
+            break   # Stop iterating datasets, no more data2 fits our limit
         else:
             dataset = dataset.append(data, ignore_index=True)
     print('\tDataset created.')
@@ -80,7 +80,7 @@ def setup_freeling():
     sp = freeling.splitter(metadata.DATA + metadata.LANG + '/splitter.dat')
     umap = freeling.RE_map(metadata.DATA + metadata.LANG + '/twitter/usermap.dat')
     
-    # maco options to be activated and their data files
+    # maco options to be activated and their data2 files
     op= freeling.maco_options("es");
     op.set_data_files("", 
             metadata.DATA + "common/punct.dat",

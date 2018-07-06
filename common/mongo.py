@@ -11,7 +11,7 @@ class DB():
         self.db = client[db_name]
 
     def export_mongodb(self, tweets, users, tags=True):
-        print('Exporting data to MongoDB...')
+        print('Exporting data2 to MongoDB...')
         if tweets is not None:
             if tags:
                 tweets = tagging.aggregate_tags(tweets, samples=None)

@@ -61,7 +61,7 @@ else:
     if add_origin:
         accounts = text.retrieve_accounts({'diputados_congreso.csv':'handle'}, low=True) # Accounts from Congreso
         print(accounts[0:10], len(accounts))
-        # Add user data from csv
+        # Add user data2 from csv
         path_users = 'dumpusers' + str(num) + code + '.csv'
         users = pd.read_csv(path_users, delimiter=';', dtype='str')
         ids = [id for id,name in zip(users['id'], users['screen_name']) if name.lower() in accounts] # User IDs from Congreso

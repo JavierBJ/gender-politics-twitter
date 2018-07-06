@@ -1,11 +1,12 @@
 import numpy as np
 from sklearn.model_selection import train_test_split, KFold
 from sklearn import metrics
-from common import text
-from sexism import detection
-from data import mongo
-from common import feature_extraction
+from common import text, feature_extraction, mongo
 from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix
 import pandas as pd
 
@@ -70,37 +71,114 @@ class Detector():
         print('Class 1  |', sum([1 for t in self.y if t==1]), sum([1 for t in self.y_test if t==1]))
         print('Class 0  |', sum([1 for t in self.y if t==-1]), sum([1 for t in self.y_test if t==-1]))
 
+def detect(dv='hostility', alg='lasso', prep='lemma', how='tfidf', dbname='gender', limit=0, kfolds=10, sw=True, kwf=None, kwr=5000, w=1, c=0, alpha=1, hidden=500, learningrate=0.0001, maxfeatures=1.0, minsamplesleaf=1):
+    db = mongo.DB(dbname)
+    tweets_df = db.import_tagged_by_hostile_tweets_mongodb(weeks=None, limit=limit)
+    tweets_df = text.preprocess(tweets_df)
+    
+    if dv=='hostility':
+        label = 'is_hostile'
+    elif dv=='sexism':
+        label = 'is_sexist'
+    elif dv=='gender':
+        label = 'author_gender'
+    
+    if prep=='lemma':
+        f_prep = lambda x: x.get_lemma()
+    elif prep=='form':
+        f_prep = lambda x: x.get_form()
+    
+    if w:
+        if how=='binary':
+            ext = feature_extraction.BinaryBOW(w, f_prep, keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
+        elif how=='counts':
+            ext = feature_extraction.CountsBOW(w, f_prep, keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
+        elif how=='tfidf':
+            ext = feature_extraction.TfIdfBOW(w, f_prep, keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
+    elif c:
+        if how=='binary':
+            ext = feature_extraction.BinaryChars(c, f_prep, keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
+        elif how=='counts':
+            ext = feature_extraction.CountsChars(c, f_prep, keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
+        elif how=='tfidf':
+            ext = feature_extraction.TfIdfChars(c, f_prep, keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
+    
+    if alg in ['lasso', 'l1']:
+        for a in alpha:
+            c_reg = 1/a
+            model = LogisticRegression(class_weight='balanced', solver='liblinear', penalty='l1', C=c_reg)
+            det = Detector(model, ext, tweets_df, label, None, None, kfolds)
+            res = det.compute()
+    elif alg in ['ridge', 'l2']:
+        for a in alpha:
+            c_reg = 1/a
+            model = LogisticRegression(class_weight='balanced', C=c_reg)
+            det = Detector(model, ext, tweets_df, label, None, None, kfolds)
+            res = det.compute()
+    elif alg=='svm':
+        for a in alpha:
+            c_reg = 1/a
+            model = SVC(class_weight='balanced', C=c_reg)
+            det = Detector(model, ext, tweets_df, label, None, None, kfolds)
+            res = det.compute()
+    elif alg=='nb':
+        model = BernoulliNB()
+        det = Detector(model, ext, tweets_df, label, None, None, kfolds)
+        res = det.compute()
+    elif alg=='mlp':
+        for lr in learningrate:
+            for h in hidden:
+                for a in alpha:
+                    model = MLPClassifier(hidden_layer_sizes=(h,), learning_rate_init=lr, alpha=a)
+                    det = Detector(model, ext, tweets_df, label, None, None, kfolds)
+                    res = det.compute()
+    elif alg=='rf':
+        for mf in maxfeatures:
+            for lf in minsamplesleaf:
+                model = RandomForestClassifier(n_estimators=50, max_features=mf, min_samples_leaf=lf)
+                det = Detector(model, ext, tweets_df, label, None, None, kfolds)
+                res = det.compute()
+    return 0
 
-class MacroDetector(Detector):
-    def __init__(self, detectors, score):
-        for s in detectors[0].metrics()[0].keys():
-            dets_per_score = {i:d.metrics()[0][s] for i,d in enumerate(detectors)}
-            print(s, dets_per_score)
-            if s==score:
-                dets_scoring = dets_per_score
-                print('\t^This is the evaluation metric')
-        # Get detector with max score
-        print(dets_per_score)
-        best = detectors[max(dets_per_score, key=dets_per_score.get)]
-        
-        # Necessary for the inherited functions to work
-        # In essence, MacroDetector looks for the best detector and mutes into it
-        self.X_train = best.X_train
-        self.X_test = best.X_test
-        self.y_train = best.y_train
-        self.y_test = best.y_test
-        self.model = best.model
-        self.cv = best.cv
 
 if __name__=='__main__':
-    db = mongo.DB()
-    dataset = db.import_tagged_by_author_gender_political_tweets_mongodb(limit=1000)
-    target = 'author_gender'
-    model = LogisticRegression()
-    extractor = feature_extraction.BinaryBOWGender(keep_words_rank=50, remove_stopwords=True)
-    params = {'C': [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000]}
-    score = 'roc_auc'
-    det = detection.Detector(model, extractor, dataset, target, params, score)
+    print('hey!')
+
+def run_experiment(model, ext, tweets_df, label, folds):
     
-    mc = MacroDetector([det], 'roc_auc')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
