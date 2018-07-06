@@ -8,9 +8,9 @@ class Embeddings():
         self.path_emb = 'vectors_'+str(n)+'.txt'
 
     def get_embeddings(self, words=None, norm=False):
-        all = (words is None or words==[])
+        all_emb = (words is None or words==[])
         with open(self.path_emb, 'r') as f:
-            embs = [v.split() for v in f if all or v.split()[0] in words]
+            embs = [v.split() for v in f if all_emb or v.split()[0] in words]
         if norm:
             return {v[0]:self._normalize([float(x) for x in v[1:]]) for v in embs}
         return {v[0]:[float(x) for x in v[1:]] for v in embs}

@@ -1,8 +1,7 @@
 import pymongo
 import pandas as pd
-from time import time
-from gender import assign_gender
-from sexism import tagging
+from common import assign_gender
+from data2 import tagging
 
 class DB():
     
@@ -67,7 +66,7 @@ class DB():
         print('Imported', len(df), coll)
         return df
 
-    def _import_query(self, coll, query, limit):
+    def _import_query(self, coll, limit):
         filters = []
         
         return self.import_mongodb(coll, filters, limit)
@@ -86,7 +85,7 @@ class DB():
             filters.append({'week':{'$in':weeks}})
         return self.import_mongodb('tweets', {'$and':filters}, limit)
     
-    def import_tagged_by_author_gender_tweets_mongodb(self, weeks=None, limit=0):
+    def import_tagged_by_author_gender_tweets_mongodb(self, limit=0):
         return self.import_tagged_by_gender_tweets_mongodb('author_gender', limit=limit)
     
     def import_tagged_by_opposing_receiver_gender_tweets_mongodb(self, limit=0):
@@ -100,13 +99,13 @@ class DB():
         return self.import_tagged_by_gender_tweets_mongodb('author_gender', msg_type='reply', weeks=weeks, limit=limit)
         #return self.import_mongodb('tweets', {'$and':[{'msg':'reply'},{'author_gender':{'$in':[1,-1]}}]}, limit)
 
-    def import_tagged_by_receiver_gender_tweets_mongodb(self, weeks=None, limit=0):
+    def import_tagged_by_receiver_gender_tweets_mongodb(self, limit=0):
         return self.import_tagged_by_gender_tweets_mongodb('receiver_gender', limit=limit)
 
-    def import_tagged_by_hostile_tweets_mongodb(self, weeks=None, limit=0):
+    def import_tagged_by_hostile_tweets_mongodb(self, limit=0):
         return self.import_mongodb('tweets', {'is_hostile': {'$in': [1,-1]}}, limit)
 
-    def import_tagged_by_sexist_tweets_mongodb(self, weeks=None, limit=0):
+    def import_tagged_by_sexist_tweets_mongodb(self, limit=0):
         return self.import_mongodb('tweets', {'is_sexist': {'$in': [1,-1]}}, limit)
 
     def sample_tweets_mongodb(self, agg_clause):
@@ -121,9 +120,10 @@ class DB():
     
     
     def sample_untagged_by_humans_candidates_mongodb(self, tweet_type=['tweet','mention','reply'], limit=100):
+        # Unused
         return self.sample_tweets_mongodb([{'$match':{'author_gender':{'$in':[1,-1]}}},
                                       {'$match':{'msg':{'$in':tweet_type}, 'sexist_1':9, 'sexist_2':9, 'hostile_1':9, 'hostile_2':9}},
-                                      {'$sample':{'size':limit}}])  # TODO: add appearance of candidate words
+                                      {'$sample':{'size':limit}}])
     
     
     def query_id_by_name(self, name):
@@ -133,12 +133,12 @@ class DB():
         except IndexError:
             print('Error getting ID from', name)
     
-    def query_name_by_id(self, id):
-        cursor = self.db['users'].find({'id':id}).limit(1)
+    def query_name_by_id(self, ident):
+        cursor = self.db['users'].find({'id':ident}).limit(1)
         try:
             return cursor[0]['screen_name']
         except IndexError:
-            print('Error getting Screen Name from', id)
+            print('Error getting Screen Name from', ident)
 
     def update_tweets(self, tweets, fields):
         updates = 0
@@ -199,25 +199,4 @@ class DB():
         else:
             return False
 
-if __name__=='__main__':
-    t = time()
-    '''
-    tweets_df = text.create_dataset(generate_files('../dump',9,10))
-    tweets_df['author_gender'] = 0
-    tweets_df['receiver_gender'] = 0
-    users_df = text.create_dataset(generate_files('../dumpusers',9,10))
-    users_df['gender'] = 0
-    export_mongodb(tweets_df, users_df)
-    '''
-    print('Total time:', str(time()-t), 's')
-    
-    '''
-    tweets = import_tweets_mongodb(limit=1000)
-    for i in range(100):
-        print(tweets['full_text'][i])
-    
-    print()
-    users = import_users_mongodb(query={'screen_name': 'agarzon'}, limit=0)
-    for i in range(1):
-        print(users['name'][i])'''
     

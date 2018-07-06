@@ -1,5 +1,4 @@
 import pandas as pd
-from data import mongo
 from common import text
 import sys
 
@@ -64,13 +63,13 @@ else:
         # Add user data2 from csv
         path_users = 'dumpusers' + str(num) + code + '.csv'
         users = pd.read_csv(path_users, delimiter=';', dtype='str')
-        ids = [id for id,name in zip(users['id'], users['screen_name']) if name.lower() in accounts] # User IDs from Congreso
+        ids = [ident for ident,name in zip(users['id'], users['screen_name']) if name.lower() in accounts] # User IDs from Congreso
         print(ids[0:10], len(ids))
         df['aut'] = 1
         df['aut'][df['user_id'].isin(ids)] = 0
         accounts_to_auts = text.retrieve_accounts_to_autonomy({'diputados_autonomicos.csv':'twitter account'})
-        ids_to_auts = {id:aut for id,aut in zip(users['id'], users['autname'])}
-        df['autname'] = [ids_to_auts.get(id) if id in ids_to_auts else 'No' for id in df['user_id']]
+        ids_to_auts = {ident:aut for ident,aut in zip(users['id'], users['autname'])}
+        df['autname'] = [ids_to_auts.get(ident) if ident in ids_to_auts else 'No' for ident in df['user_id']]
         df['week'] = int(path_in[4:6])
     if add_msg_type:
         if path_in[-5]=='t':

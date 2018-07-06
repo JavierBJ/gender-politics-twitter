@@ -1,9 +1,11 @@
 import pandas as pd
 import twitter
-from common import metadata
 import pickle
+import configparser
 
-api = twitter.Api(access_token_key=metadata.access_token, access_token_secret=metadata.access_token_secret, consumer_key=metadata.consumer_key, consumer_secret=metadata.consumer_secret, sleep_on_rate_limit=True, tweet_mode='extended')
+config = configparser.ConfigParser()
+config.read('config.ini')
+api = twitter.Api(access_token_key=config.AccessToken, access_token_secret=config.AccessTokenSecret, consumer_key=config.ConsumerKey, consumer_secret=config.ConsumerSecret, sleep_on_rate_limit=True, tweet_mode='extended')
 
 path_csv = '../dump03mr.csv'
 path_dump = '../dump03mr.pkl'

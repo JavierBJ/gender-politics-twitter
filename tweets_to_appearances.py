@@ -1,5 +1,4 @@
-from data import mongo
-from common import text
+from common import text, mongo
 from collections import Counter
 
 db = mongo.DB()

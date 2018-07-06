@@ -1,8 +1,4 @@
-import os
-import sys
-from data import mongo
-from common import text, feature_extraction
-from sexism import detection
+from common import text, feature_extraction, mongo, detection
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier, VotingClassifier

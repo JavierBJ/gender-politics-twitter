@@ -1,7 +1,3 @@
-from data import mongo
-from common import text, feature_extraction
-from common import embeddings as emb
-
 with open('appearances.txt', 'r') as f:
     supports = dict()
     for line in f.readlines():

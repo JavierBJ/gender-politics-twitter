@@ -1,5 +1,3 @@
-import numpy as np
-import pandas as pd
 import pickle
 
 dump_name = 'dump04'

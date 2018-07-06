@@ -1,9 +1,10 @@
 from common import embeddings as emb
-from common import metadata
+import configparser
 
 def gendered_bias_neutral(source_males, source_females, target_neutral):
     gb = 0
-    embs = emb.get_embeddings(source_males+source_females+target_neutral)
+    embeds = emb.Embeddings()
+    embs = embeds.get_embeddings(source_males+source_females+target_neutral)
     for male, female in zip(source_males, source_females):
         for neutral in target_neutral:
             cos_male = emb.cosine(embs[male], embs[neutral])
@@ -16,21 +17,25 @@ def gendered_bias_neutral(source_males, source_females, target_neutral):
     gb /= (len(target_neutral)+len(source_males))
     return gb
 
+config = configparser.ConfigParser()
+config.read('words.ini')
+
 # Direct bias (gender-neutral alignment to gender-direction)
 embeds = emb.Embeddings(50)
-source_embs = embeds.get_embeddings(metadata.source_males+metadata.source_females)
+source_embs = embeds.get_embeddings(list(config['SOURCEMALES'].values())+list(config['SOURCEFEMALES'].values()))
 #target_embs = embeds.get_embeddings(metadata.target_qualif_neutral+metadata.target_gender_neutral+metadata.target_other_neutral)
-target_embs = embeds.get_embeddings(metadata.target_models)
+target_embs = embeds.get_embeddings(list(config['TARGETMODELS'].values()))
 gender_dir = emb.PrincipalComponentsAnalysis(source_embs.values()).principal_direction()
 db = 0
 print('Direct bias...')
 #for v in metadata.target_qualif_neutral+metadata.target_gender_neutral+metadata.target_other_neutral:
-for v in metadata.target_models:
+for v in config['SOURCEMALES'].values():
     cos = emb.cosine(gender_dir, target_embs[v])
     db += cos
     print('\t', v, cos)
 db /= len(target_embs)
 print('Direct bias:', db, '\n')
+
 '''
 # Gendered bias with gender-neutral qualificative words
 print('Gendered bias on gender-neutral qualificative words...')

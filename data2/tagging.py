@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from data import mongo
+from common import mongo
 import random
 import os
 

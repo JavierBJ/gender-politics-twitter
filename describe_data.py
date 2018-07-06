@@ -1,4 +1,4 @@
-from data import descriptive
+from data2 import descriptive
 
 desc = descriptive.DBDescriptor()
 

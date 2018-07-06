@@ -1,4 +1,4 @@
-from sexism import tagging
+from data2 import tagging
 
 
 n_tweets = 4000

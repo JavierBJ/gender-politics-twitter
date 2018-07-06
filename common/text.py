@@ -1,9 +1,7 @@
-from common import metadata
 import pyfreeling as freeling
 import pandas as pd
 from random import shuffle as shf
-from data import mongo
-from collections import Counter
+import configparser
 
 def retrieve_accounts(dict_files, low=False):
     accounts = pd.Series()
@@ -75,22 +73,24 @@ def create_dataset(from_file, limit=None, shuffle=False):
     return dataset
 
 def setup_freeling():
+    config = configparser.ConfigParser()
+    config.read('config.ini')
     freeling.util_init_locale('default')
-    tk = freeling.tokenizer(metadata.DATA + metadata.LANG + '/twitter/tokenizer.dat')
-    sp = freeling.splitter(metadata.DATA + metadata.LANG + '/splitter.dat')
-    umap = freeling.RE_map(metadata.DATA + metadata.LANG + '/twitter/usermap.dat')
+    tk = freeling.tokenizer(config.FreeLingData + config.FreeLingLang + '/twitter/tokenizer.dat')
+    sp = freeling.splitter(config.FreeLingData + config.FreeLingLang + '/splitter.dat')
+    umap = freeling.RE_map(config.FreeLingData + config.FreeLingLang + '/twitter/usermap.dat')
     
     # maco options to be activated and their data2 files
     op= freeling.maco_options("es");
     op.set_data_files("", 
-            metadata.DATA + "common/punct.dat",
-            metadata.DATA + metadata.LANG + "/dicc.src",
-            metadata.DATA + metadata.LANG + "/afixos.dat",
+            config.FreeLingData + "common/punct.dat",
+            config.FreeLingData + config.FreeLingLang + "/dicc.src",
+            config.FreeLingData + config.FreeLingLang + "/afixos.dat",
             "",
-            metadata.DATA + metadata.LANG + "/locucions.dat", 
-            metadata.DATA + metadata.LANG + "/np.dat",
-            metadata.DATA + metadata.LANG + "/quantities.dat",
-            metadata.DATA + metadata.LANG + "/probabilitats.dat");
+            config.FreeLingData + config.FreeLingLang + "/locucions.dat", 
+            config.FreeLingData + config.FreeLingLang + "/np.dat",
+            config.FreeLingData + config.FreeLingLang + "/quantities.dat",
+            config.FreeLingData + config.FreeLingLang + "/probabilitats.dat");
             
     mf=freeling.maco(op);
     mf.set_active_options(False, True, True, True, # User_Map is already done before maco
@@ -102,7 +102,7 @@ def preprocess(df, filter_lang=None):
     print('Preprocessing tweets...')
     if filter_lang is not None:
         ids = identify_language(df)
-        out = [id in filter_lang for id in ids]
+        out = [ident in filter_lang for ident in ids]
         df = df.drop(df[out].index)
         df = df.reset_index(drop=True) # TODO: make some column a real index with set_index() to avoid this problem
         print('\tFiltered out', str(len([o for o in out if o])), 'tweets due to language.')
@@ -139,21 +139,14 @@ def tokenize(df):
     return ' '.join(all_tokens)	# String of whitespace-separated tokens
 
 def identify_language(df):
+    config = configparser.ConfigParser()
+    config.read('config.ini')
     freeling.util_init_locale('default')
-    ident = freeling.lang_ident(metadata.DATA +  "common/lang_ident/ident.dat")
+    ident = freeling.lang_ident(config.FreeLingData + "common/lang_ident/ident.dat")
     
     identifications = []
     for _,row in df.iterrows():
         raw_text = str(row['full_text'])
         identifications.append(ident.identify_language(raw_text))
     return identifications
-
-if __name__ == '__main__':
-    df = db.import_tweets_mongodb(limit=1000)
-    df = preprocess(df)
-    for i in range(10):
-        print([[x.get_form() for x in y.get_words()] for y in df['full_text'][i]])
-        print([[x.get_lemma() for x in y.get_words()] for y in df['full_text'][i]])
-        print([[x.get_tag() for x in y.get_words()] for y in df['full_text'][i]])
-        print()
 

@@ -1,5 +1,4 @@
 import got3 as got
-import pandas as pd
 from common import text
 import pickle
 

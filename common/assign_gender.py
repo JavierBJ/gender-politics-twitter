@@ -4,7 +4,7 @@ import json
 import requests
 from urllib.request import urlopen
 from urllib.parse import quote
-from common import metadata
+import configparser
 
 r_genders_path = '../r-genders.csv'
 paths_to_names = {'diputados_autonomicos.csv':'diputado', 'diputados_congreso.csv':'nombre'}
@@ -78,15 +78,19 @@ def tag_gender_from_gender_api(users, thr):
     return users
 
 def _check_limit_gender_api():
-    url = 'https://gender-api.com/get-stats?&key=' + metadata.gender_key
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    url = 'https://gender-api.com/get-stats?&key=' + config.GenderKey
     response = urlopen(url)
     decoded = response.read().decode('utf-8')
     data = json.loads(decoded)
     return not bool(data['is_limit_reached'])
 
 def _query_gender_api(user):
+    config = configparser.ConfigParser()
+    config.read('config.ini')
     user = quote(str(user.split(' ')[0]))
-    url = 'https://gender-api.com/get?key=' + metadata.gender_key + '&name=' + user + '&country=ES'
+    url = 'https://gender-api.com/get?key=' + config.GenderKey + '&name=' + user + '&country=ES'
     response = urlopen(url)
     decoded = response.read().decode('utf-8')
     return json.loads(decoded)
@@ -127,7 +131,7 @@ def _query_genderize_api(names):
             url = url + "&name[" + str(cnt) + "]=" + str(name)
         
     req = requests.get("https://api.genderize.io?" + url)
-    dec = req.read().decode('utf-8')
+    req.read().decode('utf-8')
     results = json.loads(req.text)
     
     retrn = []
@@ -182,12 +186,3 @@ def tokenize_names(names):
         tokens = mf.analyze(tokens)
         ls_tokens.append(tokens)
 
-if __name__=='__main__':
-    import time
-    users = db.import_users_mongodb()
-    users = tag_gender_from_r(users, r_genders_path, 0.4)
-    users = tag_gender_from_gender_api(users, 0.4)
-    #users = tag_gender_from_genderize_api(users, 0.4)
-    t1 = time.time()
-    db.export_mongodb(None, users)
-    print(time.time()-t1)

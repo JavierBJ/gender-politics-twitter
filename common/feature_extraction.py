@@ -1,7 +1,4 @@
-import pandas as pd
 import numpy as np
-from data import mongo
-from common import text, metadata
 from collections import Counter
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -175,7 +172,7 @@ class FeatureExtractorPOS(FeatureExtractorBOW):
         
     def extract(self, source):
         tags = set()
-        for tweet in source[field]:
+        for tweet in source[self.field]:
             for sent in tweet:
                 for word in sent:
                     tags.update(self.access_fn(word))

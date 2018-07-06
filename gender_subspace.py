@@ -1,14 +1,17 @@
 import numpy as np
 from common import embeddings
-from common import metadata
+import configparser
 
 N_REPS = 1
 emb_size = 300
 vms = []
 vfs = []
 diffs = []
-males = metadata.source_males
-females = metadata.source_females
+
+config = configparser.ConfigParser()
+config.read('words.ini')
+males = list(config['SOURCEMALES'].values())
+females = list(config['SOURCEFEMALES'].values())
 
 
 emb = embeddings.Embeddings(emb_size)

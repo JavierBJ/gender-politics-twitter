@@ -7,8 +7,6 @@ from sklearn.svm import SVC
 from sklearn.naive_bayes import BernoulliNB
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import confusion_matrix
-import pandas as pd
 
 class Detector():
     def __init__(self, model, extractor, X, target, params, score, folds):
@@ -139,46 +137,4 @@ def detect(dv='hostility', alg='lasso', prep='lemma', how='tfidf', dbname='gende
                 det = Detector(model, ext, tweets_df, label, None, None, kfolds)
                 res = det.compute()
     return 0
-
-
-if __name__=='__main__':
-    print('hey!')
-
-def run_experiment(model, ext, tweets_df, label, folds):
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

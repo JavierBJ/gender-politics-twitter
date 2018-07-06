@@ -1,10 +1,9 @@
 import twitter
-import pandas as pd
 import pickle
 import time
 from datetime import datetime
-from common import metadata, text
-
+from common import text
+import configparser
 
 # Set these variables to the desired values before execution
 num_file = 20
@@ -46,7 +45,9 @@ t1 = time.time()
 accounts = text.retrieve_accounts(paths_to_accounts)
 print('Total accounts:', len(accounts))
 
-api = twitter.Api(access_token_key=metadata.access_token, access_token_secret=metadata.access_token_secret, consumer_key=metadata.consumer_key, consumer_secret=metadata.consumer_secret, sleep_on_rate_limit=True, tweet_mode='extended')
+config = configparser.ConfigParser()
+config.read('config.ini')
+api = twitter.Api(access_token_key=config.AccessToken, access_token_secret=config.AccessTokenSecret, consumer_key=config.ConsumerKey, consumer_secret=config.ConsumerSecret, sleep_on_rate_limit=True, tweet_mode='extended')
 
 tweets_by_id = {}
 mentions_by_id = {}

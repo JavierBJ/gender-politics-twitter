@@ -1,5 +1,4 @@
-from data import mongo
-from common import text, feature_extraction
+from common import feature_extraction
 import numpy as np
 from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression

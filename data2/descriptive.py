@@ -1,11 +1,8 @@
-import pandas as pd
 import numpy as np
-from common import text
-from data import mongo
+from common import mongo
 from collections import Counter
-#import matplotlib.pyplot as plt
 
-def word_frequency_distribution(tweets, plot=False):
+def word_frequency_distribution(tweets):
     form_counts = Counter()
     lemma_counts = Counter()
     
@@ -22,17 +19,6 @@ def word_frequency_distribution(tweets, plot=False):
     print('10 Most Common Words:')
     for i in range(10):
         print('\t',lemma_distribution[i][0], '-', lemma_distribution[i][1])
-    
-    if plot:
-        x = range(len(form_distribution))
-        plt.plot(x, [y for _,y in form_distribution])
-        plt.xticks(x, [t for t,_ in form_distribution], rotation=45)
-        plt.show()
-        
-        x = range(len(lemma_distribution))
-        plt.plot(x, [y for _,y in lemma_distribution])
-        plt.xticks(x, [t for t,_ in lemma_distribution], rotation=45)
-        plt.show()
     
     return form_distribution, lemma_distribution
 
@@ -85,8 +71,6 @@ class DBDescriptor():
         return m,f
 
     def replies_per_genders(self):
-        import numpy as np
-
         author_gender = [1, -1, 0]
         receiver_gender = [1, -1, 0]
         results = np.zeros((len(author_gender),len(receiver_gender)))
@@ -123,8 +107,3 @@ class DBDescriptor():
             results[(f_gen, t_gen)] = len(self.db_replies[(self.db_replies['author_gender']==f_gen) & (self.db_replies['receiver_gender']==t_gen)])
         return results
 
-if __name__=='__main__':
-    tweets = db.import_mongodb('tweets', limit=1000)
-    tweets = text.preprocess(tweets)
-    
-    word_frequency_distribution(tweets.full_text, plot=True)

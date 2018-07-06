@@ -1,5 +1,4 @@
-from common import text
-from data import mongo
+from common import text, mongo
 
 db = mongo.DB()
 tweets = db.import_tweets_mongodb()

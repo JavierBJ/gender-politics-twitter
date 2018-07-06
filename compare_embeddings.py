@@ -18,7 +18,8 @@ for w in source+occupation+target:
             print(v, '-', w, d) '''
 
 # Group-wise
-embs = emb.get_embeddings(source + occupation + target)
+embeds= emb.Embeddings()
+embs = embeds.get_embeddings(source + occupation + target)
 for s in source:
     for o in occupation:
         print(s, '-', o, emb.cosine(embs[s], embs[o]))

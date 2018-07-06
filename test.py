@@ -1,4 +1,4 @@
-from data import mongo
+from common import mongo
 
 db = mongo.DB('tiny')
 data = db.import_mongodb('tweets', limit=1)

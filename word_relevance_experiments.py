@@ -1,5 +1,4 @@
 import os
-import sys
 from common import text, feature_extraction, mongo, predict_gender
 
 # Parameters
