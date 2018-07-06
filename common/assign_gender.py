@@ -80,7 +80,7 @@ def tag_gender_from_gender_api(users, thr):
 def _check_limit_gender_api():
     config = configparser.ConfigParser()
     config.read('config.ini')
-    url = 'https://gender-api.com/get-stats?&key=' + config.GenderKey
+    url = 'https://gender-api.com/get-stats?&key=' + config['GENDER']['Key']
     response = urlopen(url)
     decoded = response.read().decode('utf-8')
     data = json.loads(decoded)
@@ -90,7 +90,7 @@ def _query_gender_api(user):
     config = configparser.ConfigParser()
     config.read('config.ini')
     user = quote(str(user.split(' ')[0]))
-    url = 'https://gender-api.com/get?key=' + config.GenderKey + '&name=' + user + '&country=ES'
+    url = 'https://gender-api.com/get?key=' + config['GENDER']['Key'] + '&name=' + user + '&country=ES'
     response = urlopen(url)
     decoded = response.read().decode('utf-8')
     return json.loads(decoded)

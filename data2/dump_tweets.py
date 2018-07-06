@@ -47,7 +47,7 @@ print('Total accounts:', len(accounts))
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-api = twitter.Api(access_token_key=config.AccessToken, access_token_secret=config.AccessTokenSecret, consumer_key=config.ConsumerKey, consumer_secret=config.ConsumerSecret, sleep_on_rate_limit=True, tweet_mode='extended')
+api = twitter.Api(access_token_key=config['TWITTER']['AccessToken'], access_token_secret=config['TWITTER']['AccessTokenSecret'], consumer_key=config['TWITTER']['ConsumerKey'], consumer_secret=config['TWITTER']['ConsumerSecret'], sleep_on_rate_limit=True, tweet_mode='extended')
 
 tweets_by_id = {}
 mentions_by_id = {}

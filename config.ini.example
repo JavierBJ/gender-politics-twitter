@@ -1,13 +1,12 @@
-[DEFAULT]
-; Twitter API keys
+[TWITTER]
 AccessToken = dummy
 AccessTokenSecret = dummy
 ConsumerKey = dummy
 ConsumerSecret = dummy
 
-; Gender API keys
-GenderKey = dummy
+[GENDERAPI]
+Key = dummy
 
-; FreeLing config
-FreeLingData = /usr/share/freeling/
-FreeLingLang = es
+[FREELING]
+Data = /usr/share/freeling/
+Lang = es

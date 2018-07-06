@@ -76,21 +76,21 @@ def setup_freeling():
     config = configparser.ConfigParser()
     config.read('config.ini')
     freeling.util_init_locale('default')
-    tk = freeling.tokenizer(config.FreeLingData + config.FreeLingLang + '/twitter/tokenizer.dat')
-    sp = freeling.splitter(config.FreeLingData + config.FreeLingLang + '/splitter.dat')
-    umap = freeling.RE_map(config.FreeLingData + config.FreeLingLang + '/twitter/usermap.dat')
+    tk = freeling.tokenizer(config['FREELING']['Data'] + config['FREELING']['Lang'] + '/twitter/tokenizer.dat')
+    sp = freeling.splitter(config['FREELING']['Data'] + config['FREELING']['Lang'] + '/splitter.dat')
+    umap = freeling.RE_map(config['FREELING']['Data'] + config['FREELING']['Lang'] + '/twitter/usermap.dat')
     
     # maco options to be activated and their data2 files
     op= freeling.maco_options("es");
     op.set_data_files("", 
-            config.FreeLingData + "common/punct.dat",
-            config.FreeLingData + config.FreeLingLang + "/dicc.src",
-            config.FreeLingData + config.FreeLingLang + "/afixos.dat",
+            config['FREELING']['Data'] + "common/punct.dat",
+            config['FREELING']['Data'] + config['FREELING']['Lang'] + "/dicc.src",
+            config['FREELING']['Data'] + config['FREELING']['Lang'] + "/afixos.dat",
             "",
-            config.FreeLingData + config.FreeLingLang + "/locucions.dat", 
-            config.FreeLingData + config.FreeLingLang + "/np.dat",
-            config.FreeLingData + config.FreeLingLang + "/quantities.dat",
-            config.FreeLingData + config.FreeLingLang + "/probabilitats.dat");
+            config['FREELING']['Data'] + config['FREELING']['Lang'] + "/locucions.dat", 
+            config['FREELING']['Data'] + config['FREELING']['Lang'] + "/np.dat",
+            config['FREELING']['Data'] + config['FREELING']['Lang'] + "/quantities.dat",
+            config['FREELING']['Data'] + config['FREELING']['Lang'] + "/probabilitats.dat");
             
     mf=freeling.maco(op);
     mf.set_active_options(False, True, True, True, # User_Map is already done before maco
@@ -142,7 +142,7 @@ def identify_language(df):
     config = configparser.ConfigParser()
     config.read('config.ini')
     freeling.util_init_locale('default')
-    ident = freeling.lang_ident(config.FreeLingData + "common/lang_ident/ident.dat")
+    ident = freeling.lang_ident(config['FREELING']['Data'] + "common/lang_ident/ident.dat")
     
     identifications = []
     for _,row in df.iterrows():
