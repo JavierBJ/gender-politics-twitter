@@ -4,6 +4,7 @@ dump*.csv
 sample*.csv
 tweets.txt
 vectors_*.txt
+config.ini
 .RData
 .Rhistory
 .project
