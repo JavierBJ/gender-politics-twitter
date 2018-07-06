@@ -1,10 +1,10 @@
 import argparse
-from common import detection
+from common import models
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description='run experiments of detection of tweets.')
     parser.add_argument('dv', choices=['hostility', 'sexism', 'gender'], help='dependent variable, outcome to be predicted')
-    parser.add_argument('alg', choices=['lasso','l1','ridge','l2','svm','nb','mlp','rf'], help='learning algorithm sklearn compatible')
+    parser.add_argument('alg', choices=['lasso','l1','ridge','l2','svm','nb','mlp','rf'], help='learning algorithm')
     parser.add_argument('prep', choices=['lemma', 'form'], help='type of preprocessing of the text')
     parser.add_argument('how', choices=['binary', 'counts', 'tfidf'], help='how to count the features')
     parser.add_argument('-d', '--dbname', default='gender', help='name of the mongodb collection where the data is')
@@ -45,6 +45,7 @@ if __name__=='__main__':
     print('maxfeatures:', args.maxfeatures)
     print('minsamplesleaf:', args.minsamplesleaf)
 
-    detection.detect(args.dv, args.alg, args.prep, args.how, args.dbname, args.limit, args.kfolds, args.stopwords, args.keepwordsfreq, args.keepwordsrank, args.bagofwords, args.bagofchars, args.alpha, args.hidden, args.learningrate, args.maxfeatures, args.minsamplesleaf)
+    #detection.detect(args.dv, args.alg, args.prep, args.how, args.dbname, args.limit, args.kfolds, args.stopwords, args.keepwordsfreq, args.keepwordsrank, args.bagofwords, args.bagofchars, args.alpha, args.hidden, args.learningrate, args.maxfeatures, args.minsamplesleaf)
+    models.detect(args.dv, args.alg, args.prep, args.how, args.dbname, args.limit, args.kfolds, args.stopwords, args.keepwordsfreq, args.keepwordsrank, args.bagofwords, args.bagofchars, args.alpha, args.hidden, args.learningrate, args.maxfeatures, args.minsamplesleaf)
     # TODO: get appropriate output
     
