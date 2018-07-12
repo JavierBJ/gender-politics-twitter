@@ -2,6 +2,7 @@ import numpy as np
 from collections import Counter
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfTransformer
+from scipy.sparse import coo_matrix
 
 class FeatureExtractor():
     def __init__(self, extractors):
@@ -104,6 +105,20 @@ class FeatureExtractorBOW(FeatureExtractor):
             return len(w)<3
 
     def _vectorize(self, tweets):
+        row = []
+        col = []
+        data = []
+        for (r, tweet) in enumerate(tweets[self.field]):
+            for sent in tweet:
+                for i in range(len(sent)-self.n+1):
+                    g = tuple([self.access_fn(sent[i]) for i in range(i, i+self.n)])
+                    if g in self.features:
+                        c = self.features[g]
+                        row.append(r)
+                        col.append(c)
+                        data.append(1)
+        sp = coo_matrix((data, (row,col)), shape=(len(tweets[self.field]), len(self.features)))
+        return sp.tocsr()
         if self.features is not None:
             encodings = []
             for tweet in tweets[self.field]:
@@ -120,7 +135,7 @@ class FeatureExtractorBOW(FeatureExtractor):
         return encodings
 
     def encode(self, tweets):
-        return np.array(self._vectorize(tweets))
+        return self._vectorize(tweets)
 
 class BinaryBOW(FeatureExtractorBOW):
     def __init__(self, n, access_fn, access_word = lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
@@ -312,6 +327,20 @@ class FeatureExtractorChars(FeatureExtractorBOW):
         return grams
     
     def _vectorize(self, tweets):
+        row = []
+        col = []
+        data = []
+        for (r, tweet) in enumerate(tweets[self.field]):
+            tweet_text = ' '.join([self.access_fn(token) for sent in tweet for token in sent])
+            for i in range(len(tweet_text)-self.n+1):
+                g = tuple([tweet_text[i] for i in range(i, i+self.n)])
+                if g in self.features:
+                    c = self.features[g]
+                    row.append(r)
+                    col.append(c)
+                    data.append(1)
+        sp = coo_matrix((data, (row, col)), shape=(len(tweets[self.field]), len(self.features)))
+        return sp.tocsr()
         if self.features is not None:
             encodings = []
             for tweet in tweets[self.field]:

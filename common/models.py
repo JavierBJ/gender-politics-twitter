@@ -43,7 +43,7 @@ class LanguageClassifier():
     
     def compute(self):
         kf = KFold(n_splits=self.folds)
-        self.results = np.array((self.X.shape[1],))
+        self.results = np.array((self.X.get_shape()[1],))
         tr_f1, tr_prec, tr_recall, tr_auc, val_f1, val_prec, val_recall, val_auc = 0, 0, 0, 0, 0, 0, 0, 0
         for train_idx, val_idx in kf.split(self.X):
             model = self.model.fit(self.X[train_idx], self.y[train_idx])
