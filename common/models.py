@@ -175,7 +175,7 @@ def analyze(who='author', alg='lasso', score='val_auc', dbname='gender', limit=0
 
 def detect(dv='hostility', alg='lasso', prep='lemma', how='tfidf', dbname='gender', limit=0, kfolds=10, sw=True, kwf=None, kwr=5000, w=1, c=0, alpha=1, hidden=500, learningrate=0.0001, maxfeatures=1.0, minsamplesleaf=1):
     db = mongo.DB(dbname)
-    tweets_df = db.import_tagged_by_hostile_tweets_mongodb(weeks=None, limit=limit)
+    tweets_df = db.import_tagged_by_hostile_tweets_mongodb(limit=limit)
     tweets_df = text.preprocess(tweets_df)
     
     if dv=='hostility':
