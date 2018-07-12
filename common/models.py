@@ -24,14 +24,22 @@ class LanguageClassifier():
         self.folds = folds
     
     def _feature_extraction(self, X_train, X_test, y_train, y_test, extractor):
+        print('Extracting features...')
         self.extractor = extractor.extract(X_train)
+        print('Extracted train features')
         self.X = extractor.encode(X_train)
+        print('Encoded train data as features')
         self.y = y_train
         self.text_test = X_test['full_text'].tolist()
+        print('Passed test data to text for analysis purposes')
         self.author_genders = X_test['author_gender'].tolist()
+        print('Passed author genders to text for analysis purposes')
         self.receiver_genders = X_test['receiver_gender'].tolist()
+        print('Passed receiver genders to text for analysis purposes')
         self.X_test = extractor.encode(X_test)
+        print('Encoded train data as features')
         self.y_test = y_test
+        print('\tFeatures extracted.')
     
     def compute(self):
         kf = KFold(n_splits=self.folds)
@@ -106,13 +114,15 @@ def analyze(who='author', alg='lasso', score='val_auc', dbname='gender', limit=0
     path = 'results/analysis/'
     expname = who+'_'+alg
     if kwf is not None:
-        expname += '_freq' + kwf
+        expname += '_freq' + str(kwf)
     if kwr is not None:
-        expname += '_rank' + kwr
+        expname += '_rank' + str(kwr)
     if sw:
         expname += '_sw'
-        path += expname
-    log = expname + '/log.txt'
+    path += expname
+    if not os.path.exists(path):
+        os.makedirs(path)
+    log = open(path + '/log.txt', 'w')
     
     # Translates short names of scores into long names understood by the model
     if score not in score_names.values():
@@ -143,25 +153,25 @@ def analyze(who='author', alg='lasso', score='val_auc', dbname='gender', limit=0
         res = analyzer.compute()
         os.makedirs(path, exist_ok=True)
         print('Experiment', expname, ', case', a, '...', file=log)
-        res.show(top=100, to=open(path+'/'+'a'+str(a).replace('.','_')+'.txt', 'w'))
+        analyzer.show(top=100, to=open(path+'/'+'a'+str(a).replace('.','_')+'.txt', 'w'))
         print('Train - Validation', file=log)
-        print('F1:', res.scores['Train_F1'], '-', res.scores['Validation_F1'], file=log)
-        print('Precision:', res.scores['Train_Precision'], '-', res.scores['Validation_Precision'], file=log)
-        print('Recall:', res.scores['Train_Recall'], '-', res.scores['Validation_Recall'], file=log)
-        print('AUC:', res.scores['Train_AUC'], '-', res.scores['Validation_AUC'], file=log)
+        print('F1:', res['Train_F1'], '-', res['Validation_F1'], file=log)
+        print('Precision:', res['Train_Precision'], '-', res['Validation_Precision'], file=log)
+        print('Recall:', res['Train_Recall'], '-', res['Validation_Recall'], file=log)
+        print('AUC:', res['Train_AUC'], '-', res['Validation_AUC'], file=log)
         print('', file=log)
         
-        if res.scores[res.score]>best:
-            best = res.scores[res.score]
-            best_res = res
+        if res[analyzer.score]>best:
+            best = res[analyzer.score]
+            best_analyzer = analyzer
             best_a = a
             
     print('Best experiment: Alpha =', best_a, file=log)
     print('Test scores', file=log)
-    print('F1:', best_res.scores['Test_F1'], file=log)
-    print('Precision:', best_res.scores['Test_Precision'], file=log)
-    print('Recall:', best_res.scores['Test_Recall'], file=log)
-    print('AUC:', best_res.scores['Test_AUC'], file=log)
+    print('F1:', best_analyzer.scores['Test_F1'], file=log)
+    print('Precision:', best_analyzer.scores['Test_Precision'], file=log)
+    print('Recall:', best_analyzer.scores['Test_Recall'], file=log)
+    print('AUC:', best_analyzer.scores['Test_AUC'], file=log)
 
 def detect(dv='hostility', alg='lasso', prep='lemma', how='tfidf', dbname='gender', limit=0, kfolds=10, sw=True, kwf=None, kwr=5000, w=1, c=0, alpha=1, hidden=500, learningrate=0.0001, maxfeatures=1.0, minsamplesleaf=1):
     db = mongo.DB(dbname)
