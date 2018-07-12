@@ -116,8 +116,12 @@ class FeatureExtractorBOW(FeatureExtractor):
                         c = self.features[g]
                         row.append(r)
                         col.append(c)
-                        data.append(1)
+                        data.append(self.inc)
         sp = coo_matrix((data, (row,col)), shape=(len(tweets[self.field]), len(self.features)))
+        sp.sum_duplicates()
+        # Cut off to the maximum number of counts declared
+        for i in range(sp.data.shape[0]):
+            sp.data[i] = min(sp.data[i], self.top)
         return sp.tocsr()
         if self.features is not None:
             encodings = []
