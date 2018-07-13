@@ -49,8 +49,8 @@ class FeatureExtractorBOW(FeatureExtractor):
     def extract(self, source):
         # Filter out unnecessary tokens from tokenized tweets
         tweets_filtered = []
-        for tweet in source[self.field]:
-            tweets_filtered.append([token for sent in tweet for token in sent if not (self._is_sw(self.access_word(self.access_fn(token))) 
+        for tweet in source:
+            tweets_filtered.append([token for token in tweet if not (self._is_sw(self.access_word(self.access_fn(token))) 
                                                     or self._is_punct(self.access_word(self.access_fn(token))) 
                                                     or self._is_short(self.access_word(self.access_fn(token))))])
         self.tweets_filtered = tweets_filtered
@@ -108,35 +108,34 @@ class FeatureExtractorBOW(FeatureExtractor):
         row = []
         col = []
         data = []
-        for (r, tweet) in enumerate(tweets[self.field]):
-            for sent in tweet:
-                for i in range(len(sent)-self.n+1):
-                    g = tuple([self.access_fn(sent[i]) for i in range(i, i+self.n)])
-                    if g in self.features:
-                        c = self.features[g]
-                        row.append(r)
-                        col.append(c)
-                        data.append(self.inc)
-        sp = coo_matrix((data, (row,col)), shape=(len(tweets[self.field]), len(self.features)))
+        for (r, tweet) in enumerate(tweets):
+            for i in range(len(tweet)-self.n+1):
+                g = tuple([self.access_fn(tweet[i]) for i in range(i, i+self.n)])
+                if g in self.features:
+                    c = self.features[g]
+                    row.append(r)
+                    col.append(c)
+                    data.append(self.inc)
+        sp = coo_matrix((data, (row,col)), shape=(len(tweets), len(self.features)))
         sp.sum_duplicates()
         # Cut off to the maximum number of counts declared
         for i in range(sp.data.shape[0]):
             sp.data[i] = min(sp.data[i], self.top)
         return sp.tocsr()
-        if self.features is not None:
-            encodings = []
-            for tweet in tweets[self.field]:
-                encoding = np.zeros((len(self.features),))  # Prepare encoding vector
-                for sent in tweet:
-                    for i in range(len(sent)-self.n+1):
-                        g = tuple([self.access_fn(sent[i]) for i in range(i,i+self.n)])
-                        # Only increment counter if not already in the top
-                        if g in self.features and encoding[self.features[g]]<self.top:
-                            encoding[self.features[g]] += self.inc
-                encodings.append(encoding)
-        else:
-            raise AttributeError('Features not extracted. Use FeatureExtractor.extract(source) first')
-        return encodings
+        #if self.features is not None:
+        #    encodings = []
+        #    for tweet in tweets[self.field]:
+        #        encoding = np.zeros((len(self.features),))  # Prepare encoding vector
+        #        for sent in tweet:
+        #            for i in range(len(sent)-self.n+1):
+        #                g = tuple([self.access_fn(sent[i]) for i in range(i,i+self.n)])
+        #                # Only increment counter if not already in the top
+        #                if g in self.features and encoding[self.features[g]]<self.top:
+        #                    encoding[self.features[g]] += self.inc
+        #        encodings.append(encoding)
+        #else:
+        #    raise AttributeError('Features not extracted. Use FeatureExtractor.extract(source) first')
+        #return encodings
 
     def encode(self, tweets):
         return self._vectorize(tweets)
@@ -159,7 +158,7 @@ class TfIdfBOW(CountsBOW):
 
 class FeatureExtractorBOWGender(FeatureExtractorBOW):
     def __init__(self, n, inc, top, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
-        super().__init__(n, inc, top, lambda x: self._tag_by_gender(x.get_lemma(), x.get_tag()), lambda x: x[0], keep_words_freq, keep_words_rank, remove_stopwords, field)
+        super().__init__(n, inc, top, lambda x: self._tag_by_gender(x[1], x[2]), lambda x: x[0], keep_words_freq, keep_words_rank, remove_stopwords, field)
 
     def _tag_by_gender(self, lemma, tag):
         if tag[0] in 'ADP':
@@ -187,13 +186,12 @@ class TfIdfBOWGender(CountsBOWGender):
 
 class FeatureExtractorPOS(FeatureExtractorBOW):
     def __init__(self, inc, top, field='full_text'):
-        super().__init__(inc, top, lambda x: self._analyze_tag(x.get_tag()), field)
+        super().__init__(inc, top, lambda x: self._analyze_tag(x[2]), field)
         
     def extract(self, source):
         tags = set()
-        for tweet in source[self.field]:
-            for sent in tweet:
-                for word in sent:
+        for tweet in source:
+                for word in tweet:
                     tags.update(self.access_fn(word))
         
         self.features = {x:i for i,x in enumerate(tags)}
@@ -204,10 +202,9 @@ class FeatureExtractorPOS(FeatureExtractorBOW):
     def encode(self, tweets):
         if self.features is not None:
             encodings = []
-            for tweet in tweets[self.field]:
+            for tweet in tweets:
                 encoding = np.zeros((len(self.features),))  # Prepare encoding vector
-                for sent in tweet:
-                    for word in sent:
+                for word in tweet:
                         ws = self.access_fn(word)
                         for w in ws:
                             # Only increment counter if not already in the top
@@ -320,13 +317,13 @@ class CountsPOS(FeatureExtractorPOS):
         super().__init__(1,-1)
 
 class FeatureExtractorChars(FeatureExtractorBOW):
-    def __init__(self, n, inc, top, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+    def __init__(self, n, inc, top, access_fn=lambda x:x[0], access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, inc, top, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
     
     def _elaborate_ngrams(self):
         grams = Counter()
         for tweet in self.tweets_filtered:
-            tweet_text = ' '.join([self.access_fn(token) for token in tweet])   # Sentence separation ommited at text-line creation
+            tweet_text = ' '.join([self.access_fn(token) for token in tweet])
             grams.update({tuple([tweet_text[j] for j in range(i,i+self.n)]) for i in range(len(tweet_text)-self.n+1)})
         return grams
     
@@ -334,8 +331,8 @@ class FeatureExtractorChars(FeatureExtractorBOW):
         row = []
         col = []
         data = []
-        for (r, tweet) in enumerate(tweets[self.field]):
-            tweet_text = ' '.join([self.access_fn(token) for sent in tweet for token in sent])
+        for (r, tweet) in enumerate(tweets):
+            tweet_text = ' '.join([self.access_fn(token) for token in tweet])
             for i in range(len(tweet_text)-self.n+1):
                 g = tuple([tweet_text[i] for i in range(i, i+self.n)])
                 if g in self.features:
@@ -343,36 +340,36 @@ class FeatureExtractorChars(FeatureExtractorBOW):
                     row.append(r)
                     col.append(c)
                     data.append(1)
-        sp = coo_matrix((data, (row, col)), shape=(len(tweets[self.field]), len(self.features)))
+        sp = coo_matrix((data, (row, col)), shape=(len(tweets), len(self.features)))
         return sp.tocsr()
-        if self.features is not None:
-            encodings = []
-            for tweet in tweets[self.field]:
-                tweet_text = ' '.join([self.access_fn(token) for sent in tweet for token in sent])
-                encoding = np.zeros((len(self.features),))  # Prepare encoding vector
-                for i in range(len(tweet_text)-self.n+1):
-                    g = tuple([tweet_text[i] for i in range(i,i+self.n)])
-                    # Only increment counter if not already in the top
-                    if g in self.features and encoding[self.features[g]]<self.top:
-                        encoding[self.features[g]] += self.inc
-                encodings.append(encoding)
-        else:
-            raise AttributeError('Features not extracted. Use FeatureExtractor.extract(source) first')
+        #if self.features is not None:
+        #    encodings = []
+        #    for tweet in tweets[self.field]:
+        #        tweet_text = ' '.join([self.access_fn(token) for sent in tweet for token in sent])
+        #        encoding = np.zeros((len(self.features),))  # Prepare encoding vector
+        #        for i in range(len(tweet_text)-self.n+1):
+        #            g = tuple([tweet_text[i] for i in range(i,i+self.n)])
+        #            # Only increment counter if not already in the top
+        #            if g in self.features and encoding[self.features[g]]<self.top:
+        #                encoding[self.features[g]] += self.inc
+        #        encodings.append(encoding)
+        #else:
+        #    raise AttributeError('Features not extracted. Use FeatureExtractor.extract(source) first')
         return encodings
 
     def encode(self, tweets):
-        return np.array(self._vectorize(tweets))
+        return self._vectorize(tweets)
 
 class BinaryChars(FeatureExtractorChars):
-    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+    def __init__(self, n, access_fn=lambda x:x[0], access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, 1, 1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
         
 class CountsChars(FeatureExtractorChars):
-    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+    def __init__(self, n, access_fn=lambda x:x[0], access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, 1, -1, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
 
 class TfIdfChars(CountsChars):
-    def __init__(self, n, access_fn=lambda x:x.get_form(), access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
+    def __init__(self, n, access_fn=lambda x:x[0], access_word=lambda x:x, keep_words_freq=0, keep_words_rank=0, remove_stopwords=False, field='full_text'):
         super().__init__(n, access_fn, access_word, keep_words_freq, keep_words_rank, remove_stopwords, field)
 
     def encode(self, tweets):
@@ -397,10 +394,9 @@ class WordEmbedding(Embedding):
             encodings = []
             for tweet in tweets.full_text:
                 encoding = np.zeros((self.dim,))
-                for sent in tweet:
-                    for w in sent:
-                        if w in self.embeddings:    # Aggregate word embeddings over encoding vector
-                            encoding = map(self.agg_fn(encoding, self.embeddings[w])) 
+                for w in tweet:
+                    if w in self.embeddings:    # Aggregate word embeddings over encoding vector
+                        encoding = map(self.agg_fn(encoding, self.embeddings[w])) 
                 encodings.append(encoding)
         else:
             raise AttributeError('Embeddings not specified. Use Embedding.extract(pre_trained_emb) first')

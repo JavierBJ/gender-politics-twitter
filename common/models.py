@@ -16,7 +16,7 @@ score_names = {'tr_f1':'Train_F1', 'val_f1':'Validation_F1', 'te_f1':'Test_F1', 
 
 class LanguageClassifier():
     def __init__(self, model, extractor, X, target, score, folds):
-        y = np.array(X[target]).reshape((-1,))
+        y = np.array(target).reshape((-1,))
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
         self._feature_extraction(X_train, X_test, y_train, y_test, extractor)
         self.model = model
@@ -30,12 +30,6 @@ class LanguageClassifier():
         self.X = extractor.encode(X_train)
         print('Encoded train data as features')
         self.y = y_train
-        self.text_test = X_test['full_text'].tolist()
-        print('Passed test data to text for analysis purposes')
-        self.author_genders = X_test['author_gender'].tolist()
-        print('Passed author genders to text for analysis purposes')
-        self.receiver_genders = X_test['receiver_gender'].tolist()
-        print('Passed receiver genders to text for analysis purposes')
         self.X_test = extractor.encode(X_test)
         print('Encoded train data as features')
         self.y_test = y_test
@@ -131,14 +125,14 @@ def analyze(who='author', alg='lasso', score='val_auc', dbname='gender', limit=0
     db = mongo.DB(dbname)
     if who=='author':
         tweets_df = db.import_tagged_by_author_gender_political_tweets_mongodb(weeks=None, limit=limit)
-        tweets = text.preprocess(tweets_df)
-        labels = 'author_gender'
+        tweets = text.preprocess(tweets_df['full_text'])
+        labels = tweets_df['author_gender']
     elif who=='receiver':
         tweets_df = db.import_tagged_by_receiver_gender_tweets_mongodb(limit=limit)
-        tweets = text.preprocess(tweets_df)
-        labels = 'receiver_gender'
+        tweets = text.preprocess(tweets_df['full_text'])
+        labels = tweets_df['receiver_gender']
     
-    ext = feature_extraction.BinaryBOW(1, lambda x: x.get_lemma(), keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
+    ext = feature_extraction.BinaryBOW(1, lambda x:x[1], keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
     
     best = 0
     for a in alpha:
@@ -186,9 +180,9 @@ def detect(dv='hostility', alg='lasso', prep='lemma', how='tfidf', dbname='gende
         label = 'author_gender'
     
     if prep=='lemma':
-        f_prep = lambda x: x.get_lemma()
+        f_prep = lambda x:x[1]
     elif prep=='form':
-        f_prep = lambda x: x.get_form()
+        f_prep = lambda x:x[0]
     
     if w:
         if how=='binary':

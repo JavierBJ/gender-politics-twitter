@@ -98,33 +98,29 @@ def setup_freeling():
             True, True, True, True );
     return tk, sp, umap, mf
 
-def preprocess(df, filter_lang=None):
+def preprocess(tweets, filter_lang=None):
     print('Preprocessing tweets...')
-    if filter_lang is not None:
-        ids = identify_language(df)
-        out = [ident in filter_lang for ident in ids]
-        df = df.drop(df[out].index)
-        df = df.reset_index(drop=True) # TODO: make some column a real index with set_index() to avoid this problem
-        print('\tFiltered out', str(len([o for o in out if o])), 'tweets due to language.')
-    
+    #if filter_lang is not None:
+    #    ids = identify_language(df)
+    #    out = [ident in filter_lang for ident in ids]
+    #    df = df.drop(df[out].index)
+    #    df = df.reset_index(drop=True) # TODO: make some column a real index with set_index() to avoid this problem
+    #    print('\tFiltered out', str(len([o for o in out if o])), 'tweets due to language.')
+    maxlen=0
     ls_tokens = []
     tk, sp, umap, mf = setup_freeling()
-    for col in ['full_text', 'in_reply_to_text']:
-        for _,row in df.iterrows():
-            try:
-                raw_text = row[col]
-                #print(raw_text)
-                tokens = tk.tokenize(raw_text)
-                tokens = sp.split(tokens)
-                tokens = umap.analyze(tokens)
-                tokens = mf.analyze(tokens)
-                ls_tokens.append(tokens)
-            except Exception:
-                ls_tokens.append(tokens)
-        df = df.drop(col, axis=1)
-        df[col] = pd.Series(ls_tokens)
+    for tw in tweets:
+        #print(tw)
+        tokens = tk.tokenize(tw)
+        if len(tokens)>maxlen:
+            maxlen = len(tokens)
+        tokens = sp.split(tokens)
+        tokens = umap.analyze(tokens)
+        tokens = mf.analyze(tokens)
+        ls_tokens.append([(x.get_form(), x.get_lemma(), x.get_tag()) for sent in tokens for x in sent])
     print('\tTweets preprocessed.')
-    return df
+    print('\tMax length of a tweet:', maxlen)
+    return ls_tokens
 
 def tokenize(df):
     print('Tokenizing tweets...')
