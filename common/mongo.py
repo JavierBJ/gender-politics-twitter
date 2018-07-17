@@ -1,7 +1,7 @@
 import pymongo
 import pandas as pd
 from common import assign_gender
-from data2 import tagging
+from tweets import tagging
 
 class DB():
     
@@ -10,7 +10,7 @@ class DB():
         self.db = client[db_name]
 
     def export_mongodb(self, tweets, users, tags=True):
-        print('Exporting data2 to MongoDB...')
+        print('Exporting tweets to MongoDB...')
         if tweets is not None:
             if tags:
                 tweets = tagging.aggregate_tags(tweets, samples=None)
