@@ -27,11 +27,15 @@ if __name__=='__main__':
     # Create random subspaces and average them for comparability
     emb = embeddings.Embeddings(args.embsize)
     rnd_result = 0
+    rnd_avg = np.zeros((10,))
     for i in range(args.repetitions):
         rnd = emb.get_random_embeddings(len(males)).values()
         rnd_comp = embeddings.PrincipalComponentsAnalysis(rnd).principal_components()
-        rnd_result += rnd_comp[0][1] / rnd_comp[1][1]
+        rnd_comp = [x[1] for x in rnd_comp]
+        rnd_avg += rnd_comp
+        rnd_result += rnd_comp[0] / rnd_comp[1]
     rnd_result /= args.repetitions
+    rnd_avg /= args.repetitions
     
     # Create gender subspace
     embs = emb.get_embeddings(males+females)
@@ -40,10 +44,17 @@ if __name__=='__main__':
         vf = np.array(embs[f])
         diffs.append(np.abs(vm-vf))
     diffs_comp = embeddings.PrincipalComponentsAnalysis(diffs).principal_components()
-    diffs_result = diffs_comp[0][1] / diffs_comp[1][1]
+    diffs_comp = [x[1] for x in diffs_comp]
+    diffs_result = diffs_comp[0] / diffs_comp[1]
     
-    print('Random:', rnd_result)
-    print('Gender subspace:', diffs_result)
+    print('Random subspace averaged', args.repetitions, 'times:')
+    print(rnd_avg)
+    print('1st to 2nd component ratio:', rnd_result)
+    print()
+    print('Gender subspace:')
+    print(diffs_comp)
+    print('1st to 2nd component ratio:', diffs_result)
+    print()
     
     # Part 2: Direct Bias
     # ---- -- ------ ----
