@@ -1,4 +1,0 @@
-python3 word_relevance_experiments.py svm > out_relevance/out_receiver_svm_lemma_rank5000_sw.txt
-python3 word_relevance_experiments.py lasso > out_relevance/out_receiver_lasso_lemma_rank5000_sw.txt
-python3 word_relevance_experiments.py ridge > out_relevance/out_receiver_ridge_lemma_rank5000_sw.txt
-
