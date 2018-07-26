@@ -1,4 +1,4 @@
-from tweets import dump_tweets
+from tweets import dump_tweets, dump_to_csv
 import argparse
 
 if __name__=='__main__':
@@ -18,5 +18,5 @@ if __name__=='__main__':
     print('limit:', args.limit)
     print('since:', args.since)
     
-    dump_tweets.dump(args.notweets, args.nomentions, args.noreplies, args.numfile, args.limit, args.since)
-    
+    pkl_path = dump_tweets.dump(args.notweets, args.nomentions, args.noreplies, args.numfile, args.limit, args.since)
+    dump_to_csv.pkl_to_csv(pkl_path)

@@ -188,3 +188,4 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
     # Close files
     fwrite.close()
     flog.close()
+    return dump_file
