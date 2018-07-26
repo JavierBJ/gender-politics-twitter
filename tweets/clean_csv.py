@@ -8,7 +8,7 @@ ORDERED_COLS = ['id_str', 'in_reply_to_status_id', 'user_id', 'in_reply_to_user_
 def clean_users(csv_path):
     print('Cleaning users csv...')
     config = configparser.ConfigParser()
-    config.read('ini')
+    config.read('config.ini')
     df = pd.read_csv(csv_path, delimiter=';', dtype='str')
     accounts = text.retrieve_accounts({config['PATH']['PathCon']:config['PATH']['HandleCon'], 
                                        config['PATH']['PathAut']:config['PATH']['HandleAut']})
@@ -24,7 +24,7 @@ def clean_users(csv_path):
 def clean_tweets(csv_path, csv_path_users):
     print('Cleaning tweets csv...')
     config = configparser.ConfigParser()
-    config.read('ini')
+    config.read('config.ini')
     
     df = pd.read_csv(csv_path, delimiter=';', dtype='str')
     # Remove RTs
