@@ -10,3 +10,11 @@ Key = dummy
 [FREELING]
 Data = /usr/share/freeling/
 Lang = es
+
+[PATH]
+Pkl = data/pkl/
+Csv = data/csv/
+PathAut = data/diputados_autonomicos.csv
+PathCon = data/diputados_congreso.csv
+HandleAut = twitter account
+HandleCon = handle
