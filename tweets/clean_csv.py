@@ -53,10 +53,10 @@ def clean_tweets(csv_path, csv_path_users):
     #accounts_to_auts = text.retrieve_accounts_to_autonomy({'diputados_autonomicos.csv':'twitter account'})
     ids_to_auts = {ident:aut for ident,aut in zip(users['id'], users['autname'])}
     df['autname'] = [ids_to_auts.get(ident) if ident in ids_to_auts else 'No' for ident in df['user_id']]
-    df['week'] = int(csv_path[4:6])
+    df['week'] = int(csv_path.split('/')[-1][4:6])
     
     # Add message type column
-    if csv_path[-5]=='t':
+    if csv_path.split('/')[-1][-5]=='t':
         df['msg'] = 'tweet'
     else:
         df['msg'] = 'mention'
