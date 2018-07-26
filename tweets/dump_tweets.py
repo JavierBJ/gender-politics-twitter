@@ -7,7 +7,7 @@ import configparser
 import os
 
 def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, recover_tweets_since_id):
-    paths_to_accounts = {'diputados_autonomicos.csv':'twitter account', 'diputados_congreso.csv':'handle'}
+    paths_to_accounts = {'data/diputados_autonomicos.csv':'twitter account', 'data/diputados_congreso.csv':'handle'}
     TRIES = 5
     
     # If num_file==-1 (default), infer it as the maximum pkl already created + 1
@@ -50,8 +50,8 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
         num_file = '0'+str(num_file)
     else:
         num_file = str(num_file)
-    dump_file = 'dump' + num_file
-    log_file = 'log' + num_file
+    dump_file = 'data/pkl/dump' + num_file
+    log_file = 'data/pkl/log' + num_file
     
     if to_dump_tweets:
         dump_file += 't'
