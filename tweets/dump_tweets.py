@@ -36,7 +36,7 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
                     v = int(f[3:5])
                     if v>max_v:
                         max_v = v
-                        max_path = f
+                        max_path = config['PATH']['Pkl']+f
                 except ValueError:
                     print('Warning: unexpected file found in data/csv directory.')
         if max_v>0: # Case where there are already other dumps and were found successfully
