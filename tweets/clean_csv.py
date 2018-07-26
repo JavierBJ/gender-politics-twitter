@@ -1,17 +1,21 @@
 import pandas as pd
 from common import text
+import configparser
 
 ORDERED_COLS = ['id_str', 'in_reply_to_status_id', 'user_id', 'in_reply_to_user_id', 'created_at', 'retweet_count', 'favorite_count', 'full_text']    
 
 
 def clean_users(csv_path):
     print('Cleaning users csv...')
+    config = configparser.ConfigParser()
+    config.read('ini')
     df = pd.read_csv(csv_path, delimiter=';', dtype='str')
-    accounts = text.retrieve_accounts({'diputados_congreso.csv':'handle', 'diputados_autonomicos.csv':'twitter account'})
+    accounts = text.retrieve_accounts({config['PATH']['PathCon']:config['PATH']['HandleCon'], 
+                                       config['PATH']['PathAut']:config['PATH']['HandleAut']})
     accounts = [acc.strip().lower() for acc in accounts]
     df['polit'] = 0
     df['polit'][df['screen_name'].str.lower().isin(accounts)] = 1
-    dict_aut = text.retrieve_accounts_to_autonomy({'diputados_autonomicos.csv': 'twitter account'})
+    dict_aut = text.retrieve_accounts_to_autonomy({config['PATH']['PathAut']:config['PATH']['HandleAut']})
     df['autname'] = [dict_aut.get(sn) if sn in dict_aut else 'No' for sn in df['screen_name'].str.lower()]
     df = df.drop([x for x in df.columns if 'Unnamed' in x], axis=1)
     df.to_csv(csv_path, sep=';', encoding='utf-8')
@@ -19,6 +23,9 @@ def clean_users(csv_path):
     
 def clean_tweets(csv_path, csv_path_users):
     print('Cleaning tweets csv...')
+    config = configparser.ConfigParser()
+    config.read('ini')
+    
     df = pd.read_csv(csv_path, delimiter=';', dtype='str')
     # Remove RTs
     df = df[~df['full_text'].astype(str).str.startswith('RT @')]
@@ -35,7 +42,7 @@ def clean_tweets(csv_path, csv_path_users):
     df['is_sexist'] = ''
     
     # Add identification columns: aut, autname, week
-    accounts = text.retrieve_accounts({'data/diputados_congreso.csv':'handle'}, low=True) # Accounts from Congreso
+    accounts = text.retrieve_accounts({config['PATH']['PathCon']:config['PATH']['HandleCon']}, low=True) # Accounts from Congreso
     print(accounts[0:10], len(accounts))
     # Add user tweets from csv
     users = pd.read_csv(csv_path_users, delimiter=';', dtype='str')
