@@ -1,4 +1,4 @@
-from data2 import tagging
+from tweets import tagging
 
 
 n_tweets = 4000
