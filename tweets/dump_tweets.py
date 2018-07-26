@@ -30,15 +30,15 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
     # If recover_tweets_since_id==-1, infer it as the recover_tweets_since_id of the log file of the last dump
     if recover_tweets_since_id==-1:
         max_v = 0
-        for f in os.listdir(config['PATH']['Pkl']):
-            if 'log' in f and 't' in f[5]:
+        for f in os.listdir(config['PATH']['Csv']):
+            if 'dump' in f and 't' in f[6]:
                 try:
-                    v = int(f[3:5])
+                    v = int(f[4:6])
                     if v>max_v:
                         max_v = v
                         max_path = f
                 except ValueError:
-                    print('Warning: unexpected file found in data/pkl directory.')
+                    print('Warning: unexpected file found in data/csv directory.')
         if max_v>0: # Case where there are already other dumps and were found successfully
             max_f = open(max_path, 'r')
             total = sum([1 for l in max_f])
