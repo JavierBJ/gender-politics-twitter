@@ -16,8 +16,8 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
     # If num_file==-1 (default), infer it as the maximum pkl already created + 1
     if num_file==-1:
         max_v = 0
-        for f in os.listdir(config['PATH']['Pkl']):
-            if 'users' not in f and 'log' not in f:    # Check it's a dumpXX... file, to get where the XX is
+        for f in os.listdir(config['PATH']['Csv']):
+            if 'users' not in f:    # Check it's a dumpXX... file, to get where the XX is
                 try:
                     v = int(f[4:6])
                     max_v = max(max_v, v)
@@ -30,10 +30,10 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
     # If recover_tweets_since_id==-1, infer it as the recover_tweets_since_id of the log file of the last dump
     if recover_tweets_since_id==-1:
         max_v = 0
-        for f in os.listdir(config['PATH']['Csv']):
-            if 'dump' in f and 't' in f[6]:
+        for f in os.listdir(config['PATH']['Pkl']):
+            if 'log' in f and 't' in f[5]:
                 try:
-                    v = int(f[4:6])
+                    v = int(f[3:5])
                     if v>max_v:
                         max_v = v
                         max_path = f
