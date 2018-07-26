@@ -7,13 +7,16 @@ import configparser
 import os
 
 def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, recover_tweets_since_id):
-    paths_to_accounts = {'data/diputados_autonomicos.csv':'twitter account', 'data/diputados_congreso.csv':'handle'}
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    paths_to_accounts = {config['PATH']['PathAut']:config['PATH']['HandleAut'], 
+                         config['PATH']['PathCon']:config['PATH']['HandleCon']}
     TRIES = 5
     
     # If num_file==-1 (default), infer it as the maximum pkl already created + 1
     if num_file==-1:
         max_v = 0
-        for f in os.listdir('data/pkl'):
+        for f in os.listdir(config['PATH']['Pkl']):
             if 'users' not in f and 'log' not in f:    # Check it's a dumpXX... file, to get where the XX is
                 try:
                     v = int(f[4:6])
@@ -27,7 +30,7 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
     # If recover_tweets_since_id==-1, infer it as the recover_tweets_since_id of the log file of the last dump
     if recover_tweets_since_id==-1:
         max_v = 0
-        for f in os.listdir('data/pkl'):
+        for f in os.listdir(config['PATH']['Pkl']):
             if 'log' in f and 't' in f[5]:
                 try:
                     v = int(f[3:5])
@@ -50,18 +53,20 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
         num_file = '0'+str(num_file)
     else:
         num_file = str(num_file)
-    dump_file = 'data/pkl/dump' + num_file
-    log_file = 'data/pkl/log' + num_file
     
+    dump_name = 'dump' + num_file
+    log_name = 'log' + num_file
     if to_dump_tweets:
-        dump_file += 't'
-        log_file += 't'
+        dump_name += 't'
+        log_name += 't'
     if to_dump_mentions:
-        dump_file += 'm'
-        log_file += 'm'
+        dump_name += 'm'
+        log_name += 'm'
     if to_dump_replies:
-        dump_file += 'r'
-        log_file += 'r'
+        dump_name += 'r'
+        log_name += 'r'
+    dump_file = config['PATH']['Pkl'] + dump_name
+    log_file = config['PATH']['Pkl'] + log_name
         
     flog = open(log_file+'.txt', 'w')
     flog.write('Date: ' + str(datetime.now()) + '\n')
@@ -71,10 +76,8 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
     accounts = text.retrieve_accounts(paths_to_accounts)
     print('Total accounts:', len(accounts))
     
-    config = configparser.ConfigParser()
-    config.read('config.ini')
-    api = twitter.Api(access_token_key=config['TWITTER']['AccessToken'], access_token_secret=config['TWITTER']['AccessTokenSecret'], consumer_key=config['TWITTER']['ConsumerKey'], consumer_secret=config['TWITTER']['ConsumerSecret'], sleep_on_rate_limit=True, tweet_mode='extended')
     
+    api = twitter.Api(access_token_key=config['TWITTER']['AccessToken'], access_token_secret=config['TWITTER']['AccessTokenSecret'], consumer_key=config['TWITTER']['ConsumerKey'], consumer_secret=config['TWITTER']['ConsumerSecret'], sleep_on_rate_limit=True, tweet_mode='extended')
     tweets_by_id = {}
     mentions_by_id = {}
     replies_by_id = {}
@@ -188,4 +191,4 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
     # Close files
     fwrite.close()
     flog.close()
-    return dump_file
+    return dump_name

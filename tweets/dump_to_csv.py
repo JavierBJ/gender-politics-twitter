@@ -1,12 +1,14 @@
 import pickle
 import numpy as np
 import pandas as pd
+import configparser
 
-
-def pkl_to_csv(pkl_path):
+def pkl_to_csv(pkl_name):
     print('Converting to csv...')
-    in_path = pkl_path + '.pkl'
-    out_tweets = pkl_path + '.csv'
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    in_path = config['PATH']['Pkl'] + pkl_name + '.pkl'
+    out_tweets = config['PATH']['Csv'] + pkl_name + '.csv'
     out_users = out_tweets.replace('dump','dumpusers')
     
     df_statuses = pd.DataFrame()
@@ -33,6 +35,7 @@ def pkl_to_csv(pkl_path):
     df_statuses.to_csv(out_tweets, sep=';', encoding='utf-8')
     df_users.to_csv(out_users, sep=';', encoding='utf-8')
     print('Converted to csv.')
+    return out_users, out_tweets
 
 
 def process_text(df1, df2):

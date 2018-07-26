@@ -5,6 +5,7 @@ ORDERED_COLS = ['id_str', 'in_reply_to_status_id', 'user_id', 'in_reply_to_user_
 
 
 def clean_users(csv_path):
+    print('Cleaning users csv...')
     df = pd.read_csv(csv_path, delimiter=';', dtype='str')
     accounts = text.retrieve_accounts({'diputados_congreso.csv':'handle', 'diputados_autonomicos.csv':'twitter account'})
     accounts = [acc.strip().lower() for acc in accounts]
@@ -14,9 +15,10 @@ def clean_users(csv_path):
     df['autname'] = [dict_aut.get(sn) if sn in dict_aut else 'No' for sn in df['screen_name'].str.lower()]
     df = df.drop([x for x in df.columns if 'Unnamed' in x], axis=1)
     df.to_csv(csv_path, sep=';', encoding='utf-8')
-    
+    print('Cleaned users csv.')
     
 def clean_tweets(csv_path, csv_path_users):
+    print('Cleaning tweets csv...')
     df = pd.read_csv(csv_path, delimiter=';', dtype='str')
     # Remove RTs
     df = df[~df['full_text'].astype(str).str.startswith('RT @')]
@@ -53,7 +55,7 @@ def clean_tweets(csv_path, csv_path_users):
         df['msg'] = 'mention'
         df['msg'][pd.notnull(df['in_reply_to_user_id'])] = 'reply'
     df.to_csv(csv_path, sep=';', encoding='utf-8')
-
+    print('Cleaned tweets csv.')
 
 
 

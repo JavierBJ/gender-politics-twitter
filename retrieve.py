@@ -1,4 +1,4 @@
-from tweets import dump_tweets, dump_to_csv
+from tweets import dump_tweets, dump_to_csv, clean_csv
 import argparse
 
 if __name__=='__main__':
@@ -18,5 +18,9 @@ if __name__=='__main__':
     print('limit:', args.limit)
     print('since:', args.since)
     
-    pkl_path = dump_tweets.dump(args.notweets, args.nomentions, args.noreplies, args.numfile, args.limit, args.since)
-    dump_to_csv.pkl_to_csv(pkl_path)
+    pkl_name = dump_tweets.dump(args.notweets, args.nomentions, args.noreplies, args.numfile, args.limit, args.since)
+    users_path, tweets_path = dump_to_csv.pkl_to_csv(pkl_name)
+    clean_csv.clean_users(users_path)
+    clean_csv.clean_tweets(tweets_path, users_path)
+    
+    print('Retrieval complete.')
