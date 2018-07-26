@@ -7,7 +7,7 @@ def pkl_to_csv(pkl_path):
     print('Converting to csv...')
     in_path = pkl_path + '.pkl'
     out_tweets = pkl_path + '.csv'
-    out_users = pkl_path[:4] + 'users' + pkl_path[4:] + '.csv'
+    out_users = out_tweets.replace('dump','dumpusers')
     
     df_statuses = pd.DataFrame()
     df_users = pd.DataFrame()
@@ -30,8 +30,8 @@ def pkl_to_csv(pkl_path):
     print('\tTOTAL users in csv:', df_users.shape)
     
     df_statuses, df_users = process_text(df_statuses, df_users)
-    df_statuses.to_csv(out_tweets+'.csv', sep=';', encoding='utf-8')
-    df_users.to_csv(out_users+'.csv', sep=';', encoding='utf-8')
+    df_statuses.to_csv(out_tweets, sep=';', encoding='utf-8')
+    df_users.to_csv(out_users, sep=';', encoding='utf-8')
     print('Converted to csv.')
 
 
