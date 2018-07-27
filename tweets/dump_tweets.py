@@ -24,9 +24,8 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
                 except ValueError:
                     print('Warning: unexpected file found in data/pkl directory.')
         num_file = max_v + 1
-    
     limit = max(limit, 0)   # Prevents from negative limits
-    
+    print('Recovery limit per account and type:', limit)
     # If recover_tweets_since_id==-1, infer it as the recover_tweets_since_id of the log file of the last dump
     if recover_tweets_since_id==-1:
         max_v = 0
@@ -41,13 +40,13 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
                     print('Warning: unexpected file found in data/csv directory.')
         if max_v>0: # Case where there are already other dumps and were found successfully
             max_f = open(max_path, 'r')
-            total = sum([1 for l in max_f])
-            for i, line in enumerate(max_f):
-                if i==total-2:
+            for line in max_f:
+                if line.startswith('Newest tweet ID recovered:'):
                     recover_tweets_since_id = int(line.split(' ')[-1])
         else:       # Case where this is the first dump, so there is no temporal limitation in recovery
             recover_tweets_since_id = 0
-    
+    print('Recovering tweets since id:', recover_tweets_since_id)
+
     # Related to filenames
     if num_file<10:
         num_file = '0'+str(num_file)
@@ -75,7 +74,6 @@ def dump(to_dump_tweets, to_dump_mentions, to_dump_replies, num_file, limit, rec
     t1 = time.time()
     accounts = text.retrieve_accounts(paths_to_accounts)
     print('Total accounts:', len(accounts))
-    
     
     api = twitter.Api(access_token_key=config['TWITTER']['AccessToken'], access_token_secret=config['TWITTER']['AccessTokenSecret'], consumer_key=config['TWITTER']['ConsumerKey'], consumer_secret=config['TWITTER']['ConsumerSecret'], sleep_on_rate_limit=True, tweet_mode='extended')
     tweets_by_id = {}

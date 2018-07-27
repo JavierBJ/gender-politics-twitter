@@ -56,7 +56,7 @@ def clean_tweets(csv_path, csv_path_users):
     df['week'] = int(csv_path.split('/')[-1][4:6])
     
     # Add message type column
-    if csv_path.split('/')[-1][-5]=='t':
+    if csv_path.split('/')[-1][6]=='t':
         df['msg'] = 'tweet'
     else:
         df['msg'] = 'mention'
