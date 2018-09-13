@@ -6,10 +6,10 @@ from urllib.request import urlopen
 from urllib.parse import quote
 import configparser
 
-r_genders_path = '../r-genders.csv'
-paths_to_names = {'diputados_autonomicos.csv':'diputado', 'diputados_congreso.csv':'nombre'}
-paths_to_screennames={'diputados_autonomicos.csv':'twitter account', 'diputados_congreso.csv':'handle'}
-paths_to_genders = {'diputados_autonomicos.csv':'gender', 'diputados_congreso.csv':'gender'}
+r_genders_path = 'data/r-genders.csv'
+paths_to_names = {'data/diputados_autonomicos.csv':'diputado', 'data/diputados_congreso.csv':'nombre'}
+paths_to_screennames={'data/diputados_autonomicos.csv':'twitter account', 'data/diputados_congreso.csv':'handle'}
+paths_to_genders = {'data/diputados_autonomicos.csv':'gender', 'data/diputados_congreso.csv':'gender'}
 associations_api = {'male': 1, 'female': -1}
 
 def tag_politicians_gender(users):
@@ -80,7 +80,7 @@ def tag_gender_from_gender_api(users, thr):
 def _check_limit_gender_api():
     config = configparser.ConfigParser()
     config.read('config.ini')
-    url = 'https://gender-api.com/get-stats?&key=' + config['GENDER']['Key']
+    url = 'https://gender-api.com/get-stats?&key=' + config['GENDERAPI']['Key']
     response = urlopen(url)
     decoded = response.read().decode('utf-8')
     data = json.loads(decoded)
@@ -90,7 +90,7 @@ def _query_gender_api(user):
     config = configparser.ConfigParser()
     config.read('config.ini')
     user = quote(str(user.split(' ')[0]))
-    url = 'https://gender-api.com/get?key=' + config['GENDER']['Key'] + '&name=' + user + '&country=ES'
+    url = 'https://gender-api.com/get?key=' + config['GENDERAPI']['Key'] + '&name=' + user + '&country=ES'
     response = urlopen(url)
     decoded = response.read().decode('utf-8')
     return json.loads(decoded)

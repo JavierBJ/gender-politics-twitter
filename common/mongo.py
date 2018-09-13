@@ -27,7 +27,7 @@ class DB():
             users = users.drop_duplicates('id')
             users = assign_gender.tag_politicians_gender(users)
             users = assign_gender.tag_gender_from_politicians(users)
-            users = assign_gender.tag_gender_from_r(users, 'r-genders.csv', 0.4)
+            users = assign_gender.tag_gender_from_r(users, 'data/r-genders.csv', 0.4)
             users = assign_gender.tag_gender_from_gender_api(users, 0.4)
             users = users.to_dict('records')
             print('\tAssigned gender to users.')

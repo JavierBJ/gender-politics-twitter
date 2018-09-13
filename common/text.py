@@ -98,18 +98,21 @@ def setup_freeling():
             True, True, True, True );
     return tk, sp, umap, mf
 
-def preprocess(tweets, filter_lang=None):
+def preprocess(tweets, label, filter_lang=None):
     print('Preprocessing tweets...')
-    #if filter_lang is not None:
-    #    ids = identify_language(df)
-    #    out = [ident in filter_lang for ident in ids]
-    #    df = df.drop(df[out].index)
-    #    df = df.reset_index(drop=True) # TODO: make some column a real index with set_index() to avoid this problem
-    #    print('\tFiltered out', str(len([o for o in out if o])), 'tweets due to language.')
+    config = configparser.ConfigParser()
+    config.read('config.ini')
     maxlen=0
     ls_tokens = []
+    labels = []
     tk, sp, umap, mf = setup_freeling()
-    for tw in tweets:
+    for tw, l in zip(tweets['full_text'], tweets[label]):
+        if filter_lang:
+            freeling.util_init_locale('default')
+            ident = freeling.lang_ident(config['FREELING']['Data'] + "common/lang_ident/ident.dat")
+            lang = ident.identify_language(tw)
+            if lang!=filter_lang:
+                continue    # Skip this tweet if language doesn't coincide
         #print(tw)
         tokens = tk.tokenize(tw)
         if len(tokens)>maxlen:
@@ -118,9 +121,10 @@ def preprocess(tweets, filter_lang=None):
         tokens = umap.analyze(tokens)
         tokens = mf.analyze(tokens)
         ls_tokens.append([(x.get_form(), x.get_lemma(), x.get_tag()) for sent in tokens for x in sent])
+        labels.append(l)
     print('\tTweets preprocessed.')
     print('\tMax length of a tweet:', maxlen)
-    return ls_tokens
+    return ls_tokens, labels
 
 def tokenize(df):
     print('Tokenizing tweets...')
@@ -146,3 +150,16 @@ def identify_language(df):
         identifications.append(ident.identify_language(raw_text))
     return identifications
 
+def set_language(df):
+    print('Assigning language to tweets...')
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    freeling.util_init_locale('default')
+    ident = freeling.lang_ident(config['FREELING']['Data'] + 'common/lang_ident/ident.dat')
+
+    langs = []
+    for tw in df['full_text']:
+        langs.append(ident.identify_language(tw))
+    df['lang'] = langs
+    print('\tLanguage assigned.')
+    return df
