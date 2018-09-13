@@ -1,0 +1,15 @@
+{ "_id" : "none", "count" : 331868 }
+{ "_id" : "es", "count" : 317801 }
+{ "_id" : "ca", "count" : 62321 }
+{ "_id" : "gl", "count" : 9380 }
+{ "_id" : "en", "count" : 333 }
+{ "_id" : "pt", "count" : 285 }
+{ "_id" : "fr", "count" : 78 }
+{ "_id" : "de", "count" : 77 }
+{ "_id" : "it", "count" : 66 }
+{ "_id" : "hr", "count" : 47 }
+{ "_id" : "ja", "count" : 9 }
+{ "_id" : "cs", "count" : 4 }
+{ "_id" : "zh", "count" : 2 }
+{ "_id" : "sl", "count" : 2 }
+total:722273
