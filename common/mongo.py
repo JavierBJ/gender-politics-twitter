@@ -77,6 +77,7 @@ class DB():
 
     def import_tagged_by_gender_tweets_mongodb(self, tagged_by, msg_type=None, weeks=None, limit=0):
         filters = []
+        filters.append({'lang':{'$in':['es','none']}})	# Hard-coded line for tries with different languages
         if tagged_by is not None:
             filters.append({tagged_by:{'$in':[1,-1]}})
         if msg_type is not None:

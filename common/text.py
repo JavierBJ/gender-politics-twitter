@@ -107,13 +107,6 @@ def preprocess(tweets, label, filter_lang=None):
     labels = []
     tk, sp, umap, mf = setup_freeling()
     for tw, l in zip(tweets['full_text'], tweets[label]):
-        if filter_lang:
-            freeling.util_init_locale('default')
-            ident = freeling.lang_ident(config['FREELING']['Data'] + "common/lang_ident/ident.dat")
-            lang = ident.identify_language(tw)
-            if lang!=filter_lang:
-                continue    # Skip this tweet if language doesn't coincide
-        #print(tw)
         tokens = tk.tokenize(tw)
         if len(tokens)>maxlen:
             maxlen = len(tokens)

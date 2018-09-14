@@ -125,10 +125,10 @@ def analyze(who='author', alg='lasso', score='val_auc', dbname='gender', limit=0
     db = mongo.DB(dbname)
     if who=='author':
         tweets_df = db.import_tagged_by_author_gender_political_tweets_mongodb(weeks=None, limit=limit)
-        tweets, labels = text.preprocess(tweets_df, 'author_gender', 'es')
+        tweets, labels = text.preprocess(tweets_df, 'author_gender')
     elif who=='receiver':
         tweets_df = db.import_tagged_by_receiver_gender_tweets_mongodb(limit=limit)
-        tweets, labels = text.preprocess(tweets_df, 'receiver_gender', 'es')
+        tweets, labels = text.preprocess(tweets_df, 'receiver_gender')
     
     ext = feature_extraction.BinaryBOW(1, lambda x:x[1], keep_words_freq=kwf, keep_words_rank=kwr, remove_stopwords=sw)
     
