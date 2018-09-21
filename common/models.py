@@ -145,7 +145,7 @@ def analyze(who='author', alg='lasso', score='val_auc', dbname='gender', limit=0
         res = analyzer.compute()
         os.makedirs(path, exist_ok=True)
         print('Experiment', expname, ', case', a, '...', file=log)
-        analyzer.show(top=100, to=open(path+'/'+'a'+str(a).replace('.','_')+'.txt', 'w'))
+        analyzer.show(top=500, to=open(path+'/'+'a'+str(a).replace('.','_')+'.txt', 'w'))
         print('Train - Validation', file=log)
         print('F1:', res['Train_F1'], '-', res['Validation_F1'], file=log)
         print('Precision:', res['Train_Precision'], '-', res['Validation_Precision'], file=log)
