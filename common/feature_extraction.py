@@ -52,7 +52,8 @@ class FeatureExtractorBOW(FeatureExtractor):
         for tweet in source:
             tweets_filtered.append([token for token in tweet if not (self._is_sw(self.access_word(self.access_fn(token))) 
                                                     or self._is_punct(self.access_word(self.access_fn(token))) 
-                                                    or self._is_short(self.access_word(self.access_fn(token))))])
+                                                    or self._is_short(self.access_word(self.access_fn(token)))
+                                                    or self._is_proper(token))])
         self.tweets_filtered = tweets_filtered
         
         # Elaborate dictionary of n-grams
@@ -103,6 +104,9 @@ class FeatureExtractorBOW(FeatureExtractor):
             return w[0] not in emoji.UNICODE_EMOJI
         else:
             return len(w)<3
+
+    def _is_proper(self, token):
+        return token[2][0:2]=='NP'
 
     def _vectorize(self, tweets):
         row = []
