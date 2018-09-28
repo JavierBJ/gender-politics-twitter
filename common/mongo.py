@@ -207,4 +207,17 @@ class DB():
         else:
             return False
 
-    
+    def count_replies_by_tweet_id(self, id):
+        return self.db['tweets'].find({'msg':'reply', 'in_reply_to_status_id':id}).count()
+
+    def count_replies_by_user_id(self, id):
+        return self.db['tweets'].find({'msg':'reply', 'in_reply_to_user_id':id}).count()
+
+    def count_replies_by_tweet_id_and_gender(self, id, gen):
+        return self.db['tweets'].find({'msg':'reply', 'in_reply_to_status_id':id, 'author_gender':gen}).count()
+
+    def count_rts_by_user_id(self, id):
+        return sum(int(x['retweet_count']) for x in self.db['tweets'].find({'user_id':id},{'retweet_count':1}))
+
+    def count_favs_by_user_id(self, id):
+        return sum(int(x['favorite_count']) for x in self.db['tweets'].find({'user_id':id},{'favorite_count':1}))
