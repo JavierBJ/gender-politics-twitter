@@ -141,6 +141,13 @@ class DB():
         except IndexError:
             print('Error getting Screen Name from', ident)
 
+    def query_field_by_id(self, field, ident):
+        cursor = self.db['users'].find({'id':ident}).limit(1)
+        try:
+            return cursor[0][field]
+        except IndexError:
+            print('Error getting field', field, 'from', ident)
+
     def update_tweets(self, tweets, fields):
         updates = 0
         tweets = tweets.to_dict('records')

@@ -2,6 +2,7 @@ import pyfreeling as freeling
 import pandas as pd
 from random import shuffle as shf
 import configparser
+import emoji
 
 def retrieve_accounts(dict_files, low=False):
     accounts = pd.Series()
@@ -156,3 +157,9 @@ def set_language(df):
     df['lang'] = langs
     print('\tLanguage assigned.')
     return df
+
+def has_emoji(tw):
+    for ch in tw:
+        if ch in emoji.UNICODE_EMOJI:
+            return True
+    return False
