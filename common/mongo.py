@@ -2,12 +2,15 @@ import pymongo
 import pandas as pd
 from common import assign_gender
 from tweets import tagging
+from collections import defaultdict
 
 class DB():
     
     def __init__(self, db_name='sexism'):
         client = pymongo.MongoClient()  # Default parameters in local
         self.db = client[db_name]
+        self.saved = defaultdict(dict)
+        self.factors = ['screen_name', 'name', 'verified', 'followers_count', 'friends_count']
 
     def export_mongodb(self, tweets, users, tags=True):
         print('Exporting tweets to MongoDB...')
@@ -135,18 +138,21 @@ class DB():
             print('Error getting ID from', name)
     
     def query_name_by_id(self, ident):
-        cursor = self.db['users'].find({'id':ident}).limit(1)
-        try:
-            return cursor[0]['screen_name']
-        except IndexError:
-            print('Error getting Screen Name from', ident)
+        return self.query_field_by_id('screen_name', ident)
 
     def query_field_by_id(self, field, ident):
-        cursor = self.db['users'].find({'id':ident}).limit(1)
         try:
-            return cursor[0][field]
-        except IndexError:
-            print('Error getting field', field, 'from', ident)
+            return self.saved[ident][field]
+        except KeyError:
+            cursor = self.db['users'].find({'id':ident}).limit(1)
+            try:
+                for f in self.factors:
+                    self.saved[ident][f] = cursor[0][f]
+                    if f==field:
+                        result = cursor[0][f]
+                return result
+            except IndexError:
+                print('Error getting field', field, 'from', ident)
 
     def update_tweets(self, tweets, fields):
         updates = 0
@@ -208,10 +214,10 @@ class DB():
             return False
 
     def count_replies_by_tweet_id(self, id):
-        return self.db['tweets'].find({'msg':'reply', 'in_reply_to_status_id':id}).count()
+        return self.db['tweets'].find({'msg':'reply', 'in_reply_to_status_id':id, 'author_gender':{'$in':[1,-1]}}).count()
 
     def count_replies_by_user_id(self, id):
-        return self.db['tweets'].find({'msg':'reply', 'in_reply_to_user_id':id}).count()
+        return self.db['tweets'].find({'msg':'reply', 'in_reply_to_user_id':id, 'author_gender':{'$in':[1,-1]}}).count()
 
     def count_replies_by_tweet_id_and_gender(self, id, gen):
         return self.db['tweets'].find({'msg':'reply', 'in_reply_to_status_id':id, 'author_gender':gen}).count()

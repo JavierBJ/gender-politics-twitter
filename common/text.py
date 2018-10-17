@@ -4,6 +4,31 @@ from random import shuffle as shf
 import configparser
 import emoji
 
+def coefs_to_dict(path):
+    k = 1
+    d = {}
+    f = open(path, 'r')
+    for line in f:
+        try:
+            parts = line.split(' : ')
+            d[parts[0][2:-3]] = k*float(parts[1])
+        except IndexError:
+            k = -1
+    return d
+
+def calculate_feminity(tw):
+    coefs = coefs_to_dict('data/coefficients.txt')
+    count = 0
+    fem = 0
+    for w in tw:
+        if w[1] in coefs:
+            fem -= coefs[w[1]]
+            count += 1
+    if count>0:
+        return fem/count
+    else:
+        return 0
+
 def retrieve_accounts(dict_files, low=False):
     accounts = pd.Series()
     for file, column in dict_files.items():
@@ -45,6 +70,16 @@ def retrieve_accounts_to_autonomy(dict_files):
                 data = data.lower()
             dict_aut.update({data:ccaa})
     return dict_aut
+
+def retrieve_xls_col_by_account(files, acc_cols, obj_cols):
+    dict_p = {}
+    for file, acc_col, obj_col in zip(files, acc_cols, obj_cols):
+        dataset = pd.read_csv(file, sep=';', dtype='str')
+        for acc,obj in zip(dataset[acc_col],dataset[obj_col]):
+            if acc==acc:
+                acc = acc.lower().strip()
+            dict_p.update({acc:obj})
+    return dict_p
 
 def _extract_name(name):
     if 'Sr.' in name or 'Sra.' in name:
