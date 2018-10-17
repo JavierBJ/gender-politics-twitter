@@ -16,3 +16,4 @@ _pyfreeling.so
 pyfreeling.py
 **.pyc
 out_mongo/
+__pycache__/
