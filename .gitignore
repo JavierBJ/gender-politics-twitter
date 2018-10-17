@@ -1,19 +1,22 @@
-backup/
-common/metadata.py
+# Big files
 dump*.csv
 sample*.csv
 tweets.txt
 vectors_*.txt
+**.pkl
+
+# Configuration
 config.ini
+
+# Project data
 .RData
 .Rhistory
 .project
 .pydevproject
 __pycache__/
+**.pyc
+
+# FreeLing
 _freeling.so
-out_relevance/
 _pyfreeling.so
 pyfreeling.py
-**.pyc
-out_mongo/
-__pycache__/
