@@ -1,9 +1,10 @@
-# Big files
+# Big or generable files
 dump*.csv
 sample*.csv
 tweets.txt
 vectors_*.txt
 **.pkl
+results/
 
 # Configuration
 config.ini
